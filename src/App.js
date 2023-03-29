@@ -1,12 +1,11 @@
 import React from 'react';
-import Nav from './view/Nav'
+import MainView from './view/MainView';
 
 function App() {
   return (
-    <div>
-      <h1>졸립니다</h1>
-      <Nav/>
-    </div>
+    <>
+      <MainView/>
+    </>
   );
 }
 
