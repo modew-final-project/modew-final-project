@@ -1,0 +1,108 @@
+@charset "utf-8";
+/* CSS Document */
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+   font-family: 'GmarketSansTTF';
+   font-style: normal;
+   font-weight: 400;
+   src: url(../fonts/GmarketSansTTFLight.ttf) format('ttf'),
+        url(../fonts/NotoSansKr/NotoSansKR-Regular.woff2) format('woff2'),
+        url(../fonts/NotoSansKr/NotoSansKR-Regular.woff) format('woff'),
+        url(../fonts/NotoSansKr/NotoSansKR-Regular.otf) format('opentype');
+}
+
+@font-face {
+   font-family: 'GmarketSansTTF';
+   font-style: normal;
+   font-weight: 500;
+   src: url(../fonts/GmarketSansTTFMedium.ttf) format('ttf'),
+        url(../fonts/NotoSansKr/NotoSansKR-Medium.woff2) format('woff2'),
+        url(../fonts/NotoSansKr/NotoSansKR-Medium.woff) format('woff'),
+        url(../fonts/NotoSansKr/NotoSansKR-Medium.otf) format('opentype');
+}
+
+@font-face {
+   font-family: 'GmarketSansTTF';
+   font-style: normal;
+   font-weight: 600;
+   src: url(/fonts/GmarketSansTTFBold.ttf) format('ttf'),
+        url(/fonts/NotoSansKr/NotoSansKR-Bold.woff2) format('woff2'),
+        url(/fonts/NotoSansKr/NotoSansKR-Bold.woff) format('woff'),
+        url(/fonts/NotoSansKr/NotoSansKR-Bold.otf) format('opentype');
+} 
+
+html {font-size:20px}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4,h5, form, fieldset, p, button, input {
+	margin:0;
+	padding:0;
+	font-family: 'Gmarket Sans TTF', 'Noto Sans KR', 'NanumGothic', '나눔고딕', '돋움', 'dotum', 'sans-serif';
+	line-height:1.5;
+	letter-spacing:-0.5px
+}
+
+input, select {
+	vertical-align:middle;
+	color:#666;
+}
+
+a {text-decoration:none}
+
+img, fieldset {border:none}
+ul li {	list-style:none outside none}
+ol li {	list-style:none outside none}
+
+caption, legend {
+	visibility:hidden;
+	overflow:hidden;
+	position:absolute;
+	top:0;
+	left:-999em;
+	width:0;
+	height:0;
+	font-size:0;
+	line-height:0;
+	text-align:left;
+}
+
+strong {font-weight:500}
+
+table {table-layout:fixed;word-break:break-all}
+
+textarea { line-height:24px;
+		   letter-spacing:1px;
+		    border:1px solid #ddd;
+			overflow-y:scroll;
+			resize:none;}
+
+
+html, body{height: 100%;}
+
+#wrap {position:relative; width:100%; height:100%; background: url("../images/main_bg.jpg") no-repeat center; background-size: cover; overflow-y: scroll}
+.mainWrap{width: 100%; max-width: 1400px; height: 100%; margin: 0 auto; padding: 0 2rem 1rem 2rem; box-sizing: border-box;}
+.mainWrap .header_right{display: flex; justify-content: right; align-items: center; padding: 2rem 0;}
+.mainWrap .header_right > ul{font-size: 0;}
+.mainWrap .header_right > ul > li{display: inline-block; padding-left: 2rem; vertical-align: middle;}
+.mainWrap .header_right > ul > li:first-child{padding-left: 0;}
+.mainWrap .header_right > ul > li > a{font-size: 1rem; color: #333; vertical-align: middle; font-weight: 500;}
+.mainWrap .header_right > ul > li > a:hover{color: #ff9d1d;}
+
+.mainWrap .main{display: flex; align-items: center; height: calc(100% - 5.6rem);}
+.mainWrap .main .main_left{display: flex; align-items: center;}
+.mainWrap .main .main_left img{max-width: 100%; height: auto;}
+.mainWrap .main .main_left p{font-size: 1.15rem; color: #666; padding-top: 1rem; padding-bottom: 1.5rem; word-break: keep-all;}
+.mainWrap .main .main_left ul{max-width: 35rem; font-size: 0; line-height: 4rem;}
+.mainWrap .main .main_left ul li{display: inline-block; padding-right: .5rem;}
+.mainWrap .main .main_left ul li:nth-child(5){padding-right: 0;}
+.mainWrap .main .main_left ul li a{font-size: 1rem; color: #666; border: 1px solid #666; border-radius: 1rem; padding: .9rem 1.5rem;}
+.mainWrap .main .main_left ul li a:hover{color: #fff; background: #6aa6eb; border: none;}
+
+.mainWrap .main .main_right{display: flex; justify-content: center; align-items: center; max-width: 702px; height: auto; margin-top: -4rem;}
+.mainWrap .main .main_right img{max-width: 100%; height: auto;}
