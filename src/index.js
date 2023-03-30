@@ -4,6 +4,8 @@ import App from './App';
 import './Font.css'
 import './Common.css'
 import './Style.css'
+import './Login.css'
+import './Sign.css'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
