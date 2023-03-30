@@ -85,7 +85,7 @@ textarea { line-height:24px;
 
 html, body{height: 100vh;}
 
-#wrap {position:relative; width:100%; height:100vh; background: url("../public/images/main_bg.jpg") no-repeat center; background-size: cover; overflow-y: scroll}
+#wrap {position:relative; width:100%; height:100vh; background: url("./images/main_bg.jpg") no-repeat center; background-size: cover; overflow-y: scroll}
 .mainWrap{width: 100%; max-width: 1400px; height: 100vh; margin: 0 auto; padding: 0 2rem 1rem 2rem; box-sizing: border-box;}
 .mainWrap .header_right{display: flex; justify-content: right; align-items: center; padding: 2rem 0;}
 .mainWrap .header_right > ul{font-size: 0;}
