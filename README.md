@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# 모두, 쉽게 작성하라! MODEW 프로젝트
+### 복잡한 공공문서 작성을 쉽고 간편하게 작성할 수 있도록 하는 웹 어플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 `React` 방식을 사용하여 만들어졌습니다!
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 팀원들 숙지사항 (23. 03. 30 업데이트)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+기존의 repository 는 테스트용 프로젝트였기 때문에 [test-project](https://github.com/modew-final-project/test-project.git) 로 이름이 변경되었습니다.
 
-### `npm test`
+팀원들은 [modew-final-project](https://github.com/modew-final-project/modew-final-project.git) 를 새로 clone 해 주시기 바랍니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+클론하여 저장소를 내려받은 후, VS Code의 터미널에서
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. `npm install`
+### 2. `npm add firebase@8.8.0`
+### 3. `npm i react-router-dom@5.3.0`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+을 순차적으로 실행시킨 후
 
-### `npm run eject`
+### 최초 1회만 `npm run start` 를 사용하여 실행시킵니다.
+### 이후 실행은 `npm start` 로 하시면 됩니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# 참고하면 좋은 문서, 강의
+[React 공식 문서](https://ko.reactjs.org/)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[노마드코더 ReactJS로 영화 웹 서비스 만들기](https://nomadcoders.co/react-for-beginners/lobby)
 
-## Learn More
+[조현영 웹 게임을 만들며 배우는 React](https://www.inflearn.com/course/web-game-react/dashboard)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
