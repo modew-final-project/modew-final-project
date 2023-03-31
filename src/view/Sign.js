@@ -1,13 +1,42 @@
 import React, { useState } from "react";
+import { authService } from "../fbase";
 import modew_Logo from "../images/modew_logo.png"
-import LogOutNav from "./LogOutNav";
 
 const Sign = ()=>{
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const onChange = (e) =>{
+        const{
+            target:{name,value},
+
+
+        } =e;
+        if(name==="email"){
+            setEmail(value);
+        }else if(name==="password"){
+            setPassword(value);
+        }
+    }
+
+    const onSubmit = async (e)=>{
+
+        e.preventDefault();
+
+        try {
+            let data = await authService.signInWithEmailAndPassword(email,password);
+            console.log(data);
+
+        } catch (error) {
+            
+            console.log(error);
+        }
+
+    }
 
     return(
         <>
-        <LogOutNav/>
         <div className="loginWrap">
         <div className="loginInner">
             <div className="loginBanner">
@@ -23,14 +52,14 @@ const Sign = ()=>{
                         <form>
                             <div className="user_input">
                                 <div className="loginBox">
-                                    <input type="text" placeholder="이름을 입력하세요." maxlength="50"/>
-                                    <input type="text" placeholder="주민등록번호를 입력하세요." maxlength="50"/>
-                                    <input type="text" placeholder="핸드폰번호를 입력하세요." maxlength="50"/>
-                                    <input type="text" placeholder="이메일을 입력하세요." maxlength="50"/>
+                                    <input type="text" onChange={onChange} placeholder="이름을 입력하세요." maxLength="50"/>
+                                    <input type="text" onChange={onChange} placeholder="주민등록번호를 입력하세요." maxLength="50"/>
+                                    <input type="text" onChange={onChange} placeholder="핸드폰번호를 입력하세요." maxLength="50"/>
+                                    <input type="text" onChange={onChange} placeholder="이메일을 입력하세요." maxLength="50"/>
                                 </div>
                                 <div className="pwBox">
-                                    <input type="password" placeholder="비밀번호를 입력하세요."/>
-                                    <input type="password" placeholder="비밀번호를 확인해주세요"/>
+                                    <input type="password" onChange={onChange} placeholder="비밀번호를 입력하세요."/>
+                                    <input type="password" onChange={onChange} placeholder="비밀번호를 확인해주세요"/>
                                 </div>
                             </div>
                             <div className="checkbox_wrap">

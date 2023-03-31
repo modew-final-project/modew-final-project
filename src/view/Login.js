@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { authService } from "../fbase";
 import modew_Logo from "../images/modew_logo.png"
-import LogOutNav from "./LogOutNav";
 
 const Login = ()=>{
 
@@ -39,7 +38,6 @@ const Login = ()=>{
 
     return(
         <>
-            <LogOutNav/>
             <div className="loginWrap">
             <div className="loginInner">
                 <div className="loginBanner">

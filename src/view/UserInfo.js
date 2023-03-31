@@ -7,7 +7,6 @@ const UserInfo = ()=>{
 
     return(
         <>
-        <LogInNav/>
         <div className="loginWrap">
                 <div className="loginInner">
                     <div className="loginBanner userinfo">
@@ -23,9 +22,9 @@ const UserInfo = ()=>{
                                 <form>
                                     <div className="user_input">
                                         <div className="loginBox">
-                                            <input className="bggray" type="text" placeholder="장서연" maxlength="50" disabled/>
-                                            <input className="bggray" type="text" placeholder="970201-2******" maxlength="50" disabled/>
-                                            <input type="text" placeholder="이메일을 입력하세요." maxlength="50"/>
+                                            <input className="bggray" type="text" placeholder="장서연" maxLength="50" disabled/>
+                                            <input className="bggray" type="text" placeholder="970201-2******" maxLength="50" disabled/>
+                                            <input type="text" placeholder="이메일을 입력하세요." maxLength="50"/>
                                         </div>
                                         <div className="pwBox">
                                             <input type="password" placeholder="비밀번호를 입력하세요."/>
