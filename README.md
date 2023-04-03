@@ -19,6 +19,10 @@
 ### 1. `npm install`
 ### 2. `npm add firebase@8.8.0`
 ### 3. `npm i react-router-dom@5.3.0`
+### 4. `npm install express --save`
+### 5. `npm install cors`
+### 6. `npm install body-parser`
+### 7. `npm install mysql`
 
 을 순차적으로 실행시킨 후
 
