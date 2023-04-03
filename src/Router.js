@@ -22,6 +22,7 @@ const AppRouter = ({isLoggedIn}) => {
           <div id="wrap">
             <div className="mainWrap">
               <LogInNav/>
+                {/* <Route path="/Login"><Main/></Route> */}
                 <Route exact path="/Mydrive"><MyDrive /></Route>
                 <Route exact path="/UserInfo"><UserInfo /></Route>
                 <Route exact path="/Main"><Main/></Route>

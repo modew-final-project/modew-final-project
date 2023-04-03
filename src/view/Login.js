@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 import modew_Logo from "../images/modew_logo.png"
 
 const Login = ()=>{
+
+    const history = useHistory();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,15 +26,22 @@ const Login = ()=>{
     const onSubmit = async (e)=>{
 
         e.preventDefault();
-
+        
         try {
             let data = await authService.signInWithEmailAndPassword(email,password);
-            console.log(data);
+            if(data.user !=null){
+                console.log("유저정보 : ",data.user);
+                history.push("/");
+            }else{
+                console.log("제대로 로그인 안됨 : ",data)
+            }
+            
 
         } catch (error) {
             
             console.log(error);
         }
+        
 
     }
 
