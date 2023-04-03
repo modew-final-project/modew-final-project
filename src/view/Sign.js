@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { authService } from "../fbase";
 import modew_Logo from "../images/modew_logo.png"
 
 const Sign = ()=>{
@@ -43,6 +44,9 @@ const Sign = ()=>{
               
             }),
           });
+
+          let data = await authService.createUserWithEmailAndPassword(email,password);
+            console.log("firebase에 전송된 데이터 : ",data);
       
           console.log("DB 저장 성공");
       
@@ -78,10 +82,10 @@ const Sign = ()=>{
                                     <input type="text" onChange={onChange} name="name" placeholder="이름을 입력하세요." maxLength="50"/>
                                     <input type="text" onChange={onChange} name="birthday" placeholder="주민등록번호를 입력하세요." maxLength="50"/>
                                     <input type="text" onChange={onChange} name="tel" placeholder="핸드폰번호를 입력하세요." maxLength="50"/>
-                                    <input type="text" onChange={onChange} name="email" placeholder="이메일을 입력하세요." maxLength="50"/>
+                                    <input type="text" onChange={onChange} name="email" value={email} placeholder="이메일을 입력하세요." maxLength="50"/>
                                 </div>
                                 <div className="pwBox">
-                                    <input type="password" onChange={onChange} name="password" placeholder="비밀번호를 입력하세요."/>
+                                    <input type="password" onChange={onChange} value={password} name="password" placeholder="비밀번호를 입력하세요."/>
                                     <input type="password" onChange={onChange} placeholder="비밀번호를 확인해주세요"/>
                                 </div>
                             </div>
