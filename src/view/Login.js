@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { authService } from "../fbase";
+import { authService,firebaseInstance } from "../fbase";
 import modew_Logo from "../images/modew_logo.png"
 
 const Login = ()=>{
@@ -9,6 +9,18 @@ const Login = ()=>{
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error,setError] = useState("");
+
+    const onSocialClick = async (e)=>{
+        const{
+            target:{name},
+        } = e;
+        let provider = new firebaseInstance.auth.GoogleAuthProvider();
+
+        const data = await authService.signInWithPopup(provider);
+        console.log(data);
+        history.push("/");
+    }
 
     const onChange = (e) =>{
         const{
@@ -38,7 +50,7 @@ const Login = ()=>{
             
 
         } catch (error) {
-            
+            setError("이메일 또는 비밀번호가 틀렸습니다. 다시 입력해주세요.");
             console.log(error);
         }
         
@@ -73,6 +85,7 @@ const Login = ()=>{
                                     <input type="checkbox" id="saveId" value="false"/>
                                     <p>이메일 저장</p>
                                 </div>
+                                {error}
                                 <button className="submit">로그인</button>
                                 <div className="login_bTxt">
                                     <ul>
@@ -80,8 +93,8 @@ const Login = ()=>{
                                         <li><a href="">비밀번호 찾기</a></li>
                                     </ul>
                                 </div>
-                                <button className="google_submit">Google 계정으로 로그인</button>
                             </form>
+                                <button className="google_submit" onClick={onSocialClick} name="google">Google 계정으로 로그인</button>
                         </div>
                     </div>
                 </div>
