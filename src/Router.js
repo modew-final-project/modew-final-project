@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch,Link } from "react-router-dom";
 import Conditions from "./view/Conditions";
 import LoginView from "./view/LoginView";
 import LogOutView from "./view/LogOutView";
-
+import File from "./view/File";
 
 const AppRouter = ({isLoggedIn}) => {
   
@@ -16,9 +16,11 @@ const AppRouter = ({isLoggedIn}) => {
       
       <Switch>
       <Route exact path="/Conditions"><Conditions/></Route>
+      <Route path="/File"><File/></Route>
         {isLoggedIn ? (     
           <>
             <Route path="/"><LoginView/></Route>
+            
           </>        
           // <div id="wrap">
           //   <div className="mainWrap">

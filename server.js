@@ -1,42 +1,75 @@
 const express = require("express");
 const app = express();
 const port = 3002;
+// 필요한 라이브러리 import
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
 
+// multer 설정
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: function (req, file, cb) {
+      // 업로드 파일의 저장 경로 설정
+      cb(null, "C:/Users/smhrd/modew-final-project/src/fileforder");
+    },
+    filename: function (req, file, cb) {
+      // 업로드된 파일 이름 설정
+      const originalName = file.originalname;
+      const extension = path.extname(originalName);
+      const baseName = path.basename(originalName, extension);
+
+      let count = 0;
+      let fileName = baseName + extension;
+
+      // 파일 이름 중복 방지를 위한 카운트 추가
+      while (fs.existsSync("C:/Users/smhrd/modew-final-project/src/fileforder/" + fileName)) {
+        count++;
+        fileName = baseName + "_" + count + extension;
+      }
+
+      req.fileName = fileName;
+      cb(null, fileName);
+    },
+  }),
+});
+
+// 데이터베이스 연결 설정
 var connection = mysql.createConnection({
-    host: "project-db-stu.ddns.net",
-    user: "smhrd_A_5",
-    password: "smhrd5",
-    database: "smhrd_A_5",
-    port: 3307 // 명시적으로 3307번 포트를 사용
-  });
-  
+  host: "project-db-stu.ddns.net",
+  user: "smhrd_A_5",
+  password: "smhrd5",
+  database: "smhrd_A_5",
+  port: 3307, // 명시적으로 3307번 포트를 사용
+});
 
+// 데이터베이스 연결
 connection.connect();
 
+// express 설정
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(bodyParser.json());
 
-
+// 유저 정보를 저장하는 API
 app.post("/user", (req, res) => {
   const { email, pw, name, birthday, tel, date } = req.body;
 
+  // 유저 정보를 데이터베이스에 저장하는 코드
   connection.query(
-    "INSERT INTO User (Email, Pw, Name, Birthday, Tel, Date) VALUES (?, ?, ?, ?, ?, NOW())",
+    "INSERT INTO `User` (Email, Pw, Name, Birthday, Tel, Date) VALUES (?, ?, ?, ?, ?, NOW())",
     [email, pw, name, birthday, tel, date],
     function (err, rows, fields) {
       if (err) {
         console.log("DB저장 실패");
-        
 
         // 회원가입 실패 메시지 클라이언트 쪽으로 전송
         res.status(500).json({ message: "회원가입 실패!" });
       } else {
         console.log("DB저장 성공");
-        
 
         // 회원가입 성공 메시지 클라이언트 쪽으로 전송
         res.status(200).json({ message: "회원가입 성공!" });
@@ -44,7 +77,53 @@ app.post("/user", (req, res) => {
     }
   );
 });
+// 파일 업로드 API
+app.post("/fileupload", upload.single("myFile"), (req, res) => {
+  const email = req.body.email; // 클라이언트로부터 전송된 이메일 정보
+ 
+  const file = req.file; // 업로드된 파일 정보
+  const fileName = req.file.filename; // 저장된 파일 이름
 
+  // 데이터베이스에 저장될 파일 이름
+  const dbFileName = "my_custom_file_name" + path.extname(fileName);
+
+  // 파일 정보를 데이터베이스에 저장하는 코드
+  connection.query(
+    "INSERT INTO FileList (file_name, uploader_email) VALUES (?, ?)",
+    [fileName, email], // SQL 쿼리에 전달될 값
+    function (err, rows, fields) {
+      if (err) {
+        console.log("DB저장 실패"+email);
+        res.status(500).json({ message: "파일 저장 실패!" }); // HTTP 응답으로 클라이언트에게 실패 메시지 전송
+      } else {
+        console.log("DB저장 성공");
+        res.status(200).json({ message: "파일 저장 성공!" }); // HTTP 응답으로 클라이언트에게 성공 메시지 전송
+      }
+    }
+  );
+});
+
+// 파일 목록 조회 API
+app.get("/filelist/:email", (req, res) => {
+  const email = req.params.email; // 클라이언트로부터 전송된 이메일 정보
+
+  connection.query(
+    "SELECT file_name, upload_date FROM FileList WHERE uploader_email = ?", // SQL 쿼리문
+    [email], // SQL 쿼리에 전달될 값
+    (err, rows, fields) => {
+      if (err) {
+        console.log("DB조회 실패");
+        res.status(500).json({ message: "파일목록 조회 실패!" });
+      } else {
+        console.log("DB조회 성공");
+        res.status(200).json(rows);
+      }
+    }
+  );
+});
+
+// 서버 실행 및 종료 시 데이터베이스 연결 종료
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+process.on('exit', function() { connection.end(); }); // 프로세스 종료 시 데이터베이스 연결 종료
