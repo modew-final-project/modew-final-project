@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sub.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="subWrap" class="bgnone">
+        <div class="docuWrap">
+            <div class="header_right pd21 flex_sb bgblue">
+                <h3>매매계약서</h3>
+                <ul>
+                    <li><a href="">Login</a></li>
+                    <li><a href="">Sign in</a></li>
+                    <li><a href="">My Page</a></li>
+                    <li><a href="">My Drive</a></li>
+                    <li><img src=""/><img src="./images/main_search.png"/></li>
+                    <li><img src=""/><img src="./images/main_menu.png"/></li>
+                </ul>
+            </div><!-- header -->
+            <div class="content_write">
+                <div class="write_wrap">
+                    <div class="write_left scroll">
+                        <div class="Autodoc">
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>집주인 및 세입자</p>
+                                    <p class="doc_page"><span>1</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>집주인</p>
+                                        <ul class="input_radio">
+                                            <li><input type="radio" name="법인"/>법인</li>
+                                            <li><input type="radio" name="개인사업자"/>개인사업자</li>
+                                            <li><input type="radio" name="개인"/>개인</li>
+                                        </ul>
+                                    </div>
+                                    <div class="input_check">
+                                        <p>세입자</p>
+                                        <ul class="input_radio">
+                                            <li><input type="radio" name="법인"/>법인</li>
+                                            <li><input type="radio" name="개인사업자"/>개인사업자</li>
+                                            <li><input type="radio" name="개인"/>개인</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb10">
+                                <div class="doc_content_title">
+                                    <p>임대차 계약의 내용</p>
+                                    <p class="doc_page"><span>2</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>임대차 계약의 종류</p>
+                                        <ul class="input_radio">
+                                            <li><input type="radio" name="법인"/>월세 및 반전세</li>
+                                            <li><input type="radio" name="개인사업자"/>전세</li>
+                                        </ul>
+                                    </div>
+                                    <div class="input_check">
+                                        <p>임대차 계약기간</p>
+                                        <ul class="input_text">
+                                            <li class="pb05"><input class="w85" type="date" name="시작날짜"/>부터</li>
+                                            <li><input class="w85" type="date" name="끝날짜"/>까지</li>
+                                        </ul>
+                                        <div class="first_check">
+                                            <div class="first_check_wrap pt10">
+                                                <ul>
+                                                    <p>월세금액</p>
+                                                    <li class="pt025">
+                                                       <span class="pr05">금</span><input class="text_right" type="text" placeholder="700,000"/><span>원</span>
+                                                    </li>
+                                                    <p class="pt075">지불일</p>
+                                                    <li class="pt025">
+                                                        <span class="pr05">매월</span><input class="text_right" type="text" placeholder="25"/><span>일</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb10">
+                                <div class="doc_content_title">
+                                    <p>임대차 계약의 내용</p>
+                                    <p class="doc_page"><span>3</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <div class="first_check">
+                                            <div class="first_check_wrap">
+                                                <ul>
+                                                    <p>보증금</p>
+                                                    <li class="pt025">
+                                                       <span class="pr05 first_txt">금</span><input class="text_right" type="text" placeholder="50,000,000"/><span>원</span>
+                                                    </li>
+                                                    <p class="pt10">계약금</p>
+                                                    <li class="pt025">
+                                                        <span class="pr05 first_txt">금</span><input class="text_right" type="text" placeholder="10,000,000"/><span>원</span>
+                                                    </li>
+                                                    <p class="pt10">잔금</p>
+                                                    <li class="pt025">
+                                                        <span class="pr05 first_txt">금</span><input class="text_right" type="text" placeholder="90,000,000"/><span>원</span>
+                                                    </li>
+                                                    <p class="pt10">잔금지급날짜</p>
+                                                    <li class="pt025"><input type="date" placeholder="90,000,000"/></li>
+                                                    <p class="pt10">계좌 정보</p>
+                                                    <li class="pt025">
+                                                        <span class="pr05 first_txt">은행명</span><input class="text_right" type="text" placeholder="국민은행"/>
+                                                    </li>
+                                                    <li class="pt025">
+                                                        <span class="pr05 first_txt">계좌번호</span><input class="text_right" type="text" placeholder="12-3456-789"/>
+                                                    </li>
+                                                    <li class="pt025">
+                                                        <span class="pr05 first_txt">예금주</span><input class="text_right" type="text" placeholder="장서연"/>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>특약사항</p>
+                                    <p class="doc_page"><span>4</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <p>집주인</p>
+                                        <ul class="input_checklist pt05">
+                                            <li><input type="checkbox" name="빌트인제품"/>빌트인 제품</li>
+                                            <li class="check_txt pb05"><input type="text" placeholder="임대인은 입주전에 에어컨,냉장고 정상설치하기로 함" name="빌트인제품체크"/></li>
+                                            <li><input type="checkbox" name="청소비"/>청소비</li>
+                                            <li class="check_txt pb05"><input type="text" placeholder="임차인은 계약 만료일날 10만원 지급하기로 한다" name="청소비체크"/></li>
+                                            <li><input type="checkbox" name="직접입력"/>직접입력</li>
+                                            <li class="check_txt pb05"><input type="text" placeholder="임대인은 전세보증금 잔금지급 및 임차인의 전입신고일까지 첨부한 등기부등본의 상태를 그대로 유지하여야 하고 추가적인 대출 및 근저당권설정을 하지 않아야 하며, 임대인이 이를 위반시 임차인은 계약을 해지할 수 있다." name="직접입력체크"/></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>부동산의 표시</p>
+                                    <p class="doc_page"><span>5</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <p>소재지</p>
+                                        <ul class="input_checklist pt05">
+                                            <li><input type="checkbox" name="토지용도"/>토지용도</li>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="대" name="토지용도텍스트"/>
+                                                <input type="text" placeholder="160.89" name="토지용도면적"/><span>m<sup>2</sup></span>
+                                            </li>
+                                            <li class="pt05"><input type="checkbox" name="건물 구조·용도"/>건물 구조·용도</li>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="다세대 주택" name="구조용도"/>
+                                                <input type="text" placeholder="120.34" name="구조용도면적"/><span>m<sup>2</sup></span>
+                                            </li>
+                                            <li class="pt05"><input type="checkbox" name="임대할 부분"/>임대할 부분</li>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="2층 203호, A동 전체 등" name="임대할부분"/>
+                                                <input type="text" placeholder="28.79" name="임대할부분면적"/><span>m<sup>2</sup></span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>집주인 상세정보</p>
+                                    <p class="doc_page"><span>6</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <ul class="input_checklist pt025">
+                                            <p>집주인 상세정보</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="성명" name="집주인성명"/>
+                                                <input type="text" placeholder="주민등록번호" name="집주인주민등록번호"/>
+                                            </li>
+                                            <p class="pt05">주소</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                            </li>
+                                            <p class="pt05">전화번호</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="010-1234-5678" name="집주인번호"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>세입자 상세정보</p>
+                                    <p class="doc_page"><span>7</span>/7</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <ul class="input_checklist pt025">
+                                            <p>세입자 상세정보</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="성명" name="세입자성명"/>
+                                                <input type="text" placeholder="주민등록번호" name="세입자주민등록번호"/>
+                                            </li>
+                                            <p class="pt05">주소</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                            </li>
+                                            <p class="pt05">전화번호</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="010-1234-5678" name="세입자번호"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="write_right">
+                        <div class="document">
+                            <div class="document_wrap">
+                                <div class="doc_txt">
+                                    <h3 class="mt30 mb20">부동산 임대차계약서(직거래)</h3>
+                                    <h4>제1조(계약 존속 기간)</h4>
+                                    <p>임대인은 아래 임대차 대상 부동산(이하 '부동산')을 임대차 목적대로 사용•수익할 수 있는 상태로 하여 <span>2023.03.31</span>
+                                        일까지 임차인에게 인도하며, 임대차기간은 인도일로부터 <span>2024.03.31</span>까지로 한다.
+                                    </p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제2조(부동산의 표시)</h4>
+                                    <p>임대인과 임차인은 쌍방 합의하여 아래 표시 부동산에 관하여 임대차 계약을 체결한다.</p>
+                                    <ul>
+                                        <li>1. 토지지목 : <span>대</span>, 토지 면적 : <span>160.89m<sup>2</sup></span></li>
+                                        <li>2. 건물 구조·용도 : 위 토지 지상 <span>다세대 주택</span>, 건물 면적 : <span>120.34m<sup>2</sup></span></li>
+                                        <li>3. 임대할 부분 : <span>2층 203호</span>, 임대할 면적 : <span>28.79m<sup>2</sup></span></li>
+                                    </ul>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제3조(계약내용)</h4>
+                                    <p>부동산의 임대차와 관련하여 임차인은 임대차보증금 및 차임을 아래와 같이 지불하기로 약정한다.</p>
+                                    <ul>
+                                        <li>1. 보증금 : 금 <span>50,000,000</span> 원</li>
+                                        <li>2. 계약금 : 금 <span>10,000,000</span> 원정은 계약시에 지불하고 영수하기로 한다.</li>
+                                        <li>3. 잔금 : 금 <span>90,000,000</span> 원정은 <span>2023.04.15</span> 일에 지불한다.</li>
+                                        <li>4. 월세 : 금 <span>7,000,000</span> 원정은 매월 <span>15</span> 일에 지불한다.</li>
+                                        <li>5. 입금계좌 : <span>국민은행 12-3456-789 장서연</span></li>
+                                    </ul>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제4조(용도변경 및 전대 등)</h4>
+                                    <p>임차인은 임대인의 동의 없이 위 부동산의 용도나 구조를 변경하거나 전대 • 임차권 양도 또는 담보제공을 하지 못하며 임대차 목적 이외의 용도로 사용할 수 없다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제5조(계약의 해지)</h4>
+                                    <p>임차인의 차임연체액이 2기의 차임액에 달하거나 본 계약의 '용도변경 및 전대 등' 조항을 위반하였을 때 임대인은 즉시 본 계약을 해지할 수 있다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제6조(계약의 종료)</h4>
+                                    <p>임대차계약이 종료된 경우에 임차인은 위 부동산을 원상으로 회복하여 임대인에게 반환한다. 이러한 경우 임대인은 보증금을 임차인에게 반환하고, 연체 임대료 또는 손해배상금이 있을 때는 이들을 제하고 그 잔액을 반환한다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제7조(계약의 해제)</h4>
+                                    <p>임차인이 임대인에게 중도금(중도금이 없을 때는 잔금)을 지불하기 전까지, 임대인은 계약금의 배액을 상환하고, 임차인은 계약금을 포기하고 본 계약을 해제할 수 있다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제8조(채무불이행과 손해배상)</h4>
+                                    <p>임대인 또는 임차인이 본 계약상의 내용에 대하여 불이행이 있을 경우 그 상대방은 불이행한 자에 대하여 서면으로 최고하고 계약을 해제할 수 있다. 그리고 계약 당사자는 계약해제에 따른 손해배상을 각각 상대방에 대하여 청구할 수 있다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>제9조(특약)</h4>
+                                    <p>1. <span>임대인은 입주전에 에어컨,냉장고 정상설치하기로 함</span></p>
+                                    <p>2. <span>임차인은 계약 만료일날 10만원 지급하기로 한다</span></p>
+                                    <p>3. <span>임대인은 전세보증금 잔금지급 및 임차인의 전입신고일까지 첨부한 등기부등본의 상태를 그대로 유지하여야 하고 추가적인 대출 및 근저당권설정을 하지 않아야 하며, 임대인이 이를 위반시 임차인은 계약을 해지할 수 있다.</span></p>
+                                </div>
+                                <p>본 계약을 증명하기 위하여 계약 당사자가 이의 없음을 확인하고 각각 서명 • 날인 후 임대인 및 임차인은 매장마다 간인하여야 하며, 각각 1통씩 보관한다.</p>
+                                <p class="doc_date pt10">2023년 04월 03일</p>
+                                <div class="doc_txt pt10">
+                                    <h4>임대인</h4>
+                                    <p>성명 : <span>장서연</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span>970201-2571246</span></p>
+                                    <p>주소 : <span>광주 동구 동계천로 74 (장동) 2층 204호</span></p>
+                                    <p>전화번호 : <span>010-5643-8512</span></p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>임차인</h4>
+                                    <p>성명 : <span>장두식</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span>970201-2571246</span></p>
+                                    <p>주소 : <span>광주 동구 장동 2층 204호</span></p>
+                                    <p>전화번호 : <span>010-5105-9721</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="footer_wrap">
+                                <ul>
+                                    <li><button class="edit_btn">편집하기</button></li>
+                                    <li><button class="save_btn">저장하기</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- mainWrap -->
+    </div><!-- #wrap -->
+</body>
+</html>

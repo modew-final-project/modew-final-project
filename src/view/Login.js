@@ -42,7 +42,7 @@ const Login = ()=>{
         try {
             let data = await authService.signInWithEmailAndPassword(email,password);
             if(data.user !=null){
-                console.log("유저정보 : ",data.user);
+                console.log("유저정보 : ",data.user.email);
                 history.push("/");
             }else{
                 console.log("제대로 로그인 안됨 : ",data)

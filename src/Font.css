@@ -6,7 +6,7 @@
 }
 
 @font-face {
-   font-family: 'GmarketSansTTF';
+   font-family: 'GmarketSansTTF1';
    font-style: normal;
    font-weight: 400;
    src: url(./sources/fonts/GmarketSansTTFLight.ttf) format('ttf'),
@@ -16,7 +16,7 @@
 }
 
 @font-face {
-   font-family: 'GmarketSansTTF';
+   font-family: 'GmarketSansTTF2';
    font-style: normal;
    font-weight: 500;
    src: url(./sources/fonts/GmarketSansTTFMedium.ttf) format('ttf'),
@@ -26,7 +26,7 @@
 }
 
 @font-face {
-   font-family: 'GmarketSansTTF';
+   font-family: 'GmarketSansTTF3';
    font-style: normal;
    font-weight: 600;
    src: url(./sources/fonts/GmarketSansTTFBold.ttf) format('ttf'),

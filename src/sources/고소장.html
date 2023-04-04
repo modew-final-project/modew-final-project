@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sub.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="subWrap" class="bgnone">
+        <div class="docuWrap">
+            <div class="header_right pd21 flex_sb bgblue">
+                <h3>고소장(모욕죄-SNS등 인터넷용)</h3>
+                <ul>
+                    <li><a href="">Login</a></li>
+                    <li><a href="">Sign in</a></li>
+                    <li><a href="">My Page</a></li>
+                    <li><a href="">My Drive</a></li>
+                    <li><img src=""/><img src="./images/main_search.png"/></li>
+                    <li><img src=""/><img src="./images/main_menu.png"/></li>
+                </ul>
+            </div><!-- header -->
+            <div class="content_write">
+                <div class="write_wrap">
+                    <div class="write_left scroll">
+                        <div class="Autodoc">
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>당사자</p>
+                                    <p class="doc_page"><span>1</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>고소하는 사람(본인)</p>
+                                        <div class="flex_start pt025">
+                                            <span class="pr05 first_txt">성명</span>
+                                            <input class="txt_input" type="text" placeholder="김고소"/>
+                                        </div>
+                                    </div>
+                                    <div class="input_check pb10">
+                                        <p>고소당하는 사람(가해자)</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">알고 있음</button></li>
+                                                 <li><button type="button" class="option_btn">일부 알고 있음</button></li>
+                                                 <li><button type="button" class="option_btn">모름</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 알고 있음 선택시 -->
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <ul>
+                                                        <li class="pt025">
+                                                            <span class="pr05 first_txt">성명</span><input type="text" placeholder="장두식"/>
+                                                        </li>
+                                                        <li class="pt025">
+                                                            <span class="pr05 first_txt">ID</span><input type="text" placeholder="두시기콩콩"/>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 일부 알고 있음 선택시 -->
+                                            <ul class="input_checklist pt05">
+                                                <li>
+                                                    <input type="checkbox" name="성명 알고있음"/>성명 알고있음
+                                                    <input class="w100 input_style" type="text" name="성명 알고있음 선택시" placeholder="장두식"/>
+                                                </li>
+                                                <li class="pt05"><input type="checkbox" name="주소 알고있음"/>주소 알고있음</li>
+                                                <li class="pt025"><input type="checkbox" name="연락처 알고있음"/>연락처 알고있음</li>
+                                                <li class="pt025">
+                                                    <input type="checkbox" name="ID(닉네임) 알고있음"/>ID(닉네임) 알고있음
+                                                    <input class="w100 input_style" type="text" name="ID(닉네임) 알고있음 선택시" placeholder="두시기콩콩"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 모름 선택시 -->
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <ul>
+                                                        <li class="pt025">
+                                                            <span class="pr05 first_txt">ID</span><input type="text" placeholder="두시기콩콩"/>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>사건의 과정</p>
+                                    <p class="doc_page"><span>2</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>발생일자</p>
+                                        <ul class="input_text flex_start">
+                                            <li class="w50 pr025"><input class="w100" type="date" name="발생날짜" placeholder="2021.02.10"/></li>
+                                            <li class="w50"><input class="w100" type="text" name="발생시간" placeholder="오후 9시경"/></li>
+                                        </ul>
+                                    </div>
+                                    <div class="input_check pb10">
+                                        <p>사건이 발생한 웹서비스의 유형</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">인터넷 커뮤니티 사이트</button></li>
+                                                 <li><button type="button" class="option_btn">카카오톡</button></li>
+                                                 <li><button type="button" class="option_btn">네이버</button></li>
+                                                 <li><button type="button" class="option_btn">페이스북</button></li>
+                                                 <li><button type="button" class="option_btn">웹페이지</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="flex_start pt025"><!-- 인터넷 커뮤니티 사이트 선택시 -->
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">디시인사이트</button></li>
+                                                 <li><button type="button" class="option_btn">에펨코리아</button></li>
+                                                 <li><button type="button" class="option_btn">인벤</button></li>
+                                                 <li><button type="button" class="option_btn">루이웹</button></li>
+                                                 <li><button type="button" class="option_btn">뽐뿌</button></li>
+                                                 <li><button type="button" class="option_btn">더쿠</button></li>
+                                                 <li><button type="button" class="option_btn">기타</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 인터넷 커뮤니티 -> 기타 선택시 -->
+                                            <p>직접작성</p>
+                                            <input class="w100 input_style" type="text" name="기타선택시" placeholder="모듀 커뮤니티 게시판"/>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 카카오톡 선택시 -->
+                                            <p>웹서비스의 이름이나 주소 등</p>
+                                            <input class="w100 input_style" type="text" name="카카오톡 선택시" placeholder="단체방명 또는 오픈채팅방 '모듀'"/>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 네이버 선택시 -->
+                                            <p>웹서비스의 이름이나 주소 등</p>
+                                            <input class="w100 input_style" type="text" name="네이버 선택시" placeholder="카페명·블로그명 '모듀'(https://cafe.naver.com/modew)"/>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 페이스북 선택시 -->
+                                            <p>웹서비스의 이름이나 주소 등</p>
+                                            <input class="w100 input_style" type="text" name="페이스북 선택시" placeholder="URL (www.facebook.com/modew.net)"/>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 웹페이지 선택시 -->
+                                            <p>웹서비스의 이름이나 주소 등</p>
+                                            <input class="w100 input_style" type="text" name="웹페이지 선택시" placeholder="네이버뉴스(https://n.news.naver.com/mnews/article/)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>모욕죄 성립요건1 - 공연성</p>
+                                    <p class="doc_page"><span>3</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb05">
+                                        <p>웹사이트의 이용자 수가 몇명인지 정확히 알고있나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">알고 있음</button></li>
+                                                 <li><button type="button" class="option_btn">모름</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 알고 있음 선택시 -->
+                                            <p>이용자 수</p>
+                                            <input class="w85 input_style text_right" type="text" name="웹페이지 선택시" placeholder="8"/><span class="pl025">명</span>
+                                        </div>
+                                    </div>
+                                    <div class="input_check pt05">
+                                        <p>목격자 닉네임(ID) 알고있나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                                <ul class="selectbox-option hide">
+                                                    <li><button type="button" class="option_btn">알고 있음</button></li>
+                                                    <li><button type="button" class="option_btn">모름</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 알고 있음 선택시 -->
+                                            <p>목격자 ID 입력</p>
+                                            <input class="w100 input_style" type="text" name="닉네임알고있음 선택시" placeholder="목격자1(ID)"/>
+                                            <input class="w100 input_style mt025" type="text" name="닉네임알고있음 선택시" placeholder="목격자2(ID)"/>
+                                            <input class="w100 input_style mt025" type="text" name="닉네임알고있음 선택시" placeholder="목격자3(ID)"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>모욕죄 성립요건2 - 모욕성</p>
+                                    <p class="doc_page"><span>4</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb05">
+                                        <p>문제발언</p>
+                                        <input class="input_style w100" type="text" placeholder="너무 고소해서 고소합니다"/>
+                                        <p class="pt05">가해자가 모욕한 이유</p>
+                                        <input class="input_style w80" type="text" placeholder="자신과 견해가 다르다"/><span class="pl025">는 이유</span>
+                                        <p class="pt05">모욕이 얼마나 지속되었나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">수 분 동안 수 차례 모욕행위가 지속됨</button></li>
+                                                 <li><button type="button" class="option_btn">어느 정도 모욕행위가 지속됨</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_flex pt025"><!-- 수 분 동안 수 차례 클릭시 -->
+                                            <input class="input_style text_right w70" type="text" placeholder="15" name="몇분동안"/><span class="pr05 pl025 w30">분동안</span>
+                                            <input class="input_style text_right w70" type="text" placeholder="10" name="몇회"/><span class="pl025 w30">회</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>모욕죄 성립요건3 - 특정성</p>
+                                    <p class="doc_page"><span>5</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>어떤 점으로 본인을 특정할 수 있었나요?</p>
+                                        <div class="input_check">
+                                            <ul class="input_checklist">
+                                                <li class="pt05"><input type="checkbox" name="닉네임"/>닉네임</li>
+                                                <li class="pt025"><input type="checkbox" name="온라인 프로필"/>온라인 프로필</li>
+                                                <li class="pt025"><input type="checkbox" name="인터넷 스트리밍(방송)"/>인터넷 스트리밍(방송)</li>
+                                                <li class="pt025"><input type="checkbox" name="가해자와의 대화과정"/>가해자와의 대화과정</li>
+                                                <li class="pt025">
+                                                    <input type="checkbox" name="직접입력"/>직접입력
+                                                    <input class="w100 input_style" type="text" name="직접입력 선택시" placeholder="오프라인 모임(정모)"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>첨부할 증거</p>
+                                    <p class="doc_page"><span>6</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>확보한 증거가 있나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                               <section class="selectbox">
+                                                <button type="button" class="toggle_btn">
+                                                  --- 선택 ---
+                                                <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                 <li><button type="button" class="option_btn">있음</button></li>
+                                                 <li><button type="button" class="option_btn">없음</button></li>
+                                               </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 일부 알고 있음 선택시 -->
+                                            <ul class="input_checklist pt025">
+                                                <li><input type="checkbox" name="스크린샷"/>위 사건 대화내용이 기록된 스크린샷</li>
+                                                <li class="pt025"><input type="checkbox" name="녹음파일"/>위 사건 대화내용이 기록된 녹음파일</li>
+                                                <li class="pt025"><input type="checkbox" name="pdf 파일"/>위 사건 대화내용이 기록된 pdf파일</li>
+                                                <li class="pt025"><input type="checkbox" name="진술서"/>목격자의 진술서</li>
+                                                <li class="pt025">
+                                                    <input type="checkbox" name="직접입력"/>직접입력
+                                                    <input class="w100 input_style" type="text" name="직접입력 선택시" placeholder="피고소인(가해자)의 자필사과문"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>관할 경찰서</p>
+                                    <p class="doc_page"><span>7</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb05">
+                                        <p>관할 경찰서</p>
+                                        <input class="input_style w100" type="text" placeholder="영등포경찰서 사이버수사팀"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>고소인(본인) 상세정보</p>
+                                    <p class="doc_page"><span>8</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <ul class="input_checklist pt025">
+                                            <p>고소인 상세정보</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="성명" name="고소인성명"/>
+                                                <input type="text" placeholder="주민등록번호" name="고소인주민등록번호"/>
+                                            </li>
+                                            <p class="pt05">고소인 ID, 전화번호</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="ID" name="고소인ID"/>
+                                                <input type="text" placeholder="전화번호" name="고소인전화번호"/>
+                                            </li>
+                                            <p class="pt05">주소</p>
+                                            <li class="check_txt">
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="고소인주소"/>
+                                                <input class="mt025" type="text" placeholder="나머지 주소를 입력하세요." name="고소인상세주소"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>피고소인(가해자) 상세정보</p>
+                                    <p class="doc_page"><span>9</span>/9</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb05">
+                                        <p>ID(닉네임)</p>
+                                        <input class="input_style w100" type="text" placeholder="두시기콩먹어"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="write_right">
+                        <div class="document">
+                            <div class="document_wrap">
+                                <div class="doc_txt pt10">
+                                    <h3 class="mt20 mb20">고소장</h3>
+                                    <h4>고소인</h4>
+                                    <p>성명 : <span>김고소</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span>970201-2571246</span></p>
+                                    <p>ID(닉네임) : <span>gosomii</span></p>
+                                    <p>주소 : <span>광주 동구 동계천로 74 (장동) 2층 204호</span></p>
+                                    <p>전화번호 : <span>010-5643-8512</span></p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>피고소인</h4>
+                                    <p>성명 : <span>장두식</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span>970201-2571246</span></p>
+                                    <p>ID(닉네임) : <span>dusikiki</span></p>
+                                    <p>주소 : <span>광주 동구 장동 2층 204호</span></p>
+                                    <p>전화번호 : <span>010-5105-9721</span></p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h3 class="mt20 mb15">고소취지</h3>
+                                    <p>위 사건에 관하여 본 고소인은 아래와 같은 이유로 피고소인을 형법 제311조의 모욕죄로 고소하오니, 수사하여 엄히 처벌하여 주시기 바랍니다.</p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h3 class="mt20 mb15">범죄사실</h3>
+                                    <p>1. 고소인과 피고소인은 사건이 발생한 <span>2023.04.03</span><span>오후 9시경</span>카카오톡<span>인공지능_술</span>의 이용자들 입니다.</p>
+                                    <p>2.  당시 피고소인은 <span>5</span>명의 이용자들이 접속하고 있던 위 카카오톡에서 고소인에게 <span>자신과 견해가 다르다</span>는 이유로
+                                        <span>당신은,, 너무 고소해허,, 고소합니다,,~</span> 라고 하며 고소인을 공연히 모욕하였습니다.</p>
+                                    <p>3. 고소인과 피고소인은 사건이 발생한 <span>2023.04.03</span><span>오후 9시경</span>카카오톡<span>인공지능_술</span>의 이용자들 입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <div class="footer_wrap">
+                                <ul>
+                                    <li><button class="edit_btn">편집하기</button></li>
+                                    <li><button class="save_btn">저장하기</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- mainWrap -->
+    </div><!-- #wrap -->
+</body>
+</html>
