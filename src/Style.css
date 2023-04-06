@@ -15,14 +15,14 @@
 
     html{font-size: 16px;}
 
-    .mainWrap .header_right{padding-bottom: 3.5rem;}
-    .mainWrap .header_right > ul > li:first-child, .mainWrap .header_right > ul > li:nth-child(2), .mainWrap .header_right > ul > li:nth-child(3),
-    .mainWrap .header_right > ul > li:nth-child(4){display: none;}
+    .header_right{padding-bottom: 3.5rem;}
+    .header_right > ul > li:first-child, .header_right > ul > li:nth-child(2), .header_right > ul > li:nth-child(3),
+    .header_right > ul > li:nth-child(4){display: none;}
 
-    .mainWrap .main{display: block; width: 100%; text-align: center;}
-    .mainWrap .main .main_left{display: block; text-align: center;}
-    .mainWrap .main .main_left ul{max-width: 100%;}
-    .mainWrap .main .main_right{display: block; max-width: 100%; margin-top: 2rem;}
+    .main{display: block; width: 100%; text-align: center;}
+    .main .main_left{display: block; text-align: center;}
+    .main .main_left ul{max-width: 100%;}
+    .main .main_right{display: block; max-width: 100%; margin-top: 2rem;}
 
     /* 로그인페이지 */
     .loginWrap .loginInner .loginBanner{display: none;}
