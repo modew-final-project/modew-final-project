@@ -1,6 +1,5 @@
 import React from "react";
 import searchLogo from "../images/main_search.png";
-import menuLogo from "../images/main_menu.png";
 import { Link } from "react-router-dom";
 import { authService } from "../fbase";
 
@@ -33,12 +32,12 @@ const LogInNav = () => {
               <img src={searchLogo} alt="main_search.png" />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <img src="" />
             <Link to="">
               <img src={menuLogo} alt="main_menu.png" />
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>
