@@ -77,6 +77,28 @@ app.post("/user", (req, res) => {
     }
   );
 });
+
+// PDF 파일을 저장하는 API
+app.post("/pdfupload", upload.single("pdf"), (req, res) => {
+  const { email } = req.body;
+  const { fileName } = req;
+
+  // PDF 파일을 데이터베이스에 저장하는 코드
+  connection.query(
+    "INSERT INTO `FileList` (uploader_email, file_name) VALUES (?, ?)",
+    [email, fileName],
+    function (err, rows, fields) {
+      if (err) {
+        console.log("DB저장 실패");
+        res.status(500).json({ message: "파일 저장 실패!" }); // HTTP 응답으로 클라이언트에게 실패 메시지 전송
+      } else {
+        console.log("DB저장 성공");
+        res.status(200).json({ message: "파일 저장 성공!" }); // HTTP 응답으로 클라이언트에게 성공 메시지 전송
+      }
+    }
+  );
+});
+
 // 파일 업로드 API
 app.post("/fileupload", upload.single("myFile"), (req, res) => {
   const email = req.body.email; // 클라이언트로부터 전송된 이메일 정보
@@ -93,7 +115,7 @@ app.post("/fileupload", upload.single("myFile"), (req, res) => {
     [fileName, email], // SQL 쿼리에 전달될 값
     function (err, rows, fields) {
       if (err) {
-        console.log("DB저장 실패"+email);
+        console.log("DB저장 실패");
         res.status(500).json({ message: "파일 저장 실패!" }); // HTTP 응답으로 클라이언트에게 실패 메시지 전송
       } else {
         console.log("DB저장 성공");
