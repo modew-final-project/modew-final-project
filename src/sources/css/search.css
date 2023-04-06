@@ -1,0 +1,182 @@
+.SearchSite_mainPOP__q705L {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 999
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi {
+    top: 36%
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_con__9jUOl {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0 auto
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_div__aguGk .SearchSite_ph1__KFB_6 {
+    font-size: 40px;
+    margin-bottom: 50px
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi {
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 16px
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_inputbox__PtPYF {
+    border-bottom: 3px solid #019aec;
+    position: relative
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_inputbox__PtPYF .SearchSite_pr__h4g8m {
+    position: absolute;
+    right: 0;
+    top: 18px
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_inputbox__PtPYF input {
+    height: 70px;
+    width: 85%;
+    font-size: 24px;
+    border: none;
+    outline: none;
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_closed__C0Vmx {
+    background: url(https://cdn.lawform.io/images/2021_sp/pop_closed.svg) no-repeat 0 0;
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    text-indent: -9999px;
+    overflow: hidden;
+    cursor: pointer
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_close_btn_box__zlhDT {
+    text-align: left;
+    padding-top: 12px;
+    width: 100%
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_close_btn_box__zlhDT .SearchSite_pop_closed__C0Vmx {
+    position: absolute;
+    top: -40px;
+    right: 0
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_today_close__WOXp7 {
+    display: inline-block;
+    background: none;
+    text-align: center;
+    width: 50%;
+    margin-top: 0
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_today_close__WOXp7 i {
+    color: #9a9a9a;
+    display: inline-block;
+    background: none;
+    border-radius: 0;
+    font-size: 14px;
+    font-weight: 300;
+    padding: 4px 0 0
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_main_pop_div__aguGk {
+    position: relative
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_often-box__hNbdp {
+    font-size: 0
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_often-box__hNbdp p {
+    font-size: 20px;
+    margin: 30px 0 10px;
+    color: #5d5d5d
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_often-box__hNbdp a {
+    background: #f1f1f1;
+    margin: 0 10px 10px 0;
+    border-radius: 30px;
+    padding: 5px 20px;
+    color: #666;
+    display: inline-block;
+    font-size: 16px
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_it-close__KoHR2 {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    background: url(https://cdn.lawform.io/images/2021_sp/it-inputclose.svg) no-repeat 0 0;
+    background-size: contain;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    text-indent: -9999px;
+    overflow: hidden
+}
+
+.SearchSite_mainPOP__q705L .SearchSite_it-search__C4XdN {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    background: url(https://cdn.lawform.io/images/2021_sp/it-inputsearch_2022.svg) no-repeat 0 0;
+    background-size: contain;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+    text-indent: -9999px;
+    overflow: hidden;
+    margin-left: 10px
+}
+
+@media only screen and (max-device-width: 600px) {
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_div__aguGk .SearchSite_ph1__KFB_6 {
+        font-size:26px;
+        margin-bottom: 5px;
+        line-height: 1.3
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi {
+        top: 51%
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_often-box__hNbdp p {
+        font-size: 16px;
+        margin: 15px 0 10px
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_often-box__hNbdp a {
+        font-size: 14px
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_close_btn_box__zlhDT .SearchSite_pop_closed__C0Vmx {
+        width: 24px;
+        height: 24px
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_inputbox__PtPYF input {
+        height: 49px;
+        font-size: 18px
+    }
+
+    .SearchSite_mainPOP__q705L .SearchSite_main_pop_inner__y_Xfi .SearchSite_pop_inputbox__PtPYF .SearchSite_pr__h4g8m {
+        top: 0
+    }
+}

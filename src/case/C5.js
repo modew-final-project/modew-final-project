@@ -1,6 +1,33 @@
 import React, { useState } from "react";
 
 const C5 = () => {
+
+  const [display1, setDisplay1] = useState("none");
+  const [display2, setDisplay2] = useState("none");
+  const [display3, setDisplay3] = useState("none");
+
+  const onClick = (e) => {
+    if (e.target.value === "빌트인제품") {
+      if (e.target.checked === true) {
+        setDisplay1("block");
+      } else {
+        setDisplay1("none");
+      }
+    } else if (e.target.value === "청소비") {
+      if (e.target.checked === true) {
+        setDisplay2("block");
+      } else {
+        setDisplay2("none");
+      }
+    } else if (e.target.value === "직접입력") {
+      if (e.target.checked === true) {
+        setDisplay3("block");
+      } else {
+        setDisplay3("none");
+      }
+    }
+  };
+
   return (
     <>
       <div className="doc_content pb075">
@@ -14,6 +41,18 @@ const C5 = () => {
           <div className="input_check">
             <p>소재지</p>
             <ul className="input_checklist pt05">
+            <li className="check_txt input_flex">
+                <input
+                  type="text"
+                  placeholder="클릭하여 주소를 검색하세요."
+                  name="주소"
+                />
+                <input
+                  type="text"
+                  placeholder="나머지 주소를 입력하세요."
+                  name="상세주소"
+                />
+              </li>
               <li>
                 <input type="checkbox" name="토지용도" />
                 토지용도

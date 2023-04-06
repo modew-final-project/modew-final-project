@@ -166,6 +166,11 @@ const Document = () => {
           </p>
         </div>
       </div>
+      <div class="alert scroll">
+        <p>여기에 각종 정보가 출력됩니다.<br/>
+          뉴스알림, 단어, 법률 등등
+        </p>
+      </div>
     </>
   );
 };

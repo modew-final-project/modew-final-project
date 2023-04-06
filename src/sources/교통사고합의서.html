@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/sub.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div id="subWrap" class="bgnone scroll">
+        <div class="docuWrap">
+            <div class="header_right pd21 flex_sb bgblue">
+                <h3>교통사고 합의서(민사)</h3>
+                <ul>
+                    <li><a href="">Login</a></li>
+                    <li><a href="">Sign in</a></li>
+                    <li><a href="">My Page</a></li>
+                    <li><a href="">My Drive</a></li>
+                    <li><img src=""/><img src="./images/main_search.png"/></li>
+                </ul>
+            </div><!-- header -->
+            <div class="content_write">
+                <div class="write_wrap">
+                    <div class="write_left scroll">
+                        <div class="Autodoc">
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>당사자</p>
+                                    <p class="doc_page"><span>1</span>/6</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>사고를 낸 사람(가해자)</p>
+                                        <div class="input_check pt05">
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <span class="pr05">성명</span><input class="input_style w90" type="text" placeholder="김사고"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="pt05">차량의 종류</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                                <section class="selectbox">
+                                                    <button type="button" class="toggle_btn">
+                                                        --- 선택 ---
+                                                        <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                   <li><button type="button" class="option_btn">자동차</button></li>
+                                                   <li><button type="button" class="option_btn">자전거</button></li>
+                                                   <li><button type="button" class="option_btn">기타 도로교통법상 인정되는 차량</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 가해자 -> 자동차, 기타 도로교통 어쩌고 선택시 -->
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <span class="pr05">차량번호</span><input class="input_style" type="text" placeholder="00가 1234"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="pt05">사고를 당한 사람(피해자)</p>
+                                        <div class="input_check pt05">
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <span class="pr05">성명</span><input class="input_style w90" type="text" placeholder="장피해"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="pt05">사고 당시 차량을 운행하였나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                                <section class="selectbox">
+                                                    <button type="button" class="toggle_btn">
+                                                        --- 선택 ---
+                                                        <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                   <li><button type="button" class="option_btn">운행함</button></li>
+                                                   <li><button type="button" class="option_btn">운행하지 않음</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <p class="pt05">운행한 차량의 종류</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                                <section class="selectbox">
+                                                    <button type="button" class="toggle_btn">
+                                                        --- 선택 ---
+                                                        <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                   <li><button type="button" class="option_btn">자동차</button></li>
+                                                   <li><button type="button" class="option_btn">자전거</button></li>
+                                                   <li><button type="button" class="option_btn">기타 도로교통법상 인정되는 차량</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 피해자 -> 자동차, 기타 도로교통 어쩌고 선택시 -->
+                                            <div class="first_check">
+                                                <div class="first_check_wrap">
+                                                    <span class="pr05">차량번호</span><input class="input_style" type="text" placeholder="00가 1234"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb10">
+                                <div class="doc_content_title">
+                                    <p>사고날짜와 시간</p>
+                                    <p class="doc_page"><span>2</span>/6</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <ul class="input_checklist pt025">
+                                            <p>사고날짜와 시간</p>
+                                            <li class="check_txt">
+                                                <input class="input_style w100" type="date" name="사고날짜"/>
+                                            </li>
+                                            <li class="check_txt pt025">
+                                                <input type="text" placeholder="오후 1시 30분경" name="사고시간"/>
+                                            </li>
+                                        </ul>
+                                        <p class="pt10">소음의 종류</p>
+                                        <div class="input_check pt05">
+                                            <ul class="input_checklist">
+                                                <li><input type="checkbox" name="쿵쿵거리는 발소리 등"/>쿵쿵거리는 발소리 등</li>
+                                                <li class="pt05"><input class="pl025" type="checkbox" name="고성방가·괴성 등"/>고성방가·괴성 등</li>
+                                                <li class="pt025"><input type="checkbox" name="TV·악기·노래소리 등"/>TV·악기·노래소리 등</li>
+                                                <li class="pt025"><input type="checkbox" name="아이·애완견으로 인한 소음 등"/>아이·애완견으로 인한 소음 등</li>
+                                                <li class="pt025"><input type="checkbox" name="보수 공사 등"/>보수 공사 등</li>
+                                                <li class="pt025">
+                                                    <input type="checkbox" name="기타"/>기타
+                                                    <input class="w100 input_style" type="text" name="기타 선택시" placeholder="화장실 누수로 인한 지속적으로 물 흐르는 소리"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb10">
+                                <div class="doc_content_title">
+                                    <p>수신인의 이행 사항</p>
+                                    <p class="doc_page"><span>3</span>/5</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check pb10">
+                                        <p>손해배상을 청구하시나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                                <section class="selectbox">
+                                                    <button type="button" class="toggle_btn">
+                                                        --- 선택 ---
+                                                        <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                   <li><button type="button" class="option_btn">네</button></li>
+                                                 <li><button type="button" class="option_btn">경고로만 그침</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt05"><!-- 네 선택시 -->
+                                            <ul class="input_checklist pt05">
+                                                <li>
+                                                    <p>손해가 발생하게 된 이유와 금액</p>
+                                                    <input class="w100 input_style" type="text" name="네 선택시" placeholder="치료비 20만원"/>
+                                                </li>
+                                                <li class="pt05">
+                                                    <p>청구할 손해배상액의 총 합계</p>
+                                                    <input class="w90 input_style" type="text" name="네 선택시" placeholder="500,000"/><span>원</span>
+                                                </li>
+                                                <li class="pt05">
+                                                    <p>지급기한</p>
+                                                    <input class="w100 input_style" type="date" name="네 선택시" placeholder="2022.05.01"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <p class="pt05">내용증명에 지급받을 계좌 정보를 작성하시나요?</p>
+                                        <div class="flex_start pt025">
+                                            <section class="select_wrapper" data-role="selectbox">
+                                                <section class="selectbox">
+                                                    <button type="button" class="toggle_btn">
+                                                        --- 선택 ---
+                                                        <img src="./images/select_arrow.png" alt="" class="select_down">
+                                                </button>
+                                               <ul class="selectbox-option hide">
+                                                   <li><button type="button" class="option_btn">작성함</button></li>
+                                                 <li><button type="button" class="option_btn">작성하지 않음</button></li>
+                                                </ul>
+                                            </section>
+                                        </div>
+                                        <div class="input_check pt10"><!-- 작성함 선택시 -->
+                                            <p>계좌 정보</p>
+                                            <div class="pt025">
+                                                <span class="pr05 first_txt">예금주</span>
+                                                <input class="input_style text_left w80" type="text" placeholder="김예금"/>
+                                            </div>
+                                            <div class="pt025">
+                                                <span class="pr05 first_txt pt025">은행명</span>
+                                                <input class="input_style text_left w80 pt025" type="text" placeholder="국민은행"/>
+                                            </div>
+                                            <div class="pt025">
+                                                <span class="pr05 first_txt">계좌번호</span>
+                                                <input class="input_style text_left w75" type="text" placeholder="111-22222-333333"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content pb075">
+                                <div class="doc_content_title">
+                                    <p>발신인 상세정보</p>
+                                    <p class="doc_page"><span>4</span>/5</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <ul class="input_checklist pt025">
+                                            <p>발신인 상세정보</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="성명" name="발신인성명"/>
+                                                <input type="text" placeholder="주민등록번호" name="발신인주민등록번호"/>
+                                            </li>
+                                            <p class="pt05">주소</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                            </li>
+                                            <p class="pt05">전화번호</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="010-1234-5678" name="발신인번호"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="doc_content">
+                                <div class="doc_content_title">
+                                    <p>수신인 상세정보</p>
+                                    <p class="doc_page"><span>5</span>/5</p>
+                                </div>
+                                <div class="doc_content_input">
+                                    <div class="input_check">
+                                        <ul class="input_checklist pt025">
+                                            <p>수신인 상세정보</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="성명" name="수신인성명"/>
+                                                <input type="text" placeholder="주민등록번호" name="수신인주민등록번호"/>
+                                            </li>
+                                            <p class="pt05">주소</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                            </li>
+                                            <p class="pt05">전화번호</p>
+                                            <li class="check_txt input_flex">
+                                                <input type="text" placeholder="010-1234-5678" name="수신인번호"/>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hide_menu">
+                            <ul class="flex_start">
+                                <li><a href="" class="see_btn">미리보기</a></li>
+                                <li><a href="" class="write_btn">작성하기</a></li>
+                                <li><a href="" class="save_btn">저장하기</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="write_right">
+                        <div class="document">
+                            <div class="document_wrap">
+                                <div class="doc_txt">
+                                    <h3 class="mt30 mb20">교통사고 민사합의서</h3>
+                                    <h4>당사자(가해자)</h4>
+                                    <p>성명 : <span class="text_border">장서연</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span class="text_border">970201-2571246</span></p>
+                                    <p>주소 : <span class="text_border">광주 동구 동계천로 74 (장동) 2층 204호</span></p>
+                                    <p>전화번호 : <span class="text_border">010-5643-8512</span></p>
+                                </div>
+                                <div class="doc_txt">
+                                    <h4>당사자(피해자)</h4>
+                                    <p>성명 : <span class="text_border">장두식</span>(서명 또는 인)</p>
+                                    <p>주민등록번호 : <span class="text_border">970201-2571246</span></p>
+                                    <p>주소 : <span class="text_border">광주 동구 장동 2층 204호</span></p>
+                                    <p>전화번호 : <span class="text_border">010-5105-9721</span></p>
+                                </div>
+                                <p class="doc_date pt10">2023년 04월 03일</p>
+                            </div>
+                        </div>
+                        <div class="alert scroll">
+                            <p>내용 바꿔주세용~</p>
+                        </div>
+                        <div class="footer">
+                            <div class="footer_wrap">
+                                <ul>
+                                    <li><button class="edit_btn">편집하기</button></li>
+                                    <li><button class="save_btn">저장하기</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- mainWrap -->
+    </div><!-- #wrap -->
+</body>
+</html>

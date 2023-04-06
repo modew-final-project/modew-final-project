@@ -23,12 +23,12 @@ const LogOutNav = () => {
               <img src={searchLogo} alt="main_search.png" />
             </Link>
           </li>
-          <li>
+          {/* <li>
             <img src="" />
             <Link to="">
               <img src={menuLogo} alt="main_menu.png" />
             </Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

@@ -30,19 +30,19 @@ const Main = () => {
               <p>누구나 사용 가능한, 쉽고 빠른 문서작성 도우미</p>
               <ul>
                 <li>
-                  <Link to="/Conditions">부동산계약서</Link>
+                  <Link to="/Conditions">부동산 계약서</Link>
                 </li>
                 <li>
-                  <a href="">출입국신고서</a>
+                  <a href="">교통사고 합의서(민사)</a>
                 </li>
                 <li>
                   <a href="">고소장</a>
                 </li>
                 <li>
-                  <a href="">내용증명</a>
+                  <a href="">내용증명(층간소음)</a>
                 </li>
                 <li>
-                  <a href="">지급명령</a>
+                  <a href="">사직서</a>
                 </li>
                 {/* 클릭시 새창으로 열림 */}
                 <li>

@@ -15,7 +15,7 @@
 
     html{font-size: 16px;}
 
-    .header_right{padding-bottom: 3.5rem;}
+    /* .header_right{padding-bottom: 3.5rem;} */
     .header_right > ul > li:first-child, .header_right > ul > li:nth-child(2), .header_right > ul > li:nth-child(3),
     .header_right > ul > li:nth-child(4){display: none;}
 
@@ -38,7 +38,10 @@
 }
 
 @media screen and (max-width:810px){
+    .content_write .write_wrap .write_left{width: 100%;}
+    .content_write .write_wrap .write_right{display: none;}
 
+    .hide_menu{display: block;}
 
 }
 
