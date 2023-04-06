@@ -7,19 +7,19 @@ const C5 = () => {
   const [display3, setDisplay3] = useState("none");
 
   const onClick = (e) => {
-    if (e.target.value === "빌트인제품") {
+    if (e.target.value === "토지용도") {
       if (e.target.checked === true) {
         setDisplay1("block");
       } else {
         setDisplay1("none");
       }
-    } else if (e.target.value === "청소비") {
+    } else if (e.target.value === "건물 구조·용도") {
       if (e.target.checked === true) {
         setDisplay2("block");
       } else {
         setDisplay2("none");
       }
-    } else if (e.target.value === "직접입력") {
+    } else if (e.target.value === "임대할 부분") {
       if (e.target.checked === true) {
         setDisplay3("block");
       } else {
@@ -54,10 +54,10 @@ const C5 = () => {
                 />
               </li>
               <li>
-                <input type="checkbox" name="토지용도" />
+                <input type="checkbox" name="토지용도" value="토지용도" onClick={onClick}/>
                 토지용도
               </li>
-              <li className="check_txt input_flex">
+              <li className="check_txt input_flex" style={{ display: display1 }}>
                 <input type="text" placeholder="대" name="토지용도텍스트" />
                 <input type="text" placeholder="160.89" name="토지용도면적" />
                 <span>
@@ -65,10 +65,10 @@ const C5 = () => {
                 </span>
               </li>
               <li className="pt05">
-                <input type="checkbox" name="건물 구조·용도" />
+                <input type="checkbox" name="건물 구조·용도" value="건물 구조·용도" onClick={onClick}/>
                 건물 구조·용도
               </li>
-              <li className="check_txt input_flex">
+              <li className="check_txt input_flex" style={{ display: display2 }}>
                 <input type="text" placeholder="다세대 주택" name="구조용도" />
                 <input type="text" placeholder="120.34" name="구조용도면적" />
                 <span>
@@ -76,10 +76,10 @@ const C5 = () => {
                 </span>
               </li>
               <li className="pt05">
-                <input type="checkbox" name="임대할 부분" />
+                <input type="checkbox" name="임대할 부분" value="임대할 부분" onClick={onClick}/>
                 임대할 부분
               </li>
-              <li className="check_txt input_flex">
+              <li className="check_txt input_flex" style={{ display: display3 }}>
                 <input
                   type="text"
                   placeholder="2층 203호, A동 전체 등"

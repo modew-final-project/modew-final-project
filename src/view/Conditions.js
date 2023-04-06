@@ -1,11 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import LogInNav from "./LogInNav";
 import Sidebar from "./Sidebar";
 import Document from "./Document";
 import html2pdf from "html2pdf.js";
-import { authService } from '../fbase'
+import { authService } from "../fbase";
 
 const Conditions = () => {
+  const requirements = [
+    {
+      //C1
+      // 집주인, 종류(법인,개인사업자,개인)
+      landLord: "임소완",
+      landLordType: "성명",
+      // 임차인, 종류(법인,개인사업자,개인)
+      renter: "장서연",
+      renterType: "성명",
+    },
+    {
+      //C2
+
+      //C1
+      // 집주인, 종류(법인,개인사업자,개인)
+      landLord: "임소완",
+      landLordType: "성명",
+      // 임차인, 종류(법인,개인사업자,개인)
+      renter: "장서연",
+      renterType: "성명",
+    },
+  ];
+
   const [email, setEmail] = useState("");
 
   // 현재 로그인된 유저의 이메일 주소 가져오기
@@ -17,7 +40,7 @@ const Conditions = () => {
     getEmail();
   }, []);
   console.log(email);
-  
+
   // PDF 파일을 생성하고 서버에 전송하는 함수
   const saveAsPDF = async () => {
     const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
@@ -62,10 +85,10 @@ const Conditions = () => {
 
           <div className="content_write">
             <div className="write_wrap">
-              <Sidebar />
+              <Sidebar items={requirements} />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
-                    <Document />
+                  <Document items={requirements} />
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">
@@ -74,7 +97,9 @@ const Conditions = () => {
                         <button className="edit_btn">편집하기</button>
                       </li>
                       <li>
-                        <button className="save_btn" onClick={saveAsPDF}>저장하기</button>
+                        <button className="save_btn" onClick={saveAsPDF}>
+                          저장하기
+                        </button>
                       </li>
                     </ul>
                   </div>
