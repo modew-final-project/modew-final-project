@@ -9,28 +9,28 @@
    font-family: 'GmarketSansTTF1';
    font-style: normal;
    font-weight: 400;
-   src: url(./sources/fonts/GmarketSansTTFLight.ttf) format('ttf'),
-        url(./sources//fonts/NotoSansKR-Regular.woff2) format('woff2'),
-        url(./sources/fonts/NotoSansKR-Regular.woff) format('woff'),
-        url(./sources/fonts/NotoSansKR-Regular.otf) format('opentype');
+   src: url(./fonts/GmarketSansTTFLight.ttf) format('ttf'),
+        url(.//fonts/NotoSansKR-Regular.woff2) format('woff2'),
+        url(./fonts/NotoSansKR-Regular.woff) format('woff'),
+        url(./fonts/NotoSansKR-Regular.otf) format('opentype');
 }
 
 @font-face {
    font-family: 'GmarketSansTTF2';
    font-style: normal;
    font-weight: 500;
-   src: url(./sources/fonts/GmarketSansTTFMedium.ttf) format('ttf'),
-        url(./sources/fonts/NotoSansKR-Medium.woff2) format('woff2'),
-        url(./sources/fonts/NotoSansKR-Medium.woff) format('woff'),
-        url(./sources/fonts/NotoSansKR-Medium.otf) format('opentype');
+   src: url(./fonts/GmarketSansTTFMedium.ttf) format('ttf'),
+        url(./fonts/NotoSansKR-Medium.woff2) format('woff2'),
+        url(./fonts/NotoSansKR-Medium.woff) format('woff'),
+        url(./fonts/NotoSansKR-Medium.otf) format('opentype');
 }
 
 @font-face {
    font-family: 'GmarketSansTTF3';
    font-style: normal;
    font-weight: 600;
-   src: url(./sources/fonts/GmarketSansTTFBold.ttf) format('ttf'),
-        url(./sources/fonts/NotoSansKR-Bold.woff2) format('woff2'),
-        url(./sources/fonts/NotoSansKR-Bold.woff) format('woff'),
-        url(./sources/fonts/NotoSansKR-Bold.otf) format('opentype');
+   src: url(./fonts/GmarketSansTTFBold.ttf) format('ttf'),
+        url(./fonts/NotoSansKR-Bold.woff2) format('woff2'),
+        url(./fonts/NotoSansKR-Bold.woff) format('woff'),
+        url(./fonts/NotoSansKR-Bold.otf) format('opentype');
 } 

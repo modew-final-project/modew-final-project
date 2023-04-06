@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 
 const C2 = () => {
+
+  const [display,setDisplay] = useState("none");
+
+  const onClick = (e)=>{
+    if(e.target.value==="월세및반전세"){
+      setDisplay("block");
+    }else{
+      setDisplay("none");
+    }
+  }
+
+
   return (
     <>
       <div className="doc_content pb10">
@@ -15,11 +27,11 @@ const C2 = () => {
             <p>임대차 계약의 종류</p>
             <ul className="input_radio">
               <li>
-                <input type="radio" name="법인" />
+                <input type="radio" onClick={onClick} name="종류" value="월세및반전세"/>
                 월세 및 반전세
               </li>
               <li>
-                <input type="radio" name="개인사업자" />
+                <input type="radio" onClick={onClick} name="종류" value="전세"/>
                 전세
               </li>
             </ul>
@@ -38,7 +50,7 @@ const C2 = () => {
             </ul>
             <div className="first_check">
               <div className="first_check_wrap pt10">
-                <ul>
+                <ul style={{display:display}}>
                   <p>월세금액</p>
                   <li className="pt025">
                     <span className="pr05">금</span>

@@ -5,7 +5,7 @@ const C3 = () => {
     <>
       <div className="doc_content pb10">
         <div className="doc_content_title">
-          <p>임대차 계약의 내용</p>
+          <p>보증금 지급</p>
           <p className="doc_page">
             <span>3</span>/7
           </p>
