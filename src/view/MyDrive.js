@@ -31,9 +31,9 @@ const MyDrive = () => {
       <div className="mydrive">
         <h1>내 문서함</h1>
         <div className="driveWrap">
-          {fileList.map((file, index) => (
-            <div className="drive_file" key={index}>
-              <div className="file_content">
+            <div className="drive_file" >
+            {fileList.map((file, index) => (
+              <div className="file_content" key={index}>
                 <div className="content_wrap">
                   <a href="">{file.file_name}</a>
                   <div className="thumb">
@@ -41,8 +41,8 @@ const MyDrive = () => {
                   </div>
                 </div>
               </div>
-            </div>
           ))}
+          </div>
           <div className="pagging">
             <ul>
               <li className="page_first"><a href="">맨처음페이지</a></li>
