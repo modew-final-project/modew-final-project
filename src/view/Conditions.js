@@ -11,7 +11,7 @@ const Conditions = () => {
   // 현재 로그인된 유저의 이메일 주소 가져오기
   useEffect(() => {
     const getEmail = async () => {
-      const user = await authService.currentUser();
+      const user = await authService.currentUser;
       setEmail(user.email);
     };
     getEmail();
