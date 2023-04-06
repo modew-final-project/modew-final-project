@@ -14,7 +14,9 @@ const Main = () => {
     window.open(
       url,
       "_blank",
-      `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`
+      `toolbar=no, location=no, directories=no, status=no, 
+      menubar=no, scrollbars=yes, resizable=no, copyhistory=no, 
+      width=${width}, height=${height}, top=${top}, left=${left}`
     );
   };
 
