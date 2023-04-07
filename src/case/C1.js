@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 
-const NameInput = ({ visible, a, b }) => {
-  return (
-    <div id={a} style={{ display: visible }}>
-      <label>{b}</label>
-      <input type="text" />
-    </div>
-  );
-};
-
-const C1 = ({}) => {
+const C1 = (props) => {
   const [visible1, setVisible1] = useState("none");
   const [visible2, setVisible2] = useState("none");
-  const [name1, setName1] = useState("");
-  const [name2, setName2] = useState("");
+  const [landLordType, setLandLordType] = useState(props.landLordType);
+  const [landLord,setLandLord] = useState(props.landLord)
+  const [renterType, setRenterType] = useState(props.renterType);
+  const [renter, setRenter] = useState(props.renter);
+
 
   const onClick = (e) => {
     if (e.target.name === "집주인") {
       setVisible1("block");
-      setName1(e.target.value);
+      setLandLordType(e.target.value);
     } else if (e.target.name === "세입자") {
       setVisible2("block");
-      setName2(e.target.value);
+      setRenterType(e.target.value);
+    }
+  };
+
+  const onChange = (e) => {
+    if (e.target.name === "집주인") {
+      setLandLord(e.target.value);
+    } else if (e.target.name === "세입자") {
+      setRenter(e.target.value);
     }
   };
 
@@ -67,7 +69,10 @@ const C1 = ({}) => {
                 개인
               </li>
             </ul>
-            <NameInput visible={visible1} a={"집주인"} b={name1} />
+            <div id="집주인" style={{ display: visible1 }}>
+              <label id="landLordType">{landLordType}</label>
+              <input type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/>
+            </div>
           </div>
           <div className="input_check">
             <p>세입자</p>
@@ -100,12 +105,17 @@ const C1 = ({}) => {
                 개인
               </li>
             </ul>
-            <NameInput visible={visible2} a={"세입자"} b={name2} />
+            <div id="세입자" style={{ display: visible2 }}>
+              <label>{renterType}</label>
+              <input type="text" onChange={onChange} name="세입자" value={renter}/>
+            </div>
           </div>
         </div>
       </div>
     </>
   );
 };
+
+
 
 export default C1;

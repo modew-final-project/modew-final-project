@@ -1,19 +1,15 @@
 import React from "react";
+import Req1 from "../requirement/Req1";
+import Req2 from "../requirement/Req2";
 
-const Document = () => {
+const Document = (props) => {
+
+  
   return (
     <>
       <div className="document_wrap">
-        <div className="doc_txt">
-          <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
-          <h4>제1조(계약 존속 기간)</h4>
-          <p>
-            임대인은 아래 임대차 대상 부동산(이하 '부동산')을 임대차 목적대로
-            사용•수익할 수 있는 상태로 하여 <span>2023.03.31</span>
-            일까지 임차인에게 인도하며, 임대차기간은 인도일로부터{" "}
-            <span>2024.03.31</span>까지로 한다.
-          </p>
-        </div>
+        <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
+        <Req2 />
         <div className="doc_txt">
           <h4>제2조(부동산의 표시)</h4>
           <p>
@@ -135,39 +131,18 @@ const Document = () => {
           보관한다.
         </p>
         <p className="doc_date pt10">2023년 04월 03일</p>
-        <div className="doc_txt pt10">
-          <h4>임대인</h4>
-          <p>
-            성명 : <span>장서연</span>(서명 또는 인)
-          </p>
-          <p>
-            주민등록번호 : <span>970201-2571246</span>
-          </p>
-          <p>
-            주소 : <span>광주 동구 동계천로 74 (장동) 2층 204호</span>
-          </p>
-          <p>
-            전화번호 : <span>010-5643-8512</span>
-          </p>
-        </div>
-        <div className="doc_txt">
-          <h4>임차인</h4>
-          <p>
-            성명 : <span>장두식</span>(서명 또는 인)
-          </p>
-          <p>
-            주민등록번호 : <span>970201-2571246</span>
-          </p>
-          <p>
-            주소 : <span>광주 동구 장동 2층 204호</span>
-          </p>
-          <p>
-            전화번호 : <span>010-5105-9721</span>
-          </p>
-        </div>
+        <Req1
+          // landLord={props.items[0].landLord}
+          // landLordType={props.items[0].landLordType}
+          // renter={props.items[0].renter}
+          // renterType={props.items[0].renterType}
+
+        />
       </div>
-      <div class="alert scroll">
-        <p>여기에 각종 정보가 출력됩니다.<br/>
+      <div className="alert scroll">
+        <p>
+          여기에 각종 정보가 출력됩니다.
+          <br />
           뉴스알림, 단어, 법률 등등
         </p>
       </div>

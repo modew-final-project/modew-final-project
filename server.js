@@ -14,7 +14,7 @@ const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
       // 업로드 파일의 저장 경로 설정
-      cb(null, "C:/Users/smhrd/modew-final-project/src/fileforder");
+      cb(null, "C:/Users/smhrd/modew-final-project/public/fileforder");
     },
     filename: function (req, file, cb) {
       // 업로드된 파일 이름 설정
@@ -26,7 +26,7 @@ const upload = multer({
       let fileName = baseName + extension;
 
       // 파일 이름 중복 방지를 위한 카운트 추가
-      while (fs.existsSync("C:/Users/smhrd/modew-final-project/src/fileforder/" + fileName)) {
+      while (fs.existsSync("C:/Users/smhrd/modew-final-project/public/fileforder/" + fileName)) {
         count++;
         fileName = baseName + "_" + count + extension;
       }
