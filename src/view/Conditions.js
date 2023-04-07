@@ -6,28 +6,105 @@ import html2pdf from "html2pdf.js";
 import { authService } from "../fbase";
 
 const Conditions = () => {
+  //C1 & requirement[0]
+  const [landLord, setLandLord] = useState("");
+  const [landLordType, setLandLordType] = useState("");
+  const [renter, setRenter] = useState("");
+  const [renterType, setRenterType] = useState("");
+
+  //C2 & requirement[1]
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [monthly, setMonthly] = useState("");
+  const [dueDate, setDueDate] = useState("");
+
+  //C3 & requirement[2]
+  const [deposit, setDeposit] = useState("");
+  const [downPayment, setDownPayment] = useState("");
+  const [balance, setBalance] = useState("");
+  const [balanceDate, setBalanceDate] = useState("");
+  const [bank, setBank] = useState("");
+  const [accountNum, setAccountNum] = useState("");
+  const [accountHolder, setAccountHolder] = useState("");
+
+  // 하위 컴포넌트로 전달할 기본값
   const requirements = [
     {
       //C1
       // 집주인, 종류(법인,개인사업자,개인)
-      landLord: "임소완",
-      landLordType: "성명",
+      landLord: landLord,
+      landLordType: landLordType,
       // 임차인, 종류(법인,개인사업자,개인)
-      renter: "장서연",
-      renterType: "성명",
+      renter: renter,
+      renterType: renterType,
     },
     {
       //C2
-
-      //C1
-      // 집주인, 종류(법인,개인사업자,개인)
-      landLord: "임소완",
-      landLordType: "성명",
-      // 임차인, 종류(법인,개인사업자,개인)
-      renter: "장서연",
-      renterType: "성명",
+      // 계약시작기간, 계약종료기간
+      startDate: startDate,
+      endDate: endDate,
+      // 월세계약이라면, 월세금액과 지불일자
+      monthly: monthly,
+      dueDate: dueDate,
+    },
+    {
+      //C3
+      // 보증금, 계약금, 잔금, 잔금 지급일
+      deposit: deposit,
+      downPayment: downPayment,
+      balance: balance,
+      balanceDate: balanceDate,
+      // 계좌정보 (은행명, 계좌번호, 예금주)
+      bank: bank,
+      accountNum: accountNum,
+      accountHolder: accountHolder,
     },
   ];
+
+  // C1에서 입력한 값을 불러와서 업데이트
+  const getC1 = (name, updateValue, type) => {
+    if (name === "집주인" && type === 0) {
+      setLandLordType(updateValue);
+    } else if (name === "집주인" && type === 1) {
+      setLandLord(updateValue);
+    } else if (name === "세입자" && type === 0) {
+      setRenterType(updateValue);
+    } else if (name === "세입자" && type === 1) {
+      setRenter(updateValue);
+    }
+  };
+
+  // C2에서 입력한 값을 불러와서 업데이트
+  const getC2 = (name, updateValue, type) => {
+    if (name === "시작날짜" && type === 0) {
+      setStartDate(updateValue);
+    } else if (name === "끝날짜" && type === 1) {
+      setEndDate(updateValue);
+    } else if (name === "월세금액" && type === 0) {
+      setMonthly(updateValue);
+    } else if (name === "지불일" && type === 1) {
+      setDueDate(updateValue);
+    }
+  };
+
+  // C3에서 입력한 값을 불러와서 업데이트
+  const getC3 = (name, updateValue) => {
+    if (name === "보증금") {
+      setDeposit(updateValue);
+    } else if (name === "계약금") {
+      setDownPayment(updateValue);
+    } else if (name === "잔금") {
+      setBalance(updateValue);
+    } else if (name === "잔금지급일") {
+      setBalanceDate(updateValue);
+    } else if (name === "은행명") {
+      setBank(updateValue);
+    } else if (name === "계좌번호") {
+      setAccountNum(updateValue);
+    } else if (name === "예금주") {
+      setAccountHolder(updateValue);
+    }
+  };
 
   const [email, setEmail] = useState("");
 
@@ -39,7 +116,6 @@ const Conditions = () => {
     };
     getEmail();
   }, []);
-  console.log(email);
 
   // PDF 파일을 생성하고 서버에 전송하는 함수
   const saveAsPDF = async () => {
@@ -85,7 +161,12 @@ const Conditions = () => {
 
           <div className="content_write">
             <div className="write_wrap">
-              <Sidebar items={requirements} />
+              <Sidebar
+                items={requirements}
+                getC1Value={getC1}
+                getC2Value={getC2}
+                getC3Value={getC3}
+              />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
                   <Document items={requirements} />

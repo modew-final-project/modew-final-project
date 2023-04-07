@@ -1,20 +1,24 @@
 import React, { useState } from "react";
-import * as C1_Req from '../case/C1.js';
-
 
 const Req1 = (props) => {
-
-  const [landLordType, setLandLordType] = useState(props.landLordType);
-  const [landLord,setLandLord] = useState(props.landLord)
-  const [renterType, setRenterType] = useState(props.renterType);
-  const [renter, setRenter] = useState(props.renter);
-
   return (
     <>
-      <div className="doc_txt pt10">
+      <div
+        className="doc_txt pt10"
+        style={{
+          display:
+            props.landLordType === "" && props.landLord === ""
+              ? "none"
+              : "block",
+        }}
+      >
         <h4>임대인</h4>
         <p>
-          {} : <span>{}</span>(서명 또는 인)
+          {props.landLordType} :{" "}
+          <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+            {props.landLord}
+          </span>
+           (서명 또는 인)
         </p>
         <p>
           주민등록번호 : <span>970201-2571246</span>
@@ -26,10 +30,20 @@ const Req1 = (props) => {
           전화번호 : <span>010-5643-8512</span>
         </p>
       </div>
-      <div className="doc_txt">
+      <div
+        className="doc_txt"
+        style={{
+          display:
+            props.renterType === "" && props.renter === "" ? "none" : "block",
+        }}
+      >
         <h4>임차인</h4>
         <p>
-          {renterType} : <span>{renter}</span>(서명 또는 인)
+          {props.renterType} :{" "}
+          <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+            {props.renter}
+          </span>
+           (서명 또는 인)
         </p>
         <p>
           주민등록번호 : <span>970201-2571246</span>

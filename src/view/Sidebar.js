@@ -16,12 +16,25 @@ const Sidebar = (props) => {
             landLordType={props.items[0].landLordType}
             renter={props.items[0].renter}
             renterType={props.items[0].renterType}
-            ref={(ref) => {
-              this.C1_Req = ref;
-            }}
+            getC1Value={props.getC1Value}
           />
-          <C2 />
-          <C3 />
+          <C2
+            startDate={props.items[1].startDate}
+            endDate={props.items[1].endDate}
+            monthly={props.items[1].monthly}
+            dueDate={props.items[1].dueDate}
+            getC2Value={props.getC2Value}
+          />
+          <C3 
+          deposit={props.items[2].deposit}
+          downPayment={props.items[2].downPayment}
+          balance={props.items[2].balance}
+          balanceDate={props.items[2].balanceDate}
+          bank={props.items[2].bank}
+          accountNum={props.items[2].accountNum}
+          accountHolder={props.items[2].accountHolder}
+          getC3Value={props.getC3Value}
+          />
           <C4 />
           <C5 />
           <C6 />

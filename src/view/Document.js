@@ -1,17 +1,49 @@
 import React from "react";
 import Req1 from "../requirement/Req1";
 import Req2 from "../requirement/Req2";
+import Req2_Term from "../requirement/Req2_Term";
+import Req2_MonthlyDue from "../requirement/Req2_MonthlyDue";
+import Req3_deposit from "../requirement/Req3_deposit";
+import Req3_bank from "../requirement/Req3_bank";
 
 const Document = (props) => {
-
-  
   return (
     <>
       <div className="document_wrap">
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
-        <Req2 />
+        <Req2_Term
+          startDate={props.items[1].startDate}
+          endDate={props.items[1].endDate}
+        />
         <div className="doc_txt">
-          <h4>제2조(부동산의 표시)</h4>
+          <Req2
+            deposit={props.items[2].deposit}
+            downPayment={props.items[2].downPayment}
+            balance={props.items[2].balance}
+            balanceDate={props.items[2].balanceDate}
+            monthly={props.items[1].monthly}
+            dueDate={props.items[1].dueDate}
+          />
+          <ul>
+            <Req3_deposit
+              deposit={props.items[2].deposit}
+              downPayment={props.items[2].downPayment}
+              balance={props.items[2].balance}
+              balanceDate={props.items[2].balanceDate}
+            />
+            <Req2_MonthlyDue
+              monthly={props.items[1].monthly}
+              dueDate={props.items[1].dueDate}
+            />
+            <Req3_bank
+              bank={props.items[2].bank}
+              accountNum={props.items[2].accountNum}
+              accountHolder={props.items[2].accountHolder}
+            />
+          </ul>
+        </div>
+        <div className="doc_txt">
+          <h4>제3조(부동산의 표시)</h4>
           <p>
             임대인과 임차인은 쌍방 합의하여 아래 표시 부동산에 관하여 임대차
             계약을 체결한다.
@@ -35,33 +67,6 @@ const Document = (props) => {
               <span>
                 28.79m<sup>2</sup>
               </span>
-            </li>
-          </ul>
-        </div>
-        <div className="doc_txt">
-          <h4>제3조(계약내용)</h4>
-          <p>
-            부동산의 임대차와 관련하여 임차인은 임대차보증금 및 차임을 아래와
-            같이 지불하기로 약정한다.
-          </p>
-          <ul>
-            <li>
-              1. 보증금 : 금 <span>50,000,000</span> 원
-            </li>
-            <li>
-              2. 계약금 : 금 <span>10,000,000</span> 원정은 계약시에 지불하고
-              영수하기로 한다.
-            </li>
-            <li>
-              3. 잔금 : 금 <span>90,000,000</span> 원정은{" "}
-              <span>2023.04.15</span> 일에 지불한다.
-            </li>
-            <li>
-              4. 월세 : 금 <span>7,000,000</span> 원정은 매월 <span>15</span>{" "}
-              일에 지불한다.
-            </li>
-            <li>
-              5. 입금계좌 : <span>국민은행 12-3456-789 장서연</span>
             </li>
           </ul>
         </div>
@@ -132,11 +137,10 @@ const Document = (props) => {
         </p>
         <p className="doc_date pt10">2023년 04월 03일</p>
         <Req1
-          // landLord={props.items[0].landLord}
-          // landLordType={props.items[0].landLordType}
-          // renter={props.items[0].renter}
-          // renterType={props.items[0].renterType}
-
+          landLord={props.items[0].landLord}
+          landLordType={props.items[0].landLordType}
+          renter={props.items[0].renter}
+          renterType={props.items[0].renterType}
         />
       </div>
       <div className="alert scroll">

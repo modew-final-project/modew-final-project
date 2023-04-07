@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const C1 = (props) => {
   const [visible1, setVisible1] = useState("none");
   const [visible2, setVisible2] = useState("none");
+  
   const [landLordType, setLandLordType] = useState(props.landLordType);
   const [landLord,setLandLord] = useState(props.landLord)
   const [renterType, setRenterType] = useState(props.renterType);
@@ -13,17 +14,21 @@ const C1 = (props) => {
     if (e.target.name === "집주인") {
       setVisible1("block");
       setLandLordType(e.target.value);
+      props.getC1Value(e.target.name,e.target.value,0);
     } else if (e.target.name === "세입자") {
       setVisible2("block");
       setRenterType(e.target.value);
+      props.getC1Value(e.target.name,e.target.value,0);
     }
   };
 
   const onChange = (e) => {
     if (e.target.name === "집주인") {
       setLandLord(e.target.value);
+      props.getC1Value(e.target.name,e.target.value,1);
     } else if (e.target.name === "세입자") {
       setRenter(e.target.value);
+      props.getC1Value(e.target.name,e.target.value,1);
     }
   };
 
