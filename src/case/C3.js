@@ -51,37 +51,37 @@ const C3 = (props) => {
                   <p>보증금</p>
                   <li className="pt025">
                     <span className="pr05 first_txt">금</span>
-                    <input className="text_right" type="text" name="보증금" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="보증금" onChange={depositChange} value={deposit}/>
                     <span>원</span>
                   </li>
                   <p className="pt10">계약금</p>
                   <li className="pt025">
                     <span className="pr05 first_txt">금</span>
-                    <input className="text_right" type="text" name="계약금" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="계약금" onChange={depositChange} value={downPayment}/>
                     <span>원</span>
                   </li>
                   <p className="pt10">잔금</p>
                   <li className="pt025">
                     <span className="pr05 first_txt">금</span>
-                    <input className="text_right" type="text" name="잔금" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="잔금" onChange={depositChange} value={balance}/>
                     <span>원</span>
                   </li>
                   <p className="pt10">잔금지급날짜</p>
                   <li className="pt025">
-                    <input type="date" name="잔금지급일" onChange={depositChange}/>
+                    <input type="date" name="잔금지급일" onChange={depositChange} value={balanceDate}/>
                   </li>
                   <p className="pt10">계좌 정보</p>
                   <li className="pt025">
                     <span className="pr05 first_txt">은행명</span>
-                    <input className="text_right" type="text" name="은행명" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="은행명" onChange={depositChange} value={bank}/>
                   </li>
                   <li className="pt025">
                     <span className="pr05 first_txt">계좌번호</span>
-                    <input className="text_right" type="text" name="계좌번호" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="계좌번호" onChange={depositChange} value={accountNum}/>
                   </li>
                   <li className="pt025">
                     <span className="pr05 first_txt">예금주</span>
-                    <input className="text_right" type="text" name="예금주" onChange={depositChange}/>
+                    <input className="text_right" type="text" name="예금주" onChange={depositChange} value={accountHolder}/>
                   </li>
                 </ul>
               </div>

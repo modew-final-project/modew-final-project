@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import C1 from "../case/C1";
 import C2 from "../case/C2";
 import C3 from "../case/C3";
@@ -35,7 +35,12 @@ const Sidebar = (props) => {
           accountHolder={props.items[2].accountHolder}
           getC3Value={props.getC3Value}
           />
-          <C4 />
+          <C4 
+          builtIn={props.items[3].builtIn}
+          cleaning={props.items[3].cleaning}
+          direct={props.items[3].direct}
+          getC4Value={props.getC4Value}
+          />
           <C5 />
           <C6 />
           <C7 />

@@ -13,8 +13,16 @@ const Req3_bank = (props) => {
       }}
     >
       <li>
-        - 입금계좌 : <span>{props.bank}</span> <span>{props.accountNum}</span>{" "}
-        <span>{props.accountHolder}</span>
+        - 입금계좌 :{" "}
+        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+          {props.bank}
+        </span>{" "}
+        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+          {props.accountNum}
+        </span>{" "}
+        <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+          {props.accountHolder}
+        </span>
       </li>
     </div>
   );

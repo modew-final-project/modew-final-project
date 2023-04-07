@@ -27,6 +27,11 @@ const Conditions = () => {
   const [accountNum, setAccountNum] = useState("");
   const [accountHolder, setAccountHolder] = useState("");
 
+  //C4 & requirement[3]
+  const [builtIn, setBuiltIn] = useState("");
+  const [cleaning, setCleaning] = useState("");
+  const [direct, setDirect] = useState("");
+
   // 하위 컴포넌트로 전달할 기본값
   const requirements = [
     {
@@ -58,6 +63,13 @@ const Conditions = () => {
       bank: bank,
       accountNum: accountNum,
       accountHolder: accountHolder,
+    },
+    {
+      //C4
+      // 특약사항 (빌트인, 청소비, 직접입력)
+      builtIn: builtIn,
+      cleaning: cleaning,
+      direct: direct,
     },
   ];
 
@@ -103,6 +115,17 @@ const Conditions = () => {
       setAccountNum(updateValue);
     } else if (name === "예금주") {
       setAccountHolder(updateValue);
+    }
+  };
+
+  // C4에서 입력한 값을 불러와서 업데이트
+  const getC4 = (name, updateValue) => {
+    if (name === "빌트인제품") {
+      setBuiltIn(updateValue);
+    } else if (name === "청소비") {
+      setCleaning(updateValue);
+    } else if (name === "직접입력") {
+      setDirect(updateValue);
     }
   };
 
@@ -153,6 +176,12 @@ const Conditions = () => {
       });
   };
 
+  // // const [drag, setDrag] = useState("");
+  // // setDrag(window.getSelection().getRangeAt(0).toString());
+
+  
+  // console.log(drag);
+
   return (
     <>
       <div id="subWrap" className="bgnone">
@@ -166,6 +195,7 @@ const Conditions = () => {
                 getC1Value={getC1}
                 getC2Value={getC2}
                 getC3Value={getC3}
+                getC4Value={getC4}
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">

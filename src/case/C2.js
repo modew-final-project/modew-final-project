@@ -56,7 +56,7 @@ const C2 = (props) => {
             <p>임대차 계약의 종류</p>
             <ul className="input_radio">
               <li>
-                <input type="radio" onClick={onClick} name="종류" value="월세및반전세"/>
+                <input type="radio" onClick={onClick} name="종류" value={"월세및반전세"}/>
                 월세 및 반전세
               </li>
               <li>
