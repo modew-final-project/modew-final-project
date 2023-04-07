@@ -125,6 +125,10 @@ app.post("/fileupload", upload.single("myFile"), (req, res) => {
   );
 });
 
+
+// public 디렉토리를 정적 파일로 제공하기 위한 미들웨어 추가
+app.use(express.static("public"));
+
 // 파일 목록 조회 API
 app.get("/filelist/:email", (req, res) => {
   const email = req.params.email; // 클라이언트로부터 전송된 이메일 정보
@@ -138,7 +142,15 @@ app.get("/filelist/:email", (req, res) => {
         res.status(500).json({ message: "파일목록 조회 실패!" });
       } else {
         console.log("DB조회 성공");
-        res.status(200).json(rows);
+
+        const fileUrlPrefix = "/filefolder/"; // 파일이 위치한 경로
+        const fileList = rows.map(row => ({
+          file_name: row.file_name,
+          upload_date: row.upload_date,
+          pdfurl: fileUrlPrefix + encodeURIComponent(row.file_name) // 파일이 위치한 경로와 파일 이름을 결합하여 pdfurl 생성
+        }));
+
+        res.status(200).json(fileList);
       }
     }
   );
