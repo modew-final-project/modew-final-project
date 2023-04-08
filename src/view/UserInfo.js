@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import modew_Logo from "../images/modew_logo.png";
-import LogInNav from "./LogInNav";
+
 
 const UserInfo = () => {
   return (

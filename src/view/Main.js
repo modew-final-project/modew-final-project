@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, HashRouter } from "react-router-dom";
-import { authService } from "../fbase";
+
 import main_Logo from "../images/main_Logo.png";
 import main_img from "../images/main_img.png";
 

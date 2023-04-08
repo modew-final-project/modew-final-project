@@ -8,10 +8,20 @@ import Req3_bank from "../requirement/Req3_bank";
 import Req2_Con from "../requirement/Req2_Con";
 import Req4 from "../requirement/Req4";
 
+
 const Document = (props) => {
   return (
     <>
+      <div className="alert scroll">
+        <p>
+          여기에 각종 정보가 출력됩니다.
+          <br />
+          뉴스알림, 단어, 법률 등등
+
+        </p>
+      </div>
       <div className="document_wrap">
+        
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
         <Req2_Term
           startDate={props.items[1].startDate}
@@ -77,9 +87,9 @@ const Document = (props) => {
           endDate={props.items[1].endDate}
         />
         <Req4
-        builtIn={props.items[3].builtIn}
-        cleaning={props.items[3].cleaning}
-        direct={props.items[3].direct}
+          builtIn={props.items[3].builtIn}
+          cleaning={props.items[3].cleaning}
+          direct={props.items[3].direct}
         />
         <p>
           본 계약을 증명하기 위하여 계약 당사자가 이의 없음을 확인하고 각각 서명
@@ -93,13 +103,6 @@ const Document = (props) => {
           renter={props.items[0].renter}
           renterType={props.items[0].renterType}
         />
-      </div>
-      <div className="alert scroll">
-        <p>
-          여기에 각종 정보가 출력됩니다.
-          <br />
-          뉴스알림, 단어, 법률 등등
-        </p>
       </div>
     </>
   );

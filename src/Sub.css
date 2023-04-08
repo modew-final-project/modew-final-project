@@ -201,7 +201,7 @@
 
 
 /* alert */
-.content_write .write_wrap .write_right .alert{display: block; position: absolute; right: 0; bottom: 3rem; width: 18rem; height: 20rem; background: #5a5a5a; border-radius: 5px 5px 0 0;
+.content_write .write_wrap .write_right .alert{display: block; position: absolute; right: 0; bottom: 2rem; width: 20rem; height: fit-content; background: #5a5a5a; border-radius: 5px 5px 0 0;
     padding: 1rem; box-sizing: border-box; overflow-y: auto;}
 .content_write .write_wrap .write_right .alert p{font-size: .8rem;}
 
