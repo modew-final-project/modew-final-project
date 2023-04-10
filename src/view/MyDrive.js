@@ -44,7 +44,8 @@ useEffect(() => {
       const data = await response.json(); // JSON 데이터로 변환
       const modifiedFileList = data.map((file) => ({
         ...file,
-        pdfurl: `http://localhost:3002/fileforder/${file.file_name}`, // 파일 경로 수정
+        pdfurl: `http://localhost:3002/filefolder/${file.file_name}`, // 파일 경로 수정
+        imageurl: `http://localhost:3002/filefolder/${file.image_name}`,
       }));
       setFileList(modifiedFileList);
     } catch (error) {
@@ -63,7 +64,10 @@ useEffect(() => {
             {fileList.map((file, index) => (
               <div className="file_content" key={index}>
                 <div className="content_wrap">
-                <Link to="#" onClick={() => openSmallWindow(generatePDFViewerLink(file.pdfurl))}>{file.file_name}</Link>  
+                <Link to="#" onClick={() => openSmallWindow(generatePDFViewerLink(file.pdfurl))}>{file.user_filename}</Link>  
+                <div className="thumb">
+                <img src={file.imageurl} alt={file.image_name} />
+                </div>
                 </div>
                 <a>{file.upload_date.slice(2, 10)} {file.upload_date.slice(11, 16)}</a>
               </div>

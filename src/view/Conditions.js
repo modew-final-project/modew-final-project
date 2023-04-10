@@ -3,6 +3,7 @@ import LogInNav from "./LogInNav";
 import Sidebar from "./Sidebar";
 import Document from "./Document";
 import html2pdf from "html2pdf.js";
+import html2canvas from 'html2canvas';
 import { authService } from "../fbase";
 
 const Conditions = () => {
@@ -140,41 +141,65 @@ const Conditions = () => {
     getEmail();
   }, []);
 
-  // PDF 파일을 생성하고 서버에 전송하는 함수
-  const saveAsPDF = async () => {
-    const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
-    const opt = {
-      margin: 1,
-      filename: "conditions.pdf", // PDF 파일 이름
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: { dpi: 192, letterRendering: true },
-      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-    };
-    const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
-
-    // FormData 객체 생성
-    const formData = new FormData();
-    formData.append("email", email); // 이메일 정보 추가
-    formData.append("pdf", pdfBlob, "conditions.pdf"); // PDF 파일 추가
-
-    // 서버로 전송할 HTTP 요청 생성
-    const requestOptions = {
-      method: "POST",
-      body: formData,
-    };
-
-    // 서버로 HTTP 요청 전송
-    fetch("http://localhost:3002/pdfupload", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        alert("파일 저장 성공");
-        console.log(data);
-      })
-      .catch((error) => {
-        alert("파일 저장 실패");
-        console.error(error);
-      });
+ // PDF 파일을 생성하고 서버에 전송하는 함수
+const saveAsPDF = async () => {
+  const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
+  const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
+    // alertElement가 있을 때만 실행
+    if (alertElement) {
+      alertElement.style.display = "none"; // 일시적으로 display 속성을 none으로 설정
+    }
+  const opt = {
+    margin: 1,
+    filename: "conditions.pdf", // PDF 파일 이름
+    image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
+    html2canvas: { dpi: 192, letterRendering: true},
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
   };
+  const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
+
+  // 이미지 파일 생성
+  const canvas = await html2canvas(element , { scale: 0.74 });
+  const imgBlob = await new Promise((resolve) =>
+    canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
+  );
+  // 사용자 입력 받기
+  const input = prompt("파일 이름을 입력하세요");
+  setEmail(input);
+
+  // FormData 객체 생성
+  const formData = new FormData();
+  formData.append("email", email); // 이메일 정보 추가
+  formData.append("pdf", pdfBlob, `${email}.pdf`); // PDF 파일 추가
+  formData.append("image", imgBlob, `${email}.png`); // 이미지 파일 이름 확장자를 png로 변경
+  formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
+
+  // 서버로 전송할 HTTP 요청 생성
+  const requestOptions = {
+    method: "POST",
+    body: formData,
+  };
+  
+  // 서버로 HTTP 요청 전송
+  fetch("http://localhost:3002/pdfupload", requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      alert("파일 저장 성공");
+      console.log(data);
+    })
+    .catch((error) => {
+      alert("파일 저장 실패");
+      console.error(error);
+    });
+    setTimeout(() => {
+      if (alertElement) {
+        alertElement.style.display = "block";
+      }
+    }, 1000);
+  
+};
+
+
 
   // // const [drag, setDrag] = useState("");
   // // setDrag(window.getSelection().getRangeAt(0).toString());
