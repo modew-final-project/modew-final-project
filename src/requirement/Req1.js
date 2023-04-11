@@ -1,44 +1,58 @@
-import React, { useState } from "react";
-import * as C1_Req from '../case/C1.js';
-
+import React from "react";
 
 const Req1 = (props) => {
-
-  const [landLordType, setLandLordType] = useState(props.landLordType);
-  const [landLord,setLandLord] = useState(props.landLord)
-  const [renterType, setRenterType] = useState(props.renterType);
-  const [renter, setRenter] = useState(props.renter);
-
   return (
     <>
-      <div className="doc_txt pt10">
+      <div
+        className="doc_txt pt10"
+        style={{
+          display:
+            props.landLordType === "" && props.landLord === ""
+              ? "none"
+              : "block",
+        }}
+      >
         <h4>임대인</h4>
         <p>
-          {} : <span>{}</span>(서명 또는 인)
+          {props.landLordType} :{" "}
+          <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+            {props.landLord}
+          </span>
+           (서명 또는 인)
         </p>
         <p>
-          주민등록번호 : <span>970201-2571246</span>
+          주민등록번호 : <span>111111-2222222</span>
         </p>
         <p>
-          주소 : <span>광주 동구 동계천로 74 (장동) 2층 204호</span>
+          주소 : <span>에오르제아 라벤더안식처 (4구) 35</span>
         </p>
         <p>
-          전화번호 : <span>010-5643-8512</span>
+          전화번호 : <span>010-1111-2222</span>
         </p>
       </div>
-      <div className="doc_txt">
+      <div
+        className="doc_txt"
+        style={{
+          display:
+            props.renterType === "" && props.renter === "" ? "none" : "block",
+        }}
+      >
         <h4>임차인</h4>
         <p>
-          {renterType} : <span>{renter}</span>(서명 또는 인)
+          {props.renterType} :{" "}
+          <span style={{ fontWeight: "bold", textDecoration: "underline" }}>
+            {props.renter}
+          </span>
+           (서명 또는 인)
         </p>
         <p>
-          주민등록번호 : <span>970201-2571246</span>
+          주민등록번호 : <span>333333-4444444</span>
         </p>
         <p>
-          주소 : <span>광주 동구 장동 2층 204호</span>
+          주소 : <span>에오르제아 시로가네 (5구) 36</span>
         </p>
         <p>
-          전화번호 : <span>010-5105-9721</span>
+          전화번호 : <span>010-3333-4444</span>
         </p>
       </div>
     </>

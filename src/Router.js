@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
+import React from "react";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 
 import Conditions from "./view/Conditions";
 import LoginView from "./view/LoginView";

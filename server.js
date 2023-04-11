@@ -14,7 +14,7 @@ const upload = multer({
   storage: multer.diskStorage({
     destination: function (req, file, cb) {
       // 업로드 파일의 저장 경로 설정
-      cb(null, "C:/Users/smhrd/modew-final-project/public/fileforder");
+      cb(null, "C:/Users/smhrd/modew-final-project/public/filefolder");
     },
     filename: function (req, file, cb) {
       // 업로드된 파일 이름 설정
@@ -26,7 +26,7 @@ const upload = multer({
       let fileName = baseName + extension;
 
       // 파일 이름 중복 방지를 위한 카운트 추가
-      while (fs.existsSync("C:/Users/smhrd/modew-final-project/public/fileforder/" + fileName)) {
+      while (fs.existsSync("C:/Users/smhrd/modew-final-project/public/filefolder/" + fileName)) {
         count++;
         fileName = baseName + "_" + count + extension;
       }
@@ -79,21 +79,23 @@ app.post("/user", (req, res) => {
 });
 
 // PDF 파일을 저장하는 API
-app.post("/pdfupload", upload.single("pdf"), (req, res) => {
+app.post("/pdfupload", upload.fields([{ name: "pdf" }, { name: "image" }]), (req, res) => {
   const { email } = req.body;
-  const { fileName } = req;
+  const { user_filename } = req.body;
+  const { pdf, image } = req.files;
+  const pdfFileName = req.files.pdf[0].filename;
+  const imageFileName = req.files.image[0].filename;
 
-  // PDF 파일을 데이터베이스에 저장하는 코드
   connection.query(
-    "INSERT INTO `FileList` (uploader_email, file_name) VALUES (?, ?)",
-    [email, fileName],
+    "INSERT INTO `FileList` (uploader_email, file_name, image_name, user_filename) VALUES (?, ?, ?, ?)",
+    [email, pdfFileName, imageFileName, user_filename],
     function (err, rows, fields) {
       if (err) {
         console.log("DB저장 실패");
-        res.status(500).json({ message: "파일 저장 실패!" }); // HTTP 응답으로 클라이언트에게 실패 메시지 전송
+        res.status(500).json({ message: "파일 저장 실패!" });
       } else {
         console.log("DB저장 성공");
-        res.status(200).json({ message: "파일 저장 성공!" }); // HTTP 응답으로 클라이언트에게 성공 메시지 전송
+        res.status(200).json({ message: "파일 저장 성공!" });
       }
     }
   );
@@ -125,12 +127,16 @@ app.post("/fileupload", upload.single("myFile"), (req, res) => {
   );
 });
 
+
+// public 디렉토리를 정적 파일로 제공하기 위한 미들웨어 추가
+app.use(express.static("public"));
+
 // 파일 목록 조회 API
 app.get("/filelist/:email", (req, res) => {
   const email = req.params.email; // 클라이언트로부터 전송된 이메일 정보
 
   connection.query(
-    "SELECT file_name, upload_date FROM FileList WHERE uploader_email = ?", // SQL 쿼리문
+    "SELECT file_name, upload_date, image_name, user_filename FROM FileList WHERE uploader_email = ?", // SQL 쿼리문
     [email], // SQL 쿼리에 전달될 값
     (err, rows, fields) => {
       if (err) {
@@ -138,7 +144,17 @@ app.get("/filelist/:email", (req, res) => {
         res.status(500).json({ message: "파일목록 조회 실패!" });
       } else {
         console.log("DB조회 성공");
-        res.status(200).json(rows);
+
+        const fileUrlPrefix = "/fileforder/"; // 파일이 위치한 경로
+        const fileList = rows.map(row => ({
+          file_name: row.file_name,
+          upload_date: row.upload_date,
+          image_name: row.image_name,
+          user_filename:row.user_filename,
+          pdfurl: fileUrlPrefix + encodeURIComponent(row.file_name) // 파일이 위치한 경로와 파일 이름을 결합하여 pdfurl 생성
+        }));
+
+        res.status(200).json(fileList);
       }
     }
   );

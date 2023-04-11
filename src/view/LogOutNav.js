@@ -1,6 +1,5 @@
 import React from "react";
 import searchLogo from "../images/main_search.png";
-import menuLogo from "../images/main_menu.png";
 import { Link } from "react-router-dom";
 
 const LogOutNav = () => {
