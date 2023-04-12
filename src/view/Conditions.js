@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useLocation } from 'react-router-dom';
 import LogInNav from "./LogInNav";
 import Sidebar from "./Sidebar";
 import Document from "./Document";
@@ -6,7 +7,13 @@ import html2pdf from "html2pdf.js";
 import html2canvas from 'html2canvas';
 import { authService } from "../fbase";
 
+
+
 const Conditions = () => {
+  const location = useLocation();
+  const tempData1 = location.state?.tempData1 ?? "";
+  
+
   //C1 & requirement[0]
   const [landLord, setLandLord] = useState("");
   const [landLordType, setLandLordType] = useState("");
@@ -33,6 +40,37 @@ const Conditions = () => {
   const [cleaning, setCleaning] = useState("");
   const [direct, setDirect] = useState("");
 
+  useEffect(() => {
+    if (tempData1 !== "") {
+      const temp = JSON.parse(tempData1);
+      // C1 & requirement[0]
+      setLandLord(temp.landLord);
+      setLandLordType(temp.landLordType);
+      setRenter(temp.renter);
+      setRenterType(temp.renterType);
+
+      // C2 & requirement[1]
+      setStartDate(temp.startDate);
+      setEndDate(temp.endDate);
+      setMonthly(temp.monthly);
+      setDueDate(temp.dueDate);
+
+      // C3 & requirement[2]
+      setDeposit(temp.deposit);
+      setDownPayment(temp.downPayment);
+      setBalance(temp.balance);
+      setBalanceDate(temp.balanceDate);
+      setBank(temp.bank);
+      setAccountNum(temp.accountNum);
+      setAccountHolder(temp.accountHolder);
+
+      // C4 & requirement[3]
+      setBuiltIn(temp.builtIn);
+      setCleaning(temp.cleaning);
+      setDirect(temp.direct);
+    }
+  }, [tempData1]);
+  
   // 하위 컴포넌트로 전달할 기본값
   const requirements = [
     {
@@ -131,7 +169,7 @@ const Conditions = () => {
   };
 
   const [email, setEmail] = useState("");
-
+  
   // 현재 로그인된 유저의 이메일 주소 가져오기
   useEffect(() => {
     const getEmail = async () => {
@@ -140,9 +178,30 @@ const Conditions = () => {
     };
     getEmail();
   }, []);
-
+  const tempData = {
+    landLord,
+    landLordType,
+    renter,
+    renterType,
+    startDate,
+    endDate,
+    monthly,
+    dueDate,
+    deposit,
+    downPayment,
+    balance,
+    balanceDate,
+    bank,
+    accountNum,
+    accountHolder,
+    builtIn,
+    cleaning,
+    direct
+  };
  // PDF 파일을 생성하고 서버에 전송하는 함수
 const saveAsPDF = async () => {
+  
+  console.log(tempData);
   const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
   const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
     // alertElement가 있을 때만 실행
@@ -168,16 +227,21 @@ const saveAsPDF = async () => {
   setEmail(input);
 
   // FormData 객체 생성
+  // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
+  const tempDataString = JSON.stringify(tempData);
+  console.log(tempDataString);
   const formData = new FormData();
   formData.append("email", email); // 이메일 정보 추가
   formData.append("pdf", pdfBlob, `${email}.pdf`); // PDF 파일 추가
   formData.append("image", imgBlob, `${email}.png`); // 이미지 파일 이름 확장자를 png로 변경
   formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
-
+  formData.append("tempDataString", tempDataString); // tempData 추가
+  
   // 서버로 전송할 HTTP 요청 생성
   const requestOptions = {
     method: "POST",
     body: formData,
+    
   };
   
   // 서버로 HTTP 요청 전송
@@ -186,19 +250,24 @@ const saveAsPDF = async () => {
     .then((data) => {
       alert("파일 저장 성공");
       console.log(data);
+      
     })
     .catch((error) => {
       alert("파일 저장 실패");
       console.error(error);
+      
     });
     setTimeout(() => {
       if (alertElement) {
         alertElement.style.display = "block";
       }
     }, 1000);
+      
+      
+    
+
   
 };
-
 
 
   // // const [drag, setDrag] = useState("");
@@ -206,7 +275,8 @@ const saveAsPDF = async () => {
 
   
   // console.log(drag);
-
+console.log(requirements);
+console.log(getC1);
   return (
     <>
       <div id="subWrap" className="bgnone">

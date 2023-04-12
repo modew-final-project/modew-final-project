@@ -85,10 +85,13 @@ app.post("/pdfupload", upload.fields([{ name: "pdf" }, { name: "image" }]), (req
   const { pdf, image } = req.files;
   const pdfFileName = req.files.pdf[0].filename;
   const imageFileName = req.files.image[0].filename;
-
+  const tempDataString = req.body.tempDataString; // JSON 형태의 문자열로 받아옴
+  const tempData = JSON.parse(tempDataString); // JSON 형태의 문자열을 객체로 변환
+  
+  
   connection.query(
-    "INSERT INTO `FileList` (uploader_email, file_name, image_name, user_filename) VALUES (?, ?, ?, ?)",
-    [email, pdfFileName, imageFileName, user_filename],
+    "INSERT INTO `FileList` (uploader_email, file_name, image_name, user_filename, tempData) VALUES (?, ?, ?, ?, ?)",
+    [email, pdfFileName, imageFileName, user_filename, JSON.stringify(tempData)], // tempData 값을 문자열로 변환하여 DB에 저장
     function (err, rows, fields) {
       if (err) {
         console.log("DB저장 실패");
@@ -136,7 +139,7 @@ app.get("/filelist/:email", (req, res) => {
   const email = req.params.email; // 클라이언트로부터 전송된 이메일 정보
 
   connection.query(
-    "SELECT file_name, upload_date, image_name, user_filename FROM FileList WHERE uploader_email = ?", // SQL 쿼리문
+    "SELECT file_name, upload_date, image_name, user_filename, tempData FROM FileList WHERE uploader_email = ?", // SQL 쿼리문
     [email], // SQL 쿼리에 전달될 값
     (err, rows, fields) => {
       if (err) {
@@ -151,7 +154,8 @@ app.get("/filelist/:email", (req, res) => {
           upload_date: row.upload_date,
           image_name: row.image_name,
           user_filename:row.user_filename,
-          pdfurl: fileUrlPrefix + encodeURIComponent(row.file_name) // 파일이 위치한 경로와 파일 이름을 결합하여 pdfurl 생성
+          pdfurl: fileUrlPrefix + encodeURIComponent(row.file_name), // 파일이 위치한 경로와 파일 이름을 결합하여 pdfurl 생성
+          tempData:JSON.stringify(row.tempData)
         }));
 
         res.status(200).json(fileList);

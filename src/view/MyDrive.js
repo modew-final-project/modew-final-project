@@ -5,7 +5,7 @@ import { authService } from '../fbase'
 const MyDrive = () => {
   const [email, setEmail] = useState("");
   const [fileList, setFileList] = useState([]);
-
+  
   const openSmallWindow = (url) => {
     const width = 1000;
     const height = 1200;
@@ -46,11 +46,14 @@ useEffect(() => {
         ...file,
         pdfurl: `http://localhost:3002/filefolder/${file.file_name}`, // 파일 경로 수정
         imageurl: `http://localhost:3002/filefolder/${file.image_name}`,
+        
       }));
       setFileList(modifiedFileList);
+      
     } catch (error) {
       // 에러 처리
     }
+    
   };
   fetchFileList();
 }, [email]);
@@ -68,8 +71,11 @@ useEffect(() => {
                 <div className="thumb">
                 <img src={file.imageurl} alt={file.image_name} />
                 </div>
+                <Link to={{pathname: '/Conditions', state: {tempData1: JSON.parse(file.tempData)}}}>수정하기</Link>
+                
                 </div>
                 <a>{file.upload_date.slice(2, 10)} {file.upload_date.slice(11, 16)}</a>
+                
               </div>
             ))}
           </div>
