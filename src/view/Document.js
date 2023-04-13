@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import Req1 from "../requirement/Req1";
 import Req2 from "../requirement/Req2";
@@ -15,7 +14,7 @@ const Document = (props) => {
   const [flaskData, setFlaskData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async (setFlaskData) => {
+    const fetchData = async () => {
       try {
         const response = await fetch("http://127.0.0.1:5000/get_precautions");
         const data = await response.text();
@@ -24,22 +23,24 @@ const Document = (props) => {
         console.error("Error fetching data from Flask server:", error);
       }
     };
-    const handleClick = () => {
-      fetchData(setFlaskData);
-    };
 
-    window.Document = Document;
-    window.fetchData = fetchData;
+    fetchData();
+    
   }, []);
-
+  console.log(flaskData);
   return (
     <>
-    
       <div className="alert scroll">
+        <p>
+          여기에 각종 정보가 출력됩니다.
+          <br />
+          뉴스알림, 단어, 법률 등등
+
+        </p>
       {flaskData ? <p>{flaskData}</p> : <p>Loading...</p>}
       </div>
       <div className="document_wrap">
-        
+
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
         <Req2_Term
           startDate={props.items[1].startDate}
@@ -125,5 +126,4 @@ const Document = (props) => {
     </>
   );
 };
-
 export default Document;
