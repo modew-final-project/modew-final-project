@@ -14,6 +14,9 @@ const Conditions = () => {
   const tempData1 = location.state?.tempData1 ?? "";
   const fileName = location.state?.fileName ?? "";
   
+  // 맞춤법 검사 작동
+  const [spellOn, setSpellOn] = useState("");
+
   //C1 & requirement[0]
   const [landLord, setLandLord] = useState("");
   const [landLordType, setLandLordType] = useState("");
@@ -113,6 +116,11 @@ const Conditions = () => {
       direct: direct,
     },
   ];
+
+  // 맞춤법 검사 작동 여부
+  const spellCheck = ()=>{
+
+  }
 
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
@@ -360,7 +368,7 @@ const updateAsPDF = async () => {
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
-                  <Document items={requirements} />
+                  <Document items={requirements} hanspell={}/>
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">

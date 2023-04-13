@@ -248,7 +248,10 @@ const end = function () {
 const error = function (err) {
   console.error('// error: ' + err);
 };
-hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error)
+
+const result = hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error).;
+console.log("결과 : ", result);
+// hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error)
 
 // 서버 실행 및 종료 시 데이터베이스 연결 종료
 app.listen(port, () => {

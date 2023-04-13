@@ -10,6 +10,15 @@ import Req4 from "../requirement/Req4";
 
 
 const Document = (props) => {
+
+  // 맞춤법 검사 버튼 state 전달
+  const [buttonClick, setButtonClick] = useState(false);
+
+  const onClick = (e)=>{
+    setButtonClick(true);
+    console.log(buttonClick);
+  }
+
   //뉴스요약 플라스크가져오기
   const [flaskData, setFlaskData] = useState(null);
 
@@ -27,10 +36,11 @@ const Document = (props) => {
     fetchData();
     
   }, []);
-  console.log(flaskData);
+
   return (
     <>
       <div className="alert scroll">
+        <button onClick={onClick}>특약사항 맞춤법 검사</button>
         <p>
           여기에 각종 정보가 출력됩니다.
           <br />
