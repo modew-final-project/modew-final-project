@@ -238,8 +238,21 @@ app.get("/filelist/:email", (req, res) => {
   );
 });
 
+// 맞춤법 검사
+const hanspell = require('hanspell');
+
+const sentence = '외않되? 외않되냐고. 내가 왜 널 좋아하면 안되는대. 나한테 일해라 절해라 하지마.';
+const end = function () {
+  console.log('// check ends');
+};
+const error = function (err) {
+  console.error('// error: ' + err);
+};
+hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error)
+
 // 서버 실행 및 종료 시 데이터베이스 연결 종료
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
 process.on('exit', function() { connection.end(); }); // 프로세스 종료 시 데이터베이스 연결 종료
+
