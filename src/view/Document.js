@@ -15,7 +15,7 @@ const Document = (props) => {
   const [flaskData, setFlaskData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (setFlaskData) => {
       try {
         const response = await fetch("http://127.0.0.1:5000/get_precautions");
         const data = await response.text();
@@ -24,12 +24,17 @@ const Document = (props) => {
         console.error("Error fetching data from Flask server:", error);
       }
     };
+    const handleClick = () => {
+      fetchData(setFlaskData);
+    };
 
-    fetchData();
+    window.Document = Document;
+    window.fetchData = fetchData;
   }, []);
 
   return (
     <>
+    
       <div className="alert scroll">
       {flaskData ? <p>{flaskData}</p> : <p>Loading...</p>}
       </div>
