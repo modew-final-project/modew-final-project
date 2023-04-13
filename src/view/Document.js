@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState, useEffect } from "react";
 import Req1 from "../requirement/Req1";
 import Req2 from "../requirement/Req2";
 import Req2_Term from "../requirement/Req2_Term";
@@ -10,15 +11,27 @@ import Req4 from "../requirement/Req4";
 
 
 const Document = (props) => {
+  //뉴스요약 플라스크가져오기
+  const [flaskData, setFlaskData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:5000/get_precautions");
+        const data = await response.text();
+        setFlaskData(data);
+      } catch (error) {
+        console.error("Error fetching data from Flask server:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <div className="alert scroll">
-        <p>
-          여기에 각종 정보가 출력됩니다.
-          <br />
-          뉴스알림, 단어, 법률 등등
-
-        </p>
+      {flaskData ? <p>{flaskData}</p> : <p>Loading...</p>}
       </div>
       <div className="document_wrap">
         
