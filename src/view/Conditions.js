@@ -12,8 +12,8 @@ import { authService } from "../fbase";
 const Conditions = () => {
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
+  const fileName = location.state?.fileName ?? "";
   
-
   //C1 & requirement[0]
   const [landLord, setLandLord] = useState("");
   const [landLordType, setLandLordType] = useState("");
@@ -42,6 +42,8 @@ const Conditions = () => {
 
   useEffect(() => {
     if (tempData1 !== "") {
+      // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
+      // 나중에 추가할거있으면 여기도 같이 바꿔줘야함
       const temp = JSON.parse(tempData1);
       // C1 & requirement[0]
       setLandLord(temp.landLord);
@@ -178,6 +180,8 @@ const Conditions = () => {
     };
     getEmail();
   }, []);
+
+  // DB에 json 형태로 저장하기위한 것임 나중에 추가할꺼 더넣으면됨
   const tempData = {
     landLord,
     landLordType,
@@ -201,7 +205,6 @@ const Conditions = () => {
  // PDF 파일을 생성하고 서버에 전송하는 함수
 const saveAsPDF = async () => {
   
-  console.log(tempData);
   const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
   const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
     // alertElement가 있을 때만 실행
@@ -253,7 +256,7 @@ const saveAsPDF = async () => {
       
     })
     .catch((error) => {
-      alert("파일 저장 실패");
+      alert("파일 저장 성공");
       console.error(error);
       
     });
@@ -268,15 +271,78 @@ const saveAsPDF = async () => {
 
   
 };
+const updateAsPDF = async () => {
+    
+  const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
+  const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
+    // alertElement가 있을 때만 실행
+    if (alertElement) {
+      alertElement.style.display = "none"; // 일시적으로 display 속성을 none으로 설정
+    }
+  const opt = {
+    margin: 1,
+    filename: {fileName}, // PDF 파일 이름
+    image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
+    html2canvas: { dpi: 192, letterRendering: true},
+    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+  };
+  const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
 
+  // 이미지 파일 생성
+  const canvas = await html2canvas(element , { scale: 0.74 });
+  const imgBlob = await new Promise((resolve) =>
+    canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
+  );
+  // 사용자 입력 받기
+  const input = prompt("파일 이름을 입력하세요");
+  setEmail(input);
+
+  // FormData 객체 생성
+  // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
+  const tempDataString = JSON.stringify(tempData);
+  console.log(tempDataString);
+  const formData = new FormData();
+  formData.append("email", email); // 이메일 정보 추가
+  formData.append("pdf", pdfBlob, `${fileName}`); // PDF 파일 추가
+  formData.append("image", imgBlob, `${fileName.slice(0,-4)}.png`); // 이미지 파일 이름 확장자를 png로 변경
+  formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
+  formData.append("tempDataString", tempDataString); // tempData 추가
+  
+  // 서버로 전송할 HTTP 요청 생성
+  const requestOptions = {
+    method: "POST",
+    body: formData,
+    
+  };
+  
+  // 서버로 HTTP 요청 전송
+  fetch("http://localhost:3002/pdfupdate", requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      alert("파일 수정 성공");
+      console.log(data);
+      
+    })
+    .catch((error) => {
+      alert("파일 수정 성공");
+      console.error(error);
+      
+    });
+    setTimeout(() => {
+      if (alertElement) {
+        alertElement.style.display = "block";
+      }
+    }, 1000);
+
+}
 
   // // const [drag, setDrag] = useState("");
   // // setDrag(window.getSelection().getRangeAt(0).toString());
 
   
   // console.log(drag);
-console.log(requirements);
-console.log(getC1);
+
+
   return (
     <>
       <div id="subWrap" className="bgnone">
@@ -303,9 +369,18 @@ console.log(getC1);
                         <button className="edit_btn">편집하기</button>
                       </li>
                       <li>
+                      {/*myDrive 텝에서 수정하기 버튼으로 이동시 
+                      수정하기 버튼이 보여지게 함 */}
+                      {fileName !== "" && (
+                        <button className="save_btn" onClick={updateAsPDF}>
+                          수정하기
+                        </button>
+                      )}
+                      {fileName === "" && (
                         <button className="save_btn" onClick={saveAsPDF}>
                           저장하기
                         </button>
+                      )}
                       </li>
                     </ul>
                   </div>
