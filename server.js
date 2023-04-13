@@ -5,9 +5,12 @@ const port = 3002;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
+
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+
+
 
 // 파일 업로드 중복체크 multer 설정
 const upload = multer({
@@ -86,6 +89,38 @@ app.post("/user", (req, res) => {
 
         // 회원가입 성공 메시지 클라이언트 쪽으로 전송
         res.status(200).json({ message: "회원가입 성공!" });
+      }
+    }
+  );
+});
+
+// google_user 정보를 저장하는 API
+app.post("/google_user", (req, res) => {
+  const { email, pw, name} = req.body;
+
+  // 이메일 중복 체크를 위한 SELECT 쿼리
+  connection.query(
+    "SELECT * FROM `User` WHERE Email = ?",
+    [email],
+    function (err, rows, fields) {
+      if (err) {
+        
+      } else if (rows.length > 0) {
+        console.log("구글 계정 로그인 성공");
+      } else {
+        // 이메일이 존재하지 않으므로 INSERT 쿼리 실행
+        connection.query(
+          "INSERT INTO `User` (Email, Pw, Name, Birthday, Tel, Date) VALUES (?, ?, ?, '000000-0000000', '010-0000-0000', NOW())",
+          [email, pw, name],
+          function (err, rows, fields) {
+            if (err) {
+              console.log("구글 계정 DB저장 실패");
+
+            } else {
+              console.log("구글 계정 DB저장 성공");
+            }
+          }
+        );
       }
     }
   );
