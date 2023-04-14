@@ -13,9 +13,13 @@ const Conditions = () => {
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
   const fileName = location.state?.fileName ?? "";
+
+  const [c1event,setC1event]= useState("");
   
   // 맞춤법 검사 작동
-  const [spellOn, setSpellOn] = useState("");
+  const [spellOn1, setSpellOn1] = useState("");
+  const [spellOn2, setSpellOn2] = useState("");
+  const [spellOn3, setSpellOn3] = useState("");
 
   //C1 & requirement[0]
   const [landLord, setLandLord] = useState("");
@@ -118,8 +122,37 @@ const Conditions = () => {
   ];
 
   // 맞춤법 검사 작동 여부
-  const spellCheck = ()=>{
+  const spellCheck = async (e) => {
+    console.log(builtIn);
+    try {
+      await fetch("http://localhost:3002/spellCheck", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          check1: builtIn,
+          check2: cleaning,
+          check3: direct,
+        })
+        
+        
+      })
+      .then((response)=>response.json()).then((json)=>{
+        console.log("맞춤법 교정 결과 -> ",json);
+        setSpellOn1(json.check1);
+        setSpellOn2(json.check2);
+        setSpellOn3(json.check3);
+      })
+      
+    } catch (error) {
+      console.log("맞춤법검사실패");
+      console.log(error);
 
+    }
+    
+  };
+
+  const evRead = (e)=>{
+    console.log("라디오버튼눌림");
   }
 
   // C1에서 입력한 값을 불러와서 업데이트
@@ -368,7 +401,7 @@ const updateAsPDF = async () => {
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
-                  <Document items={requirements} hanspell={}/>
+                  <Document items={requirements} check={spellCheck} spCk1={spellOn1}spCk2={spellOn2}spCk3={spellOn3}/>
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">

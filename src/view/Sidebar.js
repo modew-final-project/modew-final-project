@@ -21,6 +21,7 @@ const Sidebar = (props) => {
             renter={props.items[0].renter}
             renterType={props.items[0].renterType}
             getC1Value={props.getC1Value}
+            
           />
           <C2
             startDate={props.items[1].startDate}
