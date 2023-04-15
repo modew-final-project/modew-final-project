@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Req1 from "../requirement/Req1";
 import Req2 from "../requirement/Req2";
 import Req2_Term from "../requirement/Req2_Term";
@@ -10,18 +10,46 @@ import Req4 from "../requirement/Req4";
 
 
 const Document = (props) => {
+
+  // 맞춤법 검사 버튼 state 전달
+
+
+  //뉴스요약 플라스크가져오기
+  const [flaskData, setFlaskData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://127.0.0.1:5000/get_precautions");
+        const data = await response.text();
+        setFlaskData(data);
+      } catch (error) {
+        console.error("Error fetching data from Flask server:", error);
+      }
+    };
+
+    fetchData();
+    
+  }, []);
+
   return (
     <>
       <div className="alert scroll">
-        <p>
-          여기에 각종 정보가 출력됩니다.
+        <button onClick={props.check}>특약사항 맞춤법 검사</button>
+        <p style={{display:props.spCk1===""?"none":"block",}}>
+          맞춤법 교정 결과
           <br />
-          뉴스알림, 단어, 법률 등등
+          <ul style={{whiteSpace:"pre-wrap"}}>
+            <li>{`${props.spCk1}`}</li>
+            <li>{`${props.spCk2}`}</li>
+            <li>{`${props.spCk3}`}</li>
+          </ul>
 
         </p>
+      {flaskData ? <p>{flaskData}</p> : <p>Loading...</p>}
       </div>
       <div className="document_wrap">
-        
+
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>
         <Req2_Term
           startDate={props.items[1].startDate}
@@ -107,5 +135,4 @@ const Document = (props) => {
     </>
   );
 };
-
 export default Document;

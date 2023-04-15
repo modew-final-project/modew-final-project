@@ -5,6 +5,7 @@ const port = 3002;
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
+
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
@@ -26,7 +27,11 @@ const upload = multer({
       let fileName = baseName + extension;
 
       // 파일 이름 중복 방지를 위한 카운트 추가
-      while (fs.existsSync("C:/Users/smhrd/modew-final-project/public/filefolder/" + fileName)) {
+      while (
+        fs.existsSync(
+          "C:/Users/smhrd/modew-final-project/public/filefolder/" + fileName
+        )
+      ) {
         count++;
         fileName = baseName + "_" + count + extension;
       }
@@ -91,62 +96,104 @@ app.post("/user", (req, res) => {
   );
 });
 
-// PDF 파일을 저장하는 API
-app.post("/pdfupload", upload.fields([{ name: "pdf" }, { name: "image" }]), (req, res) => {
-  const { email } = req.body;
-  const { user_filename } = req.body;
-  const { pdf, image } = req.files;
-  const pdfFileName = req.files.pdf[0].filename;
-  const imageFileName = req.files.image[0].filename;
-  const tempDataString = req.body.tempDataString; // JSON 형태의 문자열로 받아옴
-  const tempData = JSON.parse(tempDataString); // JSON 형태의 문자열을 객체로 변환
-  
-  
+// google_user 정보를 저장하는 API
+app.post("/google_user", (req, res) => {
+  const { email, pw, name } = req.body;
+
+  // 이메일 중복 체크를 위한 SELECT 쿼리
   connection.query(
-    "INSERT INTO `FileList` (uploader_email, file_name, image_name, user_filename, tempData) VALUES (?, ?, ?, ?, ?)",
-    [email, pdfFileName, imageFileName, user_filename, JSON.stringify(tempData)], // tempData 값을 문자열로 변환하여 DB에 저장
+    "SELECT * FROM `User` WHERE Email = ?",
+    [email],
     function (err, rows, fields) {
       if (err) {
-        console.log("DB저장 실패");
-        res.status(500).json({ message: "파일 저장 실패!" });
+      } else if (rows.length > 0) {
+        console.log("구글 계정 로그인 성공");
       } else {
-        console.log("DB저장 성공");
-        res.status(200).json({ message: "파일 저장 성공!" });
+        // 이메일이 존재하지 않으므로 INSERT 쿼리 실행
+        connection.query(
+          "INSERT INTO `User` (Email, Pw, Name, Birthday, Tel, Date) VALUES (?, ?, ?, '000000-0000000', '010-0000-0000', NOW())",
+          [email, pw, name],
+          function (err, rows, fields) {
+            if (err) {
+              console.log("구글 계정 DB저장 실패");
+            } else {
+              console.log("구글 계정 DB저장 성공");
+            }
+          }
+        );
       }
     }
   );
 });
+
+// PDF 파일을 저장하는 API
+app.post(
+  "/pdfupload",
+  upload.fields([{ name: "pdf" }, { name: "image" }]),
+  (req, res) => {
+    const { email } = req.body;
+    const { user_filename } = req.body;
+    const { pdf, image } = req.files;
+    const pdfFileName = req.files.pdf[0].filename;
+    const imageFileName = req.files.image[0].filename;
+    const tempDataString = req.body.tempDataString; // JSON 형태의 문자열로 받아옴
+    const tempData = JSON.parse(tempDataString); // JSON 형태의 문자열을 객체로 변환
+
+    connection.query(
+      "INSERT INTO `FileList` (uploader_email, file_name, image_name, user_filename, tempData) VALUES (?, ?, ?, ?, ?)",
+      [
+        email,
+        pdfFileName,
+        imageFileName,
+        user_filename,
+        JSON.stringify(tempData),
+      ], // tempData 값을 문자열로 변환하여 DB에 저장
+      function (err, rows, fields) {
+        if (err) {
+          console.log("DB저장 실패");
+          res.status(500).json({ message: "파일 저장 실패!" });
+        } else {
+          console.log("DB저장 성공");
+          res.status(200).json({ message: "파일 저장 성공!" });
+        }
+      }
+    );
+  }
+);
 
 // PDF 파일을 수정하는 API
-app.post("/pdfupdate", update.fields([{ name: "pdf" }, { name: "image" }]), (req, res) => {
-  const { email } = req.body;
-  const { user_filename } = req.body;
-  const { pdf, image } = req.files;
-  const pdfFileName = req.files.pdf[0].filename;
-  const imageFileName = req.files.image[0].filename;
-  const tempDataString = req.body.tempDataString; // JSON 형태의 문자열로 받아옴
-  const tempData = JSON.parse(tempDataString); // JSON 형태의 문자열을 객체로 변환
-  
-  connection.query(
-    "UPDATE `FileList` SET user_filename = ?, tempData = ? WHERE file_name = ?",
-    [user_filename, JSON.stringify(tempData), pdfFileName], // tempData 값을 문자열로 변환하여 DB에 저장
-    function (err, rows, fields) {
-      if (err) {
-        console.log("DB저장 실패");
-        res.status(500).json({ message: "파일 저장 실패!" });
-      } else {
-        console.log("DB저장 성공");
-        res.status(200).json({ message: "파일 저장 성공!" });
-      }
-    }
-  );
-});
+app.post(
+  "/pdfupdate",
+  update.fields([{ name: "pdf" }, { name: "image" }]),
+  (req, res) => {
+    const { email } = req.body;
+    const { user_filename } = req.body;
+    const { pdf, image } = req.files;
+    const pdfFileName = req.files.pdf[0].filename;
+    const imageFileName = req.files.image[0].filename;
+    const tempDataString = req.body.tempDataString; // JSON 형태의 문자열로 받아옴
+    const tempData = JSON.parse(tempDataString); // JSON 형태의 문자열을 객체로 변환
 
+    connection.query(
+      "UPDATE `FileList` SET user_filename = ?, tempData = ? WHERE file_name = ?",
+      [user_filename, JSON.stringify(tempData), pdfFileName], // tempData 값을 문자열로 변환하여 DB에 저장
+      function (err, rows, fields) {
+        if (err) {
+          console.log("DB저장 실패");
+          res.status(500).json({ message: "파일 저장 실패!" });
+        } else {
+          console.log("DB저장 성공");
+          res.status(200).json({ message: "파일 저장 성공!" });
+        }
+      }
+    );
+  }
+);
 
 // 파일 업로드 API
 app.post("/fileupload", upload.single("myFile"), (req, res) => {
   const email = req.body.email; // 클라이언트로부터 전송된 이메일 정보
- 
+
   const file = req.file; // 업로드된 파일 정보
   const fileName = req.file.filename; // 저장된 파일 이름
 
@@ -169,7 +216,6 @@ app.post("/fileupload", upload.single("myFile"), (req, res) => {
   );
 });
 
-
 // public 디렉토리를 정적 파일로 제공하기 위한 미들웨어 추가
 app.use(express.static("public"));
 
@@ -188,13 +234,13 @@ app.get("/filelist/:email", (req, res) => {
         console.log("DB조회 성공");
 
         const fileUrlPrefix = "/fileforder/"; // 파일이 위치한 경로
-        const fileList = rows.map(row => ({
+        const fileList = rows.map((row) => ({
           file_name: row.file_name,
           upload_date: row.upload_date,
           image_name: row.image_name,
-          user_filename:row.user_filename,
+          user_filename: row.user_filename,
           pdfurl: fileUrlPrefix + encodeURIComponent(row.file_name), // 파일이 위치한 경로와 파일 이름을 결합하여 pdfurl 생성
-          tempData:JSON.stringify(row.tempData)
+          tempData: JSON.stringify(row.tempData),
         }));
 
         res.status(200).json(fileList);
@@ -203,8 +249,81 @@ app.get("/filelist/:email", (req, res) => {
   );
 });
 
+// 맞춤법 검사
+const hanspell = require("hanspell");
+
+app.post("/spellCheck", (req, res) => {
+  const { check1, check2, check3 } = req.body;
+  const end = function () {
+    console.log("// check ends");
+  };
+  const error = function (err) {
+    console.error("// error: " + err);
+  };
+  let corrected = {};
+
+  const check1Promise = new Promise((resolve, reject) => {
+
+
+      hanspell.spellCheckByPNU(check1, 6000, (result) => {
+        corrected.check1 = result
+          .map((correction) => `${correction.token}: ${correction.suggestions.join(", ")}`)
+          .join("\n");
+        resolve();
+      }, end, reject);
+
+  });
+
+  const check2Promise = new Promise((resolve, reject) => {
+
+
+      hanspell.spellCheckByPNU(check2, 6000, (result) => {
+        corrected.check2 = result
+          .map((correction) => `${correction.token}: ${correction.suggestions.join(", ")}`)
+          .join("\n");
+        resolve();
+      }, end, reject);
+
+  });
+
+  const check3Promise = new Promise((resolve, reject) => {
+
+
+      hanspell.spellCheckByPNU(check3, 6000, (result) => {
+        corrected.check3 = result
+          .map((correction) => `${correction.token}: ${correction.suggestions.join(", ")}`)
+          .join("\n");
+        resolve();
+      }, end, reject);
+   
+  });
+
+  Promise.all([check1Promise, check2Promise, check3Promise]).then(() => {
+    res.json(corrected);
+  }).catch((err) => {
+    console.error(err);
+    res.sendStatus(500);
+  });
+  // hanspell.spellCheckByPNU(
+  //   check1,
+  //   6000,
+  //   (result) => {
+  //     const corrected = result
+  //       .map(
+  //         (correction) =>
+  //           `${correction.token}: ${correction.suggestions.join(", ")}`
+  //       )
+  //       .join("\n");
+  //     res.send(corrected);
+  //   },
+  //   end,
+  //   error
+  // );
+});
 // 서버 실행 및 종료 시 데이터베이스 연결 종료
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-process.on('exit', function() { connection.end(); }); // 프로세스 종료 시 데이터베이스 연결 종료
+process.on("exit", function () {
+  connection.end();
+}); // 프로세스 종료 시 데이터베이스 연결 종료

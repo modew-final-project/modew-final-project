@@ -4,6 +4,7 @@ import { authService, firebaseInstance } from "../fbase";
 import modew_Logo from "../images/modew_logo.png";
 
 const Login = () => {
+
   const history = useHistory();
 
   const [email, setEmail] = useState("");
@@ -18,7 +19,23 @@ const Login = () => {
 
     const data = await authService.signInWithPopup(provider);
     console.log(data);
-    history.push("/");
+    if (data !== null){
+    try {
+      await fetch("http://localhost:3002/google_user", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: data.user.email,
+          pw: data.user.uid,
+          name: data.user.displayName,
+        }),
+      });
+      alert("로그인 성공");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+    history.replace("/");
   };
 
   const onChange = (e) => {

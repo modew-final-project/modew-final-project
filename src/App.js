@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { authService } from "./fbase";
 import AppRouter from "./Router";
 import "./Font.css";
+import React, { useEffect, useState } from "react";
+import { authService } from "./fbase";
 
 function App() {
   const [init, setInit] = useState(false);
@@ -18,7 +18,17 @@ function App() {
     });
   }, []);
 
-  return <>{init ? <AppRouter isLoggedIn={isLoggedIn} /> : ""}</>;
+  return (
+    <>
+      {init ? (
+        <>
+          <AppRouter isLoggedIn={isLoggedIn} />
+        </>
+      ) : (
+        ""
+      )}
+    </>
+  );
 }
 
 export default App;

@@ -11,6 +11,23 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
+    <script src="./src/view/Document.js"></script>
+    <script>
+      // Import Document and fetchData from the global scope
+      const { Document, fetchData } = window;
+    
+      ReactDOM.render(<Document fetchData={fetchData} />, document.getElementById('root'));
+    
+      document.addEventListener('DOMContentLoaded', function () {
+        const inputElements = document.querySelectorAll('.doc_content_input input');
+        inputElements.forEach((inputElement) => {
+          inputElement.addEventListener('click', function () {
+            // 여기에서 Document.js 파일의 플라스크 코드를 호출하세요.
+            fetchData();
+          });
+        });
+      });
+    </script>
     <div id="subWrap" class="bgnone scroll">
         <div class="docuWrap">
             <div class="header_right pd21 flex_sb bgblue">
@@ -35,7 +52,7 @@
                                 <div class="doc_content_input">
                                     <div class="input_check pb10">
                                         <p>집주인</p>
-                                        <ul class="input_radio">
+                                        <ul class="input_radio" >
                                             <li><input type="radio" name="법인"/>법인</li>
                                             <li><input type="radio" name="개인사업자"/>개인사업자</li>
                                             <li><input type="radio" name="개인"/>개인</li>
@@ -184,43 +201,43 @@
                                         <ul class="input_checklist pt025">
                                             <p>집주인 상세정보</p>
                                             <li class="check_txt input_flex">
-                                                <input type="text" placeholder="성명" name="집주인성명"/>
+                                                <input type="text" placeholder="성명" name="집주인성명" />
                                                 <input type="text" placeholder="주민등록번호" name="집주인주민등록번호"/>
                                             </li>
                                             <p class="pt05">주소</p>
                                             <li class="check_txt input_flex">
                                                 <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
-                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소" />
                                             </li>
                                             <p class="pt05">전화번호</p>
                                             <li class="check_txt input_flex">
-                                                <input type="text" placeholder="010-1234-5678" name="집주인번호"/>
+                                                <input type="text" placeholder="010-1234-5678" name="집주인번호" onclick="fetchData();"/>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                             <div class="doc_content pb075">
-                                <div class="doc_content_title">
+                                <div class="doc_content_title" >
                                     <p>세입자 상세정보</p>
                                     <p class="doc_page"><span>7</span>/7</p>
                                 </div>
                                 <div class="doc_content_input">
-                                    <div class="input_check">
+                                    <div class="input_check" >
                                         <ul class="input_checklist pt025">
                                             <p>세입자 상세정보</p>
                                             <li class="check_txt input_flex">
                                                 <input type="text" placeholder="성명" name="세입자성명"/>
-                                                <input type="text" placeholder="주민등록번호" name="세입자주민등록번호"/>
+                                                <input type="text" placeholder="주민등록번호" name="세입자주민등록번호" />
                                             </li>
                                             <p class="pt05">주소</p>
                                             <li class="check_txt input_flex">
-                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소"/>
-                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소"/>
+                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="주소" onClick={Document}/>
+                                                <input type="text" placeholder="나머지 주소를 입력하세요." name="상세주소" />
                                             </li>
                                             <p class="pt05">전화번호</p>
                                             <li class="check_txt input_flex">
-                                                <input type="text" placeholder="010-1234-5678" name="세입자번호"/>
+                                                <input type="text" placeholder="010-1234-5678" name="세입자번호" />
                                             </li>
                                         </ul>
                                     </div>

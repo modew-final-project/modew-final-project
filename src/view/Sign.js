@@ -140,9 +140,6 @@ const Sign = () => {
                       </li>
                     </ul>
                   </div>
-                  <button className="google_submit">
-                    Google 계정으로 회원가입
-                  </button>
                 </form>
               </div>
             </div>
