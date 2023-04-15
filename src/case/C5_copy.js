@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const C5 = () => {
+const C5_copy = () => {
   const openSmallWindow = (url) => {
     const width = 500;
     const height = 600;
@@ -87,7 +87,9 @@ const C5 = () => {
   };
 
   return (
-    <> <Link to="#" onClick={() => openSmallWindow("http://127.0.0.1:5000/")}></Link>
+    <> <Link to="#" onClick={() => openSmallWindow("http://127.0.0.1:5000/")}>
+    File Upload
+    </Link>
       <div className="doc_content pb075">
         <div className="doc_content_title">
           <p>부동산의 표시</p>
@@ -167,4 +169,4 @@ const C5 = () => {
   );
 };
 
-export default C5;
+export default C5_copy;

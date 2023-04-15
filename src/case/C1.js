@@ -74,9 +74,9 @@ const C1 = (props) => {
                 개인
               </li>
             </ul>
-            <div id="집주인" style={{ display: visible1 }}>
-              <label id="landLordType">{landLordType}</label>
-              <input type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/>
+            <div id="집주인" className="pt05" style={{ display: visible1 }}>
+              <span id="landLordType" className="pr05 w20">{landLordType}</span>
+              <input className="input_style w80" type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/>
             </div>
           </div>
           <div className="input_check">
@@ -110,9 +110,9 @@ const C1 = (props) => {
                 개인
               </li>
             </ul>
-            <div id="세입자" style={{ display: visible2 }}>
-              <label>{renterType}</label>
-              <input type="text" onChange={onChange} name="세입자" value={renter}/>
+            <div id="세입자" className="pt05" style={{ display: visible2 }}>
+              <span className="pr05 w20">{renterType}</span>
+              <input className="input_style w80" type="text" onChange={onChange} name="세입자" value={renter}/>
             </div>
           </div>
         </div>
