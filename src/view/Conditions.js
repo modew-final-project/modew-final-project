@@ -386,7 +386,7 @@ const updateAsPDF = async () => {
 
   return (
     <>
-      <div id="subWrap" className="bgnone">
+      <div id="subWrap" className="bgnone scroll">
         <div className="docuWrap">
           <LogInNav className="pd21 flex_sb bgblue" />
 

@@ -35,7 +35,7 @@ const Document = (props) => {
   return (
     <>
       <div className="alert scroll">
-        <button onClick={props.check}>특약사항 맞춤법 검사</button>
+        <button className="grammar_check" onClick={props.check}>특약사항 맞춤법 검사</button>
         <p style={{display:props.spCk1===""?"none":"block",}}>
           맞춤법 교정 결과
           <br />
