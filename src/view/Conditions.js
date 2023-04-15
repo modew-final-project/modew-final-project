@@ -13,6 +13,8 @@ const Conditions = () => {
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
   const fileName = location.state?.fileName ?? "";
+
+  console.log("[Condition.js]",location);
   
   //C1 & requirement[0]
   const [landLord, setLandLord] = useState("");
@@ -40,38 +42,38 @@ const Conditions = () => {
   const [cleaning, setCleaning] = useState("");
   const [direct, setDirect] = useState("");
 
-  useEffect(() => {
-    if (tempData1 !== "") {
-      // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
-      // 나중에 추가할거있으면 여기도 같이 바꿔줘야함
-      const temp = JSON.parse(tempData1);
-      // C1 & requirement[0]
-      setLandLord(temp.landLord);
-      setLandLordType(temp.landLordType);
-      setRenter(temp.renter);
-      setRenterType(temp.renterType);
+  // useEffect(() => {
+  //   if (tempData1 !== "") {
+  //     // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
+  //     // 나중에 추가할거있으면 여기도 같이 바꿔줘야함
+  //     const temp = JSON.parse(tempData1);
+  //     // C1 & requirement[0]
+  //     setLandLord(temp.landLord);
+  //     setLandLordType(temp.landLordType);
+  //     setRenter(temp.renter);
+  //     setRenterType(temp.renterType);
 
-      // C2 & requirement[1]
-      setStartDate(temp.startDate);
-      setEndDate(temp.endDate);
-      setMonthly(temp.monthly);
-      setDueDate(temp.dueDate);
+  //     // C2 & requirement[1]
+  //     setStartDate(temp.startDate);
+  //     setEndDate(temp.endDate);
+  //     setMonthly(temp.monthly);
+  //     setDueDate(temp.dueDate);
 
-      // C3 & requirement[2]
-      setDeposit(temp.deposit);
-      setDownPayment(temp.downPayment);
-      setBalance(temp.balance);
-      setBalanceDate(temp.balanceDate);
-      setBank(temp.bank);
-      setAccountNum(temp.accountNum);
-      setAccountHolder(temp.accountHolder);
+  //     // C3 & requirement[2]
+  //     setDeposit(temp.deposit);
+  //     setDownPayment(temp.downPayment);
+  //     setBalance(temp.balance);
+  //     setBalanceDate(temp.balanceDate);
+  //     setBank(temp.bank);
+  //     setAccountNum(temp.accountNum);
+  //     setAccountHolder(temp.accountHolder);
 
-      // C4 & requirement[3]
-      setBuiltIn(temp.builtIn);
-      setCleaning(temp.cleaning);
-      setDirect(temp.direct);
-    }
-  }, [tempData1]);
+  //     // C4 & requirement[3]
+  //     setBuiltIn(temp.builtIn);
+  //     setCleaning(temp.cleaning);
+  //     setDirect(temp.direct);
+  //   }
+  // }, [tempData1]);
   
   // 하위 컴포넌트로 전달할 기본값
   const requirements = [

@@ -9,7 +9,6 @@ import C7 from "../case/C7";
 
 const Sidebar = (props) => {
 
-  
 
   return (
     <>

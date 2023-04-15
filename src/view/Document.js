@@ -8,36 +8,75 @@ import Req3_bank from "../requirement/Req3_bank";
 import Req2_Con from "../requirement/Req2_Con";
 import Req4 from "../requirement/Req4";
 
-
 const Document = (props) => {
   //뉴스요약 플라스크가져오기
   const [flaskData, setFlaskData] = useState(null);
+  const [timer, setTimer] = useState(null);
 
+  console.log(props?.items[0]?.landLord);
+
+  //C1의 값 변경 시 동작
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:5000/get_precautions");
-        const data = await response.text();
-        setFlaskData(data);
-      } catch (error) {
-        console.error("Error fetching data from Flask server:", error);
-      }
-    };
+    if (!props.items[0].landLord) return;
+    console.log("C1일경우");
+    if (timer) clearTimeout(timer);
+    setTimer(setTimeout(() => fetchData("http://127.0.0.1:5000/CertificateThatDoesNotExist"), 500));
+  }, [props.items[0].landLord]);
 
-    fetchData();
-    
-  }, []);
-  console.log(flaskData);
+  //C2의 값 변경 시 동작
+  useEffect(() => {
+    if (!props.items[1].startDate) return;
+    console.log("C2일경우");
+    if (timer) clearTimeout(timer);
+    setTimer(setTimeout(() => fetchData("http://127.0.0.1:5000/powerOfAttorney"), 500));
+  }, [props.items[1].startDate]);
+
+
+  //C3의 값 변경 시 동작
+  useEffect(() => {
+    if (!props.items[1].startDate) return;
+    console.log("C3일경우");
+    if (timer) clearTimeout(timer);
+    setTimer(setTimeout(() => fetchData("http://127.0.0.1:5000/registeredCopy"), 500));
+  }, [props.items[2].deposit]);
+
+  //C4의 값 변경 시 동작
+  useEffect(() => {
+    if (!props.items[1].startDate) return;
+    console.log("C4일경우");
+    if (timer) clearTimeout(timer);
+    setTimer(setTimeout(() => fetchData("http://127.0.0.1:5000/buildingRegister"), 500));
+  }, [props.items[2].deposit]);
+
+    //C5의 값 변경 시 동작
+    useEffect(() => {
+      if (!props.items[1].startDate) return;
+      console.log("C5일경우");
+      if (timer) clearTimeout(timer);
+      setTimer(setTimeout(() => fetchData("http://127.0.0.1:5000/get_precautions"), 500));
+    }, [props.items[3].builtIn]);
+
+
+
+  const fetchData = async (url) => {
+    try {
+      const response = await fetch(url);
+      const data = await response.text();
+      setFlaskData(data);
+    } catch (error) {
+      console.error("Error fetching data from Flask server:", error);
+    }
+  };
+
   return (
     <>
-      <div className="alert scroll">
+      <div className="alert scroll" id = 'targetE'>
         <p>
           여기에 각종 정보가 출력됩니다.
           <br />
-          뉴스알림, 단어, 법률 등등
-
+          
         </p>
-      {flaskData ? <p>{flaskData}</p> : <p>Loading...</p>}
+        {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>}
       </div>
       <div className="document_wrap">
 

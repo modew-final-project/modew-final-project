@@ -76,6 +76,7 @@ const C1 = (props) => {
             </ul>
             <div id="집주인" style={{ display: visible1 }}>
               <label id="landLordType">{landLordType}</label>
+              {/* <input type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/> */}
               <input type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/>
             </div>
           </div>
