@@ -5,7 +5,7 @@ import LoginView from "./view/LoginView";
 import LogOutView from "./view/LogOutView";
 import File from "./view/File";
 import File_copy from "./view/File_copy";
-
+import Post from "./case/Post";
 const AppRouter = ({ isLoggedIn }) => {
   // 로그인 여부 판단
 
@@ -20,6 +20,9 @@ const AppRouter = ({ isLoggedIn }) => {
         </Route> 
         <Route path="/File_copy">
           <File_copy />
+        </Route> 
+        <Route path="/Post">
+          <Post />
         </Route> 
 
         {isLoggedIn ? (
