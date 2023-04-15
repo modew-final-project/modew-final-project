@@ -9,6 +9,10 @@ import Req2_Con from "../requirement/Req2_Con";
 import Req4 from "../requirement/Req4";
 
 const Document = (props) => {
+
+  // 맞춤법 검사 버튼 state 전달
+
+
   //뉴스요약 플라스크가져오기
   const [flaskData, setFlaskData] = useState(null);
   const [timer, setTimer] = useState(null);
@@ -68,13 +72,21 @@ const Document = (props) => {
     }
   };
 
+
+
   return (
     <>
-      <div className="alert scroll" id = 'targetE'>
-        <p>
-          여기에 각종 정보가 출력됩니다.
+      <div className="alert scroll">
+        <button className="grammar_check" onClick={props.check}>특약사항 맞춤법 검사</button>
+        <p style={{display:props.spCk1===""?"none":"block",}}>
+          맞춤법 교정 결과
           <br />
-          
+          <ul style={{whiteSpace:"pre-wrap"}}>
+            <li>{`${props.spCk1}`}</li>
+            <li>{`${props.spCk2}`}</li>
+            <li>{`${props.spCk3}`}</li>
+          </ul>
+
         </p>
         {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>}
       </div>

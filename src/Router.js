@@ -1,11 +1,11 @@
 import React from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-
 import Conditions from "./view/Conditions";
 import LoginView from "./view/LoginView";
 import LogOutView from "./view/LogOutView";
-// import File from "./view/File";
-
+import File from "./view/File";
+import File_copy from "./view/File_copy";
+import Post from "./case/Post";
 const AppRouter = ({ isLoggedIn }) => {
   // 로그인 여부 판단
 
@@ -15,9 +15,16 @@ const AppRouter = ({ isLoggedIn }) => {
         <Route exact path="/Conditions">
           <Conditions />
         </Route>
-      {/* <Route path="/File">
+       <Route path="/File">
           <File />
-        </Route> */}
+        </Route> 
+        <Route path="/File_copy">
+          <File_copy />
+        </Route> 
+        <Route path="/Post">
+          <Post />
+        </Route> 
+
         {isLoggedIn ? (
           <>
             <Route path="/">

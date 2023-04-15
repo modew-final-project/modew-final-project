@@ -44,12 +44,12 @@ const Main = () => {
                 <li>
                   <a href="">사직서</a>
                 </li>
-                {/* 클릭시 새창으로 열림 
+                {/* 클릭시 새창으로 열림 */}
                 <li>
              <Link to="#" onClick={() => openSmallWindow("/#/File")}>
                  File Upload
                </Link>
-                </li>   */}
+                </li>   
               </ul>
             </div>
           </div>

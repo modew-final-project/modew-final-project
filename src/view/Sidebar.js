@@ -6,7 +6,6 @@ import C4 from "../case/C4";
 import C5 from "../case/C5";
 import C6 from "../case/C6";
 import C7 from "../case/C7";
-
 const Sidebar = (props) => {
 
 
@@ -20,6 +19,7 @@ const Sidebar = (props) => {
             renter={props.items[0].renter}
             renterType={props.items[0].renterType}
             getC1Value={props.getC1Value}
+            
           />
           <C2
             startDate={props.items[1].startDate}
