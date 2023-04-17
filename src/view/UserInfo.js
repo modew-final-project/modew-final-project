@@ -136,8 +136,8 @@ const handlePasswordChange2 = (event) => {
                         value={updatePassword1}
                         onChange={handlePasswordChange2}
                       />
-                      {passwordMatch && <p>입력한 비밀번호가 일치합니다.</p>}
-                      {!passwordMatch && <p>입력한 비밀번호가 일치하지 않습니다.</p>}
+                      {updatePassword && passwordMatch && <p>입력한 비밀번호가 일치합니다.</p>}
+                      {updatePassword && !passwordMatch && <p>입력한 비밀번호가 일치하지 않습니다.</p>}
                     </div>
                   </div>
                   <button onClick={handleUpdatePassword} className="submit mt10 bgblue">수정</button>
