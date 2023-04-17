@@ -50,6 +50,12 @@ const handlePasswordChange2 = (event) => {
       alert("현재 비밀번호가 일치하지 않습니다.");
       return;
     }
+
+    // 입력한 비밀번호가 일치하지 않으면 함수를 끝냄
+    if (updatePassword !== updatePassword1) {
+      alert("새 비밀번호를 확인하세요..");
+      return;
+    }
   
     try {
       // 서버로 보낼 데이터 생성
