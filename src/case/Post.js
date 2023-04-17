@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import DaumPostcode from "react-daum-postcode";
 
 const Post = () => {
+    
   const [fullAddress, setFullAddress] = useState("");
 
   const complete = (data) => {
@@ -30,6 +31,7 @@ const Post = () => {
         window.close();
       }
   };
+  
 
   return (
     <div>
