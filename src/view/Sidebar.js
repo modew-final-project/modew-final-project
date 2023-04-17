@@ -8,7 +8,6 @@ import C6 from "../case/C6";
 import C7 from "../case/C7";
 const Sidebar = (props) => {
 
-  
 
   return (
     <>
