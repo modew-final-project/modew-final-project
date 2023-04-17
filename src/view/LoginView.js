@@ -4,6 +4,7 @@ import MyDrive from "./MyDrive";
 import Main from "./Main";
 import UserInfo from "./UserInfo";
 import LogInNav from "./LogInNav";
+import Search from "./Search";
 
 // 로그인 했을 때 보여지는 view
 
@@ -13,6 +14,9 @@ const LoginView = () => {
       <div id="wrap">
         <div className="mainWrap">
           <LogInNav />
+          <Route exact path="/Search">
+            <Search />
+          </Route>
           <Route exact path="/Mydrive">
             <MyDrive />
           </Route>

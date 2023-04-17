@@ -11,7 +11,7 @@ const LogInNav = () => {
   return (
     <>
       <div className="header_right pd21 flex_sb bgblue">
-        <h3>부동산(매매계약서)</h3>
+        {/* <h3>부동산(매매계약서)</h3> */}
         <ul>
           <li>
             <Link to="/">Main</Link>
@@ -29,7 +29,7 @@ const LogInNav = () => {
           </li>
           <li>
             <img src="" />
-            <Link to="">
+            <Link to="/Search">
               <img src={searchLogo} alt="main_search.png" />
             </Link>
           </li>

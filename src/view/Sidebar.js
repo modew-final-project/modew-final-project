@@ -44,7 +44,15 @@ const Sidebar = (props) => {
             direct={props.items[3].direct}
             getC4Value={props.getC4Value}
           />
-          <C5 />
+          <C5 adress={props.items[4].adress}
+          extra={props.items[4].extra}
+          option1={props.items[4].option1}
+          option1Size={props.items[4].option1Size}
+          option2={props.items[4].option2}
+          option2Size={props.items[4].option2Size}
+          option3={props.items[4].option3}
+          option3Size={props.items[4].option3Size}
+          getC5Value={props.getC5Value}/>
           <C6 />
           <C7 />
         </div>

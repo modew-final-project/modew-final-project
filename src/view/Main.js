@@ -33,23 +33,23 @@ const Main = () => {
                   <Link to="/Conditions">부동산 계약서</Link>
                 </li>
                 <li>
-                  <a href="">교통사고 합의서(민사)</a>
+                  <Link to="/CarAccident">교통사고 합의서(민사)</Link>
                 </li>
                 <li>
                   <a href="">고소장</a>
                 </li>
                 <li>
-                  <a href="">내용증명(층간소음)</a>
+                <Link to="/Certification">내용증명(층간소음)</Link>
                 </li>
                 <li>
-                  <a href="">사직서</a>
+                <Link to="/Resignation">사직서</Link>
                 </li>
                 {/* 클릭시 새창으로 열림 */}
-                <li>
+                {/* <li>
              <Link to="#" onClick={() => openSmallWindow("/#/File")}>
                  File Upload
                </Link>
-                </li>   
+                </li>    */}
               </ul>
             </div>
           </div>

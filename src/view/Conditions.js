@@ -1,20 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
+import searchLogo from "../images/main_search.png";
 import { useLocation } from 'react-router-dom';
-import LogInNav from "./LogInNav";
+import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Document from "./Document";
 import html2pdf from "html2pdf.js";
 import html2canvas from 'html2canvas';
-import { authService } from "../fbase";
+import { authService, dbService } from "../fbase";
 
 
 
 const Conditions = () => {
+
+  const onLogOutClick = () => authService.signOut();
+
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
   const fileName = location.state?.fileName ?? "";
 
-  console.log("[Condition.js]",location);
+  // console.log("[Condition.js]",location);
   const [c1event,setC1event]= useState("");
   
   // 맞춤법 검사 작동
@@ -47,6 +51,16 @@ const Conditions = () => {
   const [builtIn, setBuiltIn] = useState("");
   const [cleaning, setCleaning] = useState("");
   const [direct, setDirect] = useState("");
+
+  //C5 & requirement[4]
+  const [adress, setAdress] = useState("");
+  const [extra, setExtra] = useState("");
+  const [option1, setOption1] = useState("");
+  const [option1Size, setOption1Size] = useState("");
+  const [option2, setOption2] = useState("");
+  const [option2Size, setOption2Size] = useState("");
+  const [option3, setOption3] = useState("");
+  const [option3Size, setOption3Size] = useState("");
 
   // useEffect(() => {
   //   if (tempData1 !== "") {
@@ -120,6 +134,18 @@ const Conditions = () => {
       cleaning: cleaning,
       direct: direct,
     },
+    {
+      //C5
+      // 주소,추가주소,옵션 1,2,3
+      adress:adress,
+      extra:extra,
+      option1:option1,
+      option1Size:option1Size,
+      option2:option2,
+      option2Size:option2Size,
+      option3:option3,
+      option3Size:option3Size,
+    },
   ];
 
   // 맞춤법 검사 작동 여부
@@ -152,9 +178,6 @@ const Conditions = () => {
     
   };
 
-  const evRead = (e)=>{
-    console.log("라디오버튼눌림");
-  }
 
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
@@ -212,6 +235,30 @@ const Conditions = () => {
     }
   };
 
+    // C4에서 입력한 값을 불러와서 업데이트
+    const getC5 = (name, updateValue) => {
+      if(name==="기본주소"){
+
+        setAdress(updateValue);
+      }else if(name==="상세주소"){
+
+        setExtra(updateValue);
+      }
+      else if(name==="토지용도텍스트"){
+        setOption1(updateValue);
+      }else if(name==="토지용도면적"){
+        setOption1Size(updateValue);
+      }else if(name==="구조용도"){
+        setOption2(updateValue);
+      }else if(name==="구조용도면적"){
+        setOption2Size(updateValue);
+      }else if(name==="임대할부분"){
+        setOption3(updateValue);
+      }else if(name==="임대할부분면적"){
+        setOption3Size(updateValue);
+      }
+    };
+
   const [email, setEmail] = useState("");
   
   // 현재 로그인된 유저의 이메일 주소 가져오기
@@ -242,8 +289,54 @@ const Conditions = () => {
     accountHolder,
     builtIn,
     cleaning,
-    direct
+    direct,
+    adress,
+    extra,
+    option1,
+    option1Size,
+    option2,
+    option2Size,
+    option3,
+    option3Size
   };
+
+
+
+  // Firestore DB에 저장
+  const saveFDB = async (e)=>{
+    e.preventDefault();
+    await dbService.collection("docu1").add({
+      landLord:landLord,
+      landLordType : landLordType,
+      renter : renter,
+      renterType : renterType,
+      startDate : startDate,
+      endDate:endDate,
+      monthly:monthly,
+      dueDate:dueDate,
+      deposit : deposit,
+      downPayment : downPayment,
+      balance : balance,
+      balanceDate : balanceDate,
+      bank : bank,
+      accountNum : accountNum,
+      accountHolder : accountHolder,
+      builtIn : builtIn,
+      cleaning : cleaning,
+      direct : direct,
+      adress :adress,
+      extra : extra,
+      option1 :option1,
+      option1Size : option1Size,
+      option2:option2,
+      option2Size:option2Size,
+      option3 : option3,
+      option3Size :option3Size,
+      createdAt:Date.now(),
+    })
+    console.log("파이어베이스db")
+  }
+
  // PDF 파일을 생성하고 서버에 전송하는 함수
 const saveAsPDF = async () => {
   
@@ -383,13 +476,40 @@ const updateAsPDF = async () => {
 
   
   // console.log(drag);
-
+  const saveData = (e)=>{
+    saveFDB(e);
+    // saveAsPDF();
+  }
 
   return (
     <>
       <div id="subWrap" className="bgnone scroll">
         <div className="docuWrap">
-          <LogInNav className="pd21 flex_sb bgblue" />
+        <div class="header_right pd21 flex_sb bgblue">
+            <h3>부동산 계약서(임대차)</h3>
+            <ul>
+              <li>
+                <Link to="/">Main</Link>
+              </li>
+              <li>
+                <Link to="" onClick={onLogOutClick}>
+                  LogOut
+                </Link>
+              </li>
+              <li>
+                <Link to="/UserInfo">My Page</Link>
+              </li>
+              <li>
+                <Link to="/MyDrive">My Drive</Link>
+              </li>
+              <li>
+                <img src="" />
+                <Link to="">
+                  <img src={searchLogo} alt="main_search.png" />
+                </Link>
+              </li>
+            </ul>
+          </div>
 
           <div className="content_write">
             <div className="write_wrap">
@@ -399,6 +519,7 @@ const updateAsPDF = async () => {
                 getC2Value={getC2}
                 getC3Value={getC3}
                 getC4Value={getC4}
+                getC5Value={getC5}
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
@@ -419,7 +540,7 @@ const updateAsPDF = async () => {
                         </button>
                       )}
                       {fileName === "" && (
-                        <button className="save_btn" onClick={saveAsPDF}>
+                        <button className="save_btn" onClick={(e)=>saveData(e)}>
                           저장하기
                         </button>
                       )}

@@ -4,13 +4,10 @@ import App from "./App";
 import "./Font.css";
 import "./Common.css";
 import "./Style.css";
+import "./Search.css";
 import "./Login.css";
 import "./Sign.css";
 import "./Sub.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />);
