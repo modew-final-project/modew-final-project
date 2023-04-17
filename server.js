@@ -95,6 +95,52 @@ app.post("/user", (req, res) => {
     }
   );
 });
+app.post('/update-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+ // 유저 정보를 데이터베이스에 저장하는 코드
+ connection.query(
+  "UPDATE `User` SET Pw = ? WHERE Email = ?",
+      [newPassword, email], 
+  function (err, rows, fields) {
+    if (err) {
+      console.log("수정 실패");
+
+      // 회원가입 실패 메시지 클라이언트 쪽으로 전송
+      res.status(500).json({ message: "비밀번호 변경 실패" });
+    } else {
+      console.log("수정 성공");
+
+      // 회원가입 성공 메시지 클라이언트 쪽으로 전송
+      res.status(200).json({ message: "비밀번호 변경 성공" });
+      
+    }
+  }
+);
+});
+
+// 유저 정보를 가져오는 API
+app.get("/user/:email", (req, res) => {
+  const email = req.params.email;
+
+  // 이메일을 기반으로 유저 정보를 데이터베이스에서 가져오는 코드
+  connection.query(
+    "SELECT * FROM `User` WHERE Email = ?",
+    [email],
+    function (err, rows, fields) {
+      if (err) {
+        console.log("DB조회 실패");
+
+        // 유저 정보 조회 실패 메시지 클라이언트 쪽으로 전송
+        res.status(500).json({ message: "유저 정보 조회 실패!" });
+      } else {
+        console.log("DB조회 성공");
+
+        // 조회된 유저 정보를 클라이언트 쪽으로 전송
+        res.status(200).json(rows[0]);
+      }
+    }
+  );
+});
 
 // google_user 정보를 저장하는 API
 app.post("/google_user", (req, res) => {
