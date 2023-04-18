@@ -169,7 +169,7 @@ const Resignation = () => {
                             <div className="first_check_wrap flex_start">
                               <span className="pr05 w25">입사한 날짜</span>
                               <input
-                                className="input_style w100"
+                                className="input_style w90"
                                 type="date"
                                 placeholder="입사날짜"
                               />
@@ -177,7 +177,7 @@ const Resignation = () => {
                             <div className="first_check_wrap flex_start pt05">
                               <span className="pr05 w25">퇴사할 날짜</span>
                               <input
-                                className="input_style w100"
+                                className="input_style w90"
                                 type="date"
                                 placeholder="퇴사날짜"
                               />
@@ -195,11 +195,11 @@ const Resignation = () => {
                       </p>
                     </div>
                     <div className="doc_content_input">
-                      <div className="input_check pb10">
+                      <div className="input_check">
                         <p>어떤 이유로 퇴사하시나요?</p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
