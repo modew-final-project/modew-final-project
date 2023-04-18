@@ -33,13 +33,13 @@ const Req1 = (props) => {
           (서명 또는 인)
         </p>
         <p>
-          주민등록번호 : <span>111111-2222222</span>
+          주민등록번호 : <span>{props.landLordSSN}</span>
         </p>
         <p>
-          주소 : <span>에오르제아 라벤더안식처 (4구) 35</span>
+          주소 : <span>{props.fullAdress} </span><span>{props.extraAdress}</span>
         </p>
         <p>
-          전화번호 : <span>010-1111-2222</span>
+          전화번호 : <span>{props.landLordNum}</span>
         </p>
       </div>
       <div
@@ -58,13 +58,13 @@ const Req1 = (props) => {
           (서명 또는 인)
         </p>
         <p>
-          주민등록번호 : <span>333333-4444444</span>
+          주민등록번호 : <span>{props.renterSSN}</span>
         </p>
         <p>
-          주소 : <span>에오르제아 시로가네 (5구) 36</span>
+          주소 : <span>{props.fullAdress2}</span><span>{props.extraAdress2}</span>
         </p>
         <p>
-          전화번호 : <span>010-3333-4444</span>
+          전화번호 : <span>{props.renterNum}</span>
         </p>
         
 
