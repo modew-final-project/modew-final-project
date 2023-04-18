@@ -4,6 +4,7 @@ import Conditions from "./view/Conditions";
 import CarAccident from "./view/CarAccident";
 import Certification from "./view/Certification";
 import Resignation from "./view/Resignation";
+import Complaint from "./view/Complaint";
 import LoginView from "./view/LoginView";
 import LogOutView from "./view/LogOutView";
 import File from "./view/File";
@@ -26,6 +27,9 @@ const AppRouter = ({ isLoggedIn }) => {
         </Route>
         <Route exact path="/Resignation">
           <Resignation />
+        </Route>
+        <Route exact path="/Complaint">
+          <Complaint />
         </Route>
        <Route path="/File">
           <File />

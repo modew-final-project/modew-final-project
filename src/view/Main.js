@@ -36,7 +36,7 @@ const Main = () => {
                   <Link to="/CarAccident">교통사고 합의서(민사)</Link>
                 </li>
                 <li>
-                  <a href="">고소장</a>
+                  <Link to="/Complaint" >고소장</Link>
                 </li>
                 <li>
                 <Link to="/Certification">내용증명(층간소음)</Link>
