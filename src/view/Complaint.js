@@ -46,15 +46,15 @@ return (
                                     <div class="input_check pb10">
                                         <p>고소하는 사람(본인)</p>
                                         <div class="flex_start pt025">
-                                            <span class="pr05 first_txt">성명</span>
-                                            <input class="txt_input" type="text" placeholder="김고소"/>
+                                            <span class="pr05 first_txt w15">성명</span>
+                                            <input class="txt_input w80" type="text" placeholder="김고소"/>
                                         </div>
                                     </div>
                                     <div class="input_check pb10">
                                         <p>고소당하는 사람(가해자)</p>
-                                        <div class="flex_start pt025">
+                                        <div class="pt025">
                                             <section class="select_wrapper" data-role="selectbox"/>
-                                               <select class="selectbox">
+                                               <select class="selectbox w100">
                                                 <option   class="toggle_btn">
                                                   --- 선택 ---
                                                 <img src="./images/select_arrow.png" alt="" class="select_down"/>
@@ -71,10 +71,10 @@ return (
                                                 <div class="first_check_wrap">
                                                     <ul>
                                                         <li class="pt025">
-                                                            <span class="pr05 first_txt">성명</span><input type="text" placeholder="장두식"/>
+                                                            <span class="pr05 first_txt w15">성명</span><input className="w80" type="text" placeholder="장두식"/>
                                                         </li>
-                                                        <li class="pt025">
-                                                            <span class="pr05 first_txt">ID</span><input type="text" placeholder="두시기콩콩"/>
+                                                        <li class="pt025 flex_start">
+                                                            <span class="pr05 first_txt w15">ID</span><input className="w80" type="text" placeholder="두시기콩콩"/>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -98,8 +98,8 @@ return (
                                             <div class="first_check">
                                                 <div class="first_check_wrap">
                                                     <ul>
-                                                        <li class="pt025">
-                                                            <span class="pr05 first_txt">ID</span><input type="text" placeholder="두시기콩콩"/>
+                                                        <li class="pt025 flex_start">
+                                                            <span class="pr05 first_txt w15">ID</span><input className="w80" type="text" placeholder="두시기콩콩"/>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -123,9 +123,9 @@ return (
                                     </div>
                                     <div class="input_check pb10">
                                         <p>사건이 발생한 웹서비스의 유형</p>
-                                        <div class="flex_start pt025">
+                                        <div class="pt025">
                                             <section class="select_wrapper" data-role="selectbox"/>
-                                               <select class="selectbox">
+                                               <select class="selectbox w100">
                                                 <option   class="toggle_btn">
                                                   --- 선택 ---
                                                 <img src="./images/select_arrow.png" alt="" class="select_down"/>
@@ -139,9 +139,9 @@ return (
                                                
                                             </select>
                                         </div>
-                                        <div class="flex_start pt025">
+                                        <div class="pt025">
                                             <section class="select_wrapper" data-role="selectbox"/>
-                                               <select class="selectbox">
+                                               <select class="selectbox w100">
                                                 <option   class="toggle_btn">
                                                   --- 선택 ---
                                                 <img src="./images/select_arrow.png" alt="" class="select_down"/>
@@ -188,8 +188,8 @@ return (
                                 <div class="doc_content_input">
                                     <div class="input_check pb05">
                                         <p>웹사이트의 이용자 수가 몇명인지 정확히 알고있나요?</p>
-                                        <div class="flex_start pt025">
-                                            <section class="select_wrapper" data-role="selectbox"/>
+                                        <div class="pt025">
+                                            <section class="select_wrapper w100" data-role="selectbox"/>
                                                <select class="selectbox">
                                                 <option   class="toggle_btn">
                                                   --- 선택 ---
@@ -208,8 +208,8 @@ return (
                                     </div>
                                     <div class="input_check pt05">
                                         <p>목격자 닉네임(ID) 알고있나요?</p>
-                                        <div class="flex_start pt025">
-                                            <section class="select_wrapper" data-role="selectbox"/>
+                                        <div class="pt025">
+                                            <section class="select_wrapper w100" data-role="selectbox"/>
                                                <select class="selectbox">
                                                 <option class="toggle_btn">
                                                   --- 선택 ---
@@ -242,9 +242,9 @@ return (
                                         <p class="pt05">가해자가 모욕한 이유</p>
                                         <input class="input_style w80" type="text" placeholder="자신과 견해가 다르다"/><span class="pl025">는 이유</span>
                                         <p class="pt05">모욕이 얼마나 지속되었나요?</p>
-                                        <div class="flex_start pt025">
+                                        <div class="pt025">
                                             <section class="select_wrapper" data-role="selectbox"/>
-                                               <select class="selectbox">
+                                               <select class="selectbox w100">
                                                 <option   class="toggle_btn">
                                                   --- 선택 ---
                                                 <img src="./images/select_arrow.png" alt="" class="select_down"/>
@@ -293,9 +293,9 @@ return (
                                 <div class="doc_content_input">
                                     <div class="input_check pb10">
                                         <p>확보한 증거가 있나요?</p>
-                                        <div class="flex_start pt025">
+                                        <div class="pt025">
                                             <section class="select_wrapper" data-role="selectbox"/>
-                                               <select class="selectbox">
+                                               <select class="selectbox w100">
                                                 <option  class="toggle_btn">
                                                   --- 선택 ---
                                                 <img src="./images/select_arrow.png" alt="" class="select_down"/>

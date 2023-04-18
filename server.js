@@ -366,6 +366,22 @@ app.post("/spellCheck", (req, res) => {
   //   error
   // );
 });
+// document 검색 api
+app.get("/api/search/:searchTerm", async (req, res) => {
+  const searchTerm = req.params.searchTerm;
+  try {
+    const response = await fetch(
+      `https://stdict.korean.go.kr/api/search.do?certkey_no=5133&key=6E2BF5DBD2BC18E22EADB215E5F9358B&type_search=search&req_type=json&q=${searchTerm}`
+    );
+    const data = await response.json();
+    
+    res.json(data);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "서버 오류" });
+  }
+});
 // 서버 실행 및 종료 시 데이터베이스 연결 종료
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
