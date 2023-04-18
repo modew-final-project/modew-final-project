@@ -59,10 +59,10 @@ const Certification = () => {
                         </ul>
                         <div class="input_check pt05">
                           <div class="first_check">
-                            <div class="first_check_wrap">
-                              <span class="pr05">법인명</span>
+                            <div class="first_check_wrap flex_start">
+                              <span class="pr05 w15">법인명</span>
                               <input
-                                class="input_style"
+                                class="input_style w80"
                                 type="text"
                                 placeholder="모듀 주식회사"
                               />
@@ -71,10 +71,10 @@ const Certification = () => {
                         </div>
                         <div class="input_check pt05">
                           <div class="first_check">
-                            <div class="first_check_wrap">
-                              <span class="pr05">개인</span>
+                            <div class="first_check_wrap flex_start">
+                              <span class="pr05 w15">개인</span>
                               <input
-                                class="input_style"
+                                class="input_style w80"
                                 type="text"
                                 placeholder="장두식"
                               />
@@ -96,10 +96,10 @@ const Certification = () => {
                         </ul>
                         <div class="input_check pt05">
                           <div class="first_check">
-                            <div class="first_check_wrap">
-                              <span class="pr05">법인명</span>
+                            <div class="first_check_wrap flex_start">
+                              <span class="pr05 w15">법인명</span>
                               <input
-                                class="input_style"
+                                class="input_style w80"
                                 type="text"
                                 placeholder="모듀 주식회사"
                               />
@@ -108,10 +108,10 @@ const Certification = () => {
                         </div>
                         <div class="input_check pt05">
                           <div class="first_check">
-                            <div class="first_check_wrap">
-                              <span class="pr05">개인</span>
+                            <div class="first_check_wrap flex_start">
+                              <span class="pr05 w15">개인</span>
                               <input
-                                class="input_style"
+                                class="input_style w80"
                                 type="text"
                                 placeholder="장두식"
                               />
@@ -208,9 +208,9 @@ const Certification = () => {
                     <div class="doc_content_input">
                       <div class="input_check pb10">
                         <p>손해배상을 청구하시나요?</p>
-                        <div class="flex_start pt025">
+                        <div class="pt025">
                           <section
-                            class="select_wrapper"
+                            class="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select class="selectbox">
@@ -266,9 +266,9 @@ const Certification = () => {
                         <p class="pt05">
                           내용증명에 지급받을 계좌 정보를 작성하시나요?
                         </p>
-                        <div class="flex_start pt025">
+                        <div class="pt025">
                           <section
-                            class="select_wrapper"
+                            class="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select class="selectbox">
@@ -291,26 +291,26 @@ const Certification = () => {
                         </div>
                         <div class="input_check pt10">
                           <p>계좌 정보</p>
-                          <div class="pt025">
-                            <span class="pr05 first_txt">예금주</span>
+                          <div class="pt025 flex_start">
+                            <span class="pr05 first_txt w15">예금주</span>
                             <input
                               class="input_style text_left w80"
                               type="text"
                               placeholder="김예금"
                             />
                           </div>
-                          <div class="pt025">
-                            <span class="pr05 first_txt pt025">은행명</span>
+                          <div class="pt025 flex_start">
+                            <span class="pr05 first_txt pt025 w15">은행명</span>
                             <input
                               class="input_style text_left w80 pt025"
                               type="text"
                               placeholder="국민은행"
                             />
                           </div>
-                          <div class="pt025">
-                            <span class="pr05 first_txt">계좌번호</span>
+                          <div class="pt025 flex_start">
+                            <span class="pr05 first_txt w15">계좌번호</span>
                             <input
-                              class="input_style text_left w75"
+                              class="input_style text_left w80"
                               type="text"
                               placeholder="111-22222-333333"
                             />

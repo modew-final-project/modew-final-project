@@ -52,7 +52,7 @@ const CarAccident = () => {
                             <div className="first_check_wrap">
                               <span className="pr05">성명</span>
                               <input
-                                className="input_style w90"
+                                className="input_style w100"
                                 type="text"
                                 placeholder="김사고"
                               />
@@ -60,9 +60,9 @@ const CarAccident = () => {
                           </div>
                         </div>
                         <p className="pt05">차량의 종류</p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
@@ -102,7 +102,7 @@ const CarAccident = () => {
                             <div className="first_check_wrap">
                               <span className="pr05">성명</span>
                               <input
-                                className="input_style w90"
+                                className="input_style w100"
                                 type="text"
                                 placeholder="장피해"
                               />
@@ -110,9 +110,9 @@ const CarAccident = () => {
                           </div>
                         </div>
                         <p className="pt05">사고 당시 차량을 운행하였나요?</p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
@@ -135,9 +135,9 @@ const CarAccident = () => {
                           </select>
                         </div>
                         <p className="pt05">운행한 차량의 종류</p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
@@ -265,9 +265,9 @@ const CarAccident = () => {
                     <div className="doc_content_input">
                       <div className="input_check pb10">
                         <p>손해배상을 청구하시나요?</p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
@@ -325,9 +325,9 @@ const CarAccident = () => {
                         <p className="pt05">
                           내용증명에 지급받을 계좌 정보를 작성하시나요?
                         </p>
-                        <div className="flex_start pt025">
+                        <div className="pt025">
                           <section
-                            className="select_wrapper"
+                            className="select_wrapper w100"
                             data-role="selectbox"
                           />
                           <select className="selectbox">
