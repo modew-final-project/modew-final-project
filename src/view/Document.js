@@ -10,6 +10,39 @@ import Req4 from "../requirement/Req4";
 import Req5 from "../requirement/Req5";
 
 const Document = (props) => {
+  // 새로운 창을 열기 위한 함수
+  const openSmallWindow = (url) => {
+    const width = 1000;
+    const height = 1000;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+    window.open(
+      url,
+      "_blank",
+      `toolbar=no, location=no, directories=no, status=no, 
+      menubar=no, scrollbars=yes, resizable=no, copyhistory=no, 
+      width=${width}, height=${height}, top=${top}, left=${left}`
+    );
+  };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]); // searchResult 변수를 빈 배열로 초기화
+
+const handleSearch = async () => {
+  setSearchResult([]); // 새로운값 검색시 초기화
+  try {
+    const response = await fetch(`http://localhost:3002/api/search/${searchTerm}`);
+    if (response.ok) {
+      const data = await response.json();
+      setSearchResult(data.channel.item);
+      console.log(data.channel)
+    } else {
+      console.error("응답이 성공적으로 오지 않았습니다.");
+      
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
   // 맞춤법 검사 버튼 state 전달
 
   //뉴스요약 플라스크가져오기
@@ -86,16 +119,33 @@ const Document = (props) => {
       <div className="alert scroll">
         <button className="grammar_check" onClick={props.check}>
           특약사항 맞춤법 검사
-        </button>
+        </button><br></br>
+        <input type="text" value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}/>
+      <button className="grammar_check" onClick={handleSearch}>검색</button>
+      <div></div>
         <p style={{ display: props.spCk1 === "" ? "none" : "block" }}>
           맞춤법 교정 결과
           <br />
+          
           <ul style={{ whiteSpace: "pre-wrap" }}>
             <li>{`${props.spCk1}`}</li>
             <li>{`${props.spCk2}`}</li>
             <li>{`${props.spCk3}`}</li>
           </ul>
         </p>
+        <div>
+          
+            {searchResult.map((word) => (
+              <div key={word.word}>
+                <span>{word.word} : {word.sense.definition}</span>
+                <a href="/" onClick={(event) => {event.preventDefault();openSmallWindow(word.sense.link);}}>전체보기</a>
+              </div>
+            ))}
+            <button onClick={() => setSearchResult([])}>
+              {searchResult.length > 0 && "검색결과 닫기"}
+            </button>
+          </div>
         {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>}
       </div>
       <div className="document_wrap">
