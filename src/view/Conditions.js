@@ -1,17 +1,14 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import searchLogo from "../images/main_search.png";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Document from "./Document";
 import html2pdf from "html2pdf.js";
-import html2canvas from 'html2canvas';
+import html2canvas from "html2canvas";
 import { authService, dbService } from "../fbase";
 
-
-
 const Conditions = () => {
-
   const onLogOutClick = () => authService.signOut();
 
   const location = useLocation();
@@ -19,8 +16,8 @@ const Conditions = () => {
   const fileName = location.state?.fileName ?? "";
 
   // console.log("[Condition.js]",location);
-  const [c1event,setC1event]= useState("");
-  
+  const [c1event, setC1event] = useState("");
+
   // 맞춤법 검사 작동
   const [spellOn1, setSpellOn1] = useState("");
   const [spellOn2, setSpellOn2] = useState("");
@@ -62,6 +59,18 @@ const Conditions = () => {
   const [option3, setOption3] = useState("");
   const [option3Size, setOption3Size] = useState("");
 
+  //C6 & requirement[5]
+  const [landLordSSN, setLandLordSSN] = useState("");
+  const [landLordNum, setLandLordNum] = useState("");
+  const [fullAddress, setFullAddress] = useState("");
+  const [extraAddress, setExtraAddress] = useState("");
+
+  //C7 & requirement[6]
+  const [renterSSN, setRenterSSN] = useState("");
+  const [renterNum, setRenterNum] = useState("");
+  const [fullAddress2, setFullAddress2] = useState("");
+  const [extraAddress2, setExtraAddress2] = useState("");
+
   // useEffect(() => {
   //   if (tempData1 !== "") {
   //     // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
@@ -94,7 +103,7 @@ const Conditions = () => {
   //     setDirect(temp.direct);
   //   }
   // }, [tempData1]);
-  
+
   // 하위 컴포넌트로 전달할 기본값
   const requirements = [
     {
@@ -137,14 +146,30 @@ const Conditions = () => {
     {
       //C5
       // 주소,추가주소,옵션 1,2,3
-      adress:adress,
-      extra:extra,
-      option1:option1,
-      option1Size:option1Size,
-      option2:option2,
-      option2Size:option2Size,
-      option3:option3,
-      option3Size:option3Size,
+      adress: adress,
+      extra: extra,
+      option1: option1,
+      option1Size: option1Size,
+      option2: option2,
+      option2Size: option2Size,
+      option3: option3,
+      option3Size: option3Size,
+    },
+    {
+      //C6
+      // 주소,추가주소,주민번호,전화번호
+      fullAddress: fullAddress,
+      extraAddress: extraAddress,
+      landLordNum: landLordNum,
+      landLordSSN: landLordSSN,
+    },
+    {
+      //C7
+      // 주소,추가주소,주민번호, 전화번호
+      fullAddress2: fullAddress2,
+      extraAddress2: extraAddress2,
+      renterNum: renterNum,
+      renterSSN: renterSSN,
     },
   ];
 
@@ -159,25 +184,20 @@ const Conditions = () => {
           check1: builtIn,
           check2: cleaning,
           check3: direct,
-        })
-        
-        
+        }),
       })
-      .then((response)=>response.json()).then((json)=>{
-        console.log("맞춤법 교정 결과 -> ",json);
-        setSpellOn1(json.check1);
-        setSpellOn2(json.check2);
-        setSpellOn3(json.check3);
-      })
-      
+        .then((response) => response.json())
+        .then((json) => {
+          console.log("맞춤법 교정 결과 -> ", json);
+          setSpellOn1(json.check1);
+          setSpellOn2(json.check2);
+          setSpellOn3(json.check3);
+        });
     } catch (error) {
       console.log("맞춤법검사실패");
       console.log(error);
-
     }
-    
   };
-
 
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
@@ -235,32 +255,55 @@ const Conditions = () => {
     }
   };
 
-    // C4에서 입력한 값을 불러와서 업데이트
-    const getC5 = (name, updateValue) => {
-      if(name==="기본주소"){
+  // C5에서 입력한 값을 불러와서 업데이트
+  const getC5 = (name, updateValue) => {
+    if (name === "기본주소") {
+      setAdress(updateValue);
+    } else if (name === "상세주소") {
+      setExtra(updateValue);
+    } else if (name === "토지용도텍스트") {
+      setOption1(updateValue);
+    } else if (name === "토지용도면적") {
+      setOption1Size(updateValue);
+    } else if (name === "구조용도") {
+      setOption2(updateValue);
+    } else if (name === "구조용도면적") {
+      setOption2Size(updateValue);
+    } else if (name === "임대할부분") {
+      setOption3(updateValue);
+    } else if (name === "임대할부분면적") {
+      setOption3Size(updateValue);
+    }
+  };
 
-        setAdress(updateValue);
-      }else if(name==="상세주소"){
+  // C6에서 입력한 값을 불러와서 업데이트
+  const getC6 = (name, updateValue) => {
+    if (name === "집주인주민등록번호") {
+      setLandLordSSN(updateValue);
+    } else if (name === "집주인주소") {
+      setFullAddress(updateValue);
+    } else if (name === "집주인상세주소") {
+      setExtraAddress(updateValue);
+    } else if (name === "집주인번호") {
+      setLandLordNum(updateValue);
+    }
+  };
 
-        setExtra(updateValue);
-      }
-      else if(name==="토지용도텍스트"){
-        setOption1(updateValue);
-      }else if(name==="토지용도면적"){
-        setOption1Size(updateValue);
-      }else if(name==="구조용도"){
-        setOption2(updateValue);
-      }else if(name==="구조용도면적"){
-        setOption2Size(updateValue);
-      }else if(name==="임대할부분"){
-        setOption3(updateValue);
-      }else if(name==="임대할부분면적"){
-        setOption3Size(updateValue);
-      }
-    };
+  // C7에서 입력한 값을 불러와서 업데이트
+  const getC7 = (name, updateValue) => {
+    if (name === "세입자주민등록번호") {
+      setRenterSSN(updateValue);
+    } else if (name === "세입자주소") {
+      setFullAddress2(updateValue);
+    } else if (name === "세입자상세주소") {
+      setExtraAddress2(updateValue);
+    } else if (name === "세입자번호") {
+      setRenterNum(updateValue);
+    }
+  };
 
   const [email, setEmail] = useState("");
-  
+
   // 현재 로그인된 유저의 이메일 주소 가져오기
   useEffect(() => {
     const getEmail = async () => {
@@ -297,195 +340,186 @@ const Conditions = () => {
     option2,
     option2Size,
     option3,
-    option3Size
+    option3Size,
   };
-
-
 
   // Firestore DB에 저장
-  const saveFDB = async (e)=>{
+  const saveFDB = async (e) => {
     e.preventDefault();
     await dbService.collection("docu1").add({
-      landLord:landLord,
-      landLordType : landLordType,
-      renter : renter,
-      renterType : renterType,
-      startDate : startDate,
-      endDate:endDate,
-      monthly:monthly,
-      dueDate:dueDate,
-      deposit : deposit,
-      downPayment : downPayment,
-      balance : balance,
-      balanceDate : balanceDate,
-      bank : bank,
-      accountNum : accountNum,
-      accountHolder : accountHolder,
-      builtIn : builtIn,
-      cleaning : cleaning,
-      direct : direct,
-      adress :adress,
-      extra : extra,
-      option1 :option1,
-      option1Size : option1Size,
-      option2:option2,
-      option2Size:option2Size,
-      option3 : option3,
-      option3Size :option3Size,
-      createdAt:Date.now(),
-    })
-    console.log("파이어베이스db")
-  }
+      landLord: landLord,
+      landLordType: landLordType,
+      renter: renter,
+      renterType: renterType,
+      startDate: startDate,
+      endDate: endDate,
+      monthly: monthly,
+      dueDate: dueDate,
+      deposit: deposit,
+      downPayment: downPayment,
+      balance: balance,
+      balanceDate: balanceDate,
+      bank: bank,
+      accountNum: accountNum,
+      accountHolder: accountHolder,
+      builtIn: builtIn,
+      cleaning: cleaning,
+      direct: direct,
+      adress: adress,
+      extra: extra,
+      option1: option1,
+      option1Size: option1Size,
+      option2: option2,
+      option2Size: option2Size,
+      option3: option3,
+      option3Size: option3Size,
+      landLordNum:landLordNum,
+      landLordSSN:landLordSSN,
+      renterNum:renterNum,
+      renterSSN:renterSSN,
+      fullAddress:fullAddress,
+      fullAddress2:fullAddress2,
+      extraAddress:extraAddress,
+      extraAddress2:extraAddress2,
+      createdAt: Date.now(),
+    });
+    console.log("파이어베이스db");
+  };
 
- // PDF 파일을 생성하고 서버에 전송하는 함수
-const saveAsPDF = async () => {
-  
-  const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
-  const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
+  // PDF 파일을 생성하고 서버에 전송하는 함수
+  const saveAsPDF = async () => {
+    const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
+    const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
     // alertElement가 있을 때만 실행
     if (alertElement) {
       alertElement.style.display = "none"; // 일시적으로 display 속성을 none으로 설정
     }
-  const opt = {
-    margin: 1,
-    filename: "conditions.pdf", // PDF 파일 이름
-    image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
-    html2canvas: { dpi: 192, letterRendering: true},
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-  };
-  const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
+    const opt = {
+      margin: 1,
+      filename: "conditions.pdf", // PDF 파일 이름
+      image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
+      html2canvas: { dpi: 192, letterRendering: true },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    };
+    const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
 
-  // 이미지 파일 생성
-  const canvas = await html2canvas(element , { scale: 0.74 });
-  const imgBlob = await new Promise((resolve) =>
-    canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
-  );
-  // 사용자 입력 받기
-  const input = prompt("파일 이름을 입력하세요");
-  setEmail(input);
+    // 이미지 파일 생성
+    const canvas = await html2canvas(element, { scale: 0.74 });
+    const imgBlob = await new Promise(
+      (resolve) => canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
+    );
+    // 사용자 입력 받기
+    const input = prompt("파일 이름을 입력하세요");
+    setEmail(input);
 
-  // FormData 객체 생성
-  // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
-  const tempDataString = JSON.stringify(tempData);
-  console.log(tempDataString);
-  const formData = new FormData();
-  formData.append("email", email); // 이메일 정보 추가
-  formData.append("pdf", pdfBlob, `${email}.pdf`); // PDF 파일 추가
-  formData.append("image", imgBlob, `${email}.png`); // 이미지 파일 이름 확장자를 png로 변경
-  formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
-  formData.append("tempDataString", tempDataString); // tempData 추가
-  
-  // 서버로 전송할 HTTP 요청 생성
-  const requestOptions = {
-    method: "POST",
-    body: formData,
-    
-  };
-  
-  // 서버로 HTTP 요청 전송
-  fetch("http://localhost:3002/pdfupload", requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      alert("파일 저장 성공");
-      console.log(data);
-      
-    })
-    .catch((error) => {
-      alert("파일 저장 성공");
-      console.error(error);
-      
-    });
+    // FormData 객체 생성
+    // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
+    const tempDataString = JSON.stringify(tempData);
+    console.log(tempDataString);
+    const formData = new FormData();
+    formData.append("email", email); // 이메일 정보 추가
+    formData.append("pdf", pdfBlob, `${email}.pdf`); // PDF 파일 추가
+    formData.append("image", imgBlob, `${email}.png`); // 이미지 파일 이름 확장자를 png로 변경
+    formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
+    formData.append("tempDataString", tempDataString); // tempData 추가
+
+    // 서버로 전송할 HTTP 요청 생성
+    const requestOptions = {
+      method: "POST",
+      body: formData,
+    };
+
+    // 서버로 HTTP 요청 전송
+    fetch("http://localhost:3002/pdfupload", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        alert("파일 저장 성공");
+        console.log(data);
+      })
+      .catch((error) => {
+        alert("파일 저장 성공");
+        console.error(error);
+      });
     setTimeout(() => {
       if (alertElement) {
         alertElement.style.display = "block";
       }
     }, 1000);
-      
-      
-    
-
-  
-};
-const updateAsPDF = async () => {
-    
-  const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
-  const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
+  };
+  const updateAsPDF = async () => {
+    const element = document.getElementById("pdf-wrapper"); // PDF로 변환할 요소
+    const alertElement = document.querySelector(".alert.scroll"); // 바꿀 요소
     // alertElement가 있을 때만 실행
     if (alertElement) {
       alertElement.style.display = "none"; // 일시적으로 display 속성을 none으로 설정
     }
-  const opt = {
-    margin: 1,
-    filename: {fileName}, // PDF 파일 이름
-    image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
-    html2canvas: { dpi: 192, letterRendering: true},
-    jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
-  };
-  const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
+    const opt = {
+      margin: 1,
+      filename: { fileName }, // PDF 파일 이름
+      image: { type: "png", quality: 0.98 }, // 이미지 파일 확장자를 png로 변경
+      html2canvas: { dpi: 192, letterRendering: true },
+      jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+    };
+    const pdfBlob = await html2pdf().from(element).set(opt).output("blob"); // PDF 파일 생성
 
-  // 이미지 파일 생성
-  const canvas = await html2canvas(element , { scale: 0.74 });
-  const imgBlob = await new Promise((resolve) =>
-    canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
-  );
-  // 사용자 입력 받기
-  const input = prompt("파일 이름을 입력하세요");
-  setEmail(input);
+    // 이미지 파일 생성
+    const canvas = await html2canvas(element, { scale: 0.74 });
+    const imgBlob = await new Promise(
+      (resolve) => canvas.toBlob(resolve, "image/png", 0.98) // 이미지 파일 확장자를 png로 변경
+    );
+    // 사용자 입력 받기
+    const input = prompt("파일 이름을 입력하세요");
+    setEmail(input);
 
-  // FormData 객체 생성
-  // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
-  const tempDataString = JSON.stringify(tempData);
-  console.log(tempDataString);
-  const formData = new FormData();
-  formData.append("email", email); // 이메일 정보 추가
-  formData.append("pdf", pdfBlob, `${fileName}`); // PDF 파일 추가
-  formData.append("image", imgBlob, `${fileName.slice(0,-4)}.png`); // 이미지 파일 이름 확장자를 png로 변경
-  formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
-  formData.append("tempDataString", tempDataString); // tempData 추가
-  
-  // 서버로 전송할 HTTP 요청 생성
-  const requestOptions = {
-    method: "POST",
-    body: formData,
-    
-  };
-  
-  // 서버로 HTTP 요청 전송
-  fetch("http://localhost:3002/pdfupdate", requestOptions)
-    .then((response) => response.json())
-    .then((data) => {
-      alert("파일 수정 성공");
-      console.log(data);
-      
-    })
-    .catch((error) => {
-      alert("파일 수정 성공");
-      console.error(error);
-      
-    });
+    // FormData 객체 생성
+    // JSON.stringify() 함수를 사용하여 tempData를 문자열로 변환
+    const tempDataString = JSON.stringify(tempData);
+    console.log(tempDataString);
+    const formData = new FormData();
+    formData.append("email", email); // 이메일 정보 추가
+    formData.append("pdf", pdfBlob, `${fileName}`); // PDF 파일 추가
+    formData.append("image", imgBlob, `${fileName.slice(0, -4)}.png`); // 이미지 파일 이름 확장자를 png로 변경
+    formData.append("user_filename", input); // 사용자가 지정한 파일이름 실제 저장되는 파일이름은 다름
+    formData.append("tempDataString", tempDataString); // tempData 추가
+
+    // 서버로 전송할 HTTP 요청 생성
+    const requestOptions = {
+      method: "POST",
+      body: formData,
+    };
+
+    // 서버로 HTTP 요청 전송
+    fetch("http://localhost:3002/pdfupdate", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        alert("파일 수정 성공");
+        console.log(data);
+      })
+      .catch((error) => {
+        alert("파일 수정 성공");
+        console.error(error);
+      });
     setTimeout(() => {
       if (alertElement) {
         alertElement.style.display = "block";
       }
     }, 1000);
-
-}
+  };
 
   // // const [drag, setDrag] = useState("");
   // // setDrag(window.getSelection().getRangeAt(0).toString());
 
-  
   // console.log(drag);
-  const saveData = (e)=>{
+  const saveData = (e) => {
     saveFDB(e);
-    // saveAsPDF();
-  }
+    saveAsPDF();
+  };
 
   return (
     <>
       <div id="subWrap" className="bgnone scroll">
         <div className="docuWrap">
-        <div class="header_right pd21 flex_sb bgblue">
+          <div class="header_right pd21 flex_sb bgblue">
             <h3>부동산 계약서(임대차)</h3>
             <ul>
               <li>
@@ -520,10 +554,18 @@ const updateAsPDF = async () => {
                 getC3Value={getC3}
                 getC4Value={getC4}
                 getC5Value={getC5}
+                getC6Value={getC6}
+                getC7Value={getC7}
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
-                  <Document items={requirements} check={spellCheck} spCk1={spellOn1}spCk2={spellOn2}spCk3={spellOn3}/>
+                  <Document
+                    items={requirements}
+                    check={spellCheck}
+                    spCk1={spellOn1===""?"교정 결과가 없습니다.":spellOn1}
+                    spCk2={spellOn2===""?"교정 결과가 없습니다.":spellOn2}
+                    spCk3={spellOn3===""?"교정 결과가 없습니다.":spellOn3}
+                  />
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">
@@ -532,18 +574,21 @@ const updateAsPDF = async () => {
                         <button className="edit_btn">편집하기</button>
                       </li>
                       <li>
-                      {/*myDrive 텝에서 수정하기 버튼으로 이동시 
+                        {/*myDrive 텝에서 수정하기 버튼으로 이동시 
                       수정하기 버튼이 보여지게 함 */}
-                      {fileName !== "" && (
-                        <button className="save_btn" onClick={updateAsPDF}>
-                          수정하기
-                        </button>
-                      )}
-                      {fileName === "" && (
-                        <button className="save_btn" onClick={(e)=>saveData(e)}>
-                          저장하기
-                        </button>
-                      )}
+                        {fileName !== "" && (
+                          <button className="save_btn" onClick={updateAsPDF}>
+                            수정하기
+                          </button>
+                        )}
+                        {fileName === "" && (
+                          <button
+                            className="save_btn"
+                            onClick={(e) => saveData(e)}
+                          >
+                            저장하기
+                          </button>
+                        )}
                       </li>
                     </ul>
                   </div>

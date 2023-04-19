@@ -205,8 +205,15 @@ const handleSearch = async () => {
           landLordType={props.items[0].landLordType}
           renter={props.items[0].renter}
           renterType={props.items[0].renterType}
+          fullAdress={props.items[5].fullAddress}
+          extraAdress={props.items[5].extraAddress}
+          landLordSSN={props.items[5].landLordSSN}
+          landLordNum={props.items[5].landLordNum}
+          fullAdress2={props.items[6].fullAddress2}
+          extraAdress2={props.items[6].extraAddress2}
+          renterSSN={props.items[6].renterSSN}
+          renterNum={props.items[6].renterNum}
         />
-        
       </div>
     </>
   );

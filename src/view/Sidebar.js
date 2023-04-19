@@ -8,9 +8,6 @@ import C6 from "../case/C6";
 import C7 from "../case/C7";
 
 const Sidebar = (props) => {
-
-  
-
   return (
     <>
       <div className="write_left scroll">
@@ -29,7 +26,7 @@ const Sidebar = (props) => {
             dueDate={props.items[1].dueDate}
             getC2Value={props.getC2Value}
           />
-          <C3 
+          <C3
             deposit={props.items[2].deposit}
             downPayment={props.items[2].downPayment}
             balance={props.items[2].balance}
@@ -39,23 +36,41 @@ const Sidebar = (props) => {
             accountHolder={props.items[2].accountHolder}
             getC3Value={props.getC3Value}
           />
-          <C4 
+          <C4
             builtIn={props.items[3].builtIn}
             cleaning={props.items[3].cleaning}
             direct={props.items[3].direct}
             getC4Value={props.getC4Value}
           />
-          <C5 adress={props.items[4].adress}
-          extra={props.items[4].extra}
-          option1={props.items[4].option1}
-          option1Size={props.items[4].option1Size}
-          option2={props.items[4].option2}
-          option2Size={props.items[4].option2Size}
-          option3={props.items[4].option3}
-          option3Size={props.items[4].option3Size}
-          getC5Value={props.getC5Value}/>
-          <C6 />
-          <C7 />
+          <C5
+            adress={props.items[4].adress}
+            extra={props.items[4].extra}
+            option1={props.items[4].option1}
+            option1Size={props.items[4].option1Size}
+            option2={props.items[4].option2}
+            option2Size={props.items[4].option2Size}
+            option3={props.items[4].option3}
+            option3Size={props.items[4].option3Size}
+            getC5Value={props.getC5Value}
+          />
+          <C6
+            landLordType={props.items[0].landLordType}
+            fullAdress={props.items[5].fullAdress}
+            extraAdress={props.items[5].extraAdress}
+            landLordSSN={props.items[5].landLordSSN}
+            landLordNum={props.items[5].landLordNum}
+            landLord={props.items[0].landLord}
+            getC6Value={props.getC6Value}
+          />
+          <C7
+            renterType={props.items[0].renterType}
+            fullAdress={props.items[6].fullAdress}
+            extraAdress={props.items[6].extraAdress}
+            renterSSN={props.items[6].renterSSN}
+            renterNum={props.items[6].renterNum}
+            renter={props.items[0].renter}
+            getC7Value={props.getC7Value}
+          />
         </div>
       </div>
     </>
