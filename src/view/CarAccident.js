@@ -4,12 +4,37 @@ import { Link } from "react-router-dom";
 import { authService } from "../fbase";
 const CarAccident = () => {
     const onLogOutClick = () => authService.signOut();
+    const [fullAddress1, setFullAddress1] = useState("");
+    const [fullAddress2, setFullAddress2] = useState("");
+  // 새로운 창을 열기 위한 함수
+  const openSmallWindow = (carType) => {
+    const width = 500;
+    const height = 600;
+    const left = window.screen.width / 2 - width / 2;
+    const top = window.screen.height / 2 - height / 2;
+    const url = "/#/Post";
+  
+    const features = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`;
+    const windowRef = window.open(url, carType, features);
+  
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "updateFullAddressCar") {
+        setFullAddress1(event.data.fullAddress);
+      }else if(event.data.type === "updateFullAddressCar1"){
+        setFullAddress2(event.data.fullAddress);
+      }
+      });
+      
+      windowRef.setFullAddress = (fullAddress) => {
+      windowRef.postMessage({ type: "updateFullAddress", fullAddress }, "*");
+      };
+      };
   return (
     <>
       <div id="subWrap" className="bgnone scroll">
         <div className="docuWrap">
         <div className="header_right pd21 flex_sb bgblue">
-            <h3>사직서</h3>
+            <h3>교통사고 합의서</h3>
             <ul>
               <li>
                 <Link to="/">Main</Link>
@@ -406,9 +431,13 @@ const CarAccident = () => {
                           <p className="pt05">주소</p>
                           <li className="check_txt input_flex">
                             <input
-                              type="text"
-                              placeholder="클릭하여 주소를 검색하세요."
-                              name="주소"
+                            type="text"
+                            placeholder="클릭하여 주소를 검색하세요."
+                            name="주소"
+                            onClick={() => {
+                            openSmallWindow("Car");
+                            }}
+                            value={fullAddress1}
                             />
                             <input
                               type="text"
@@ -454,9 +483,13 @@ const CarAccident = () => {
                           <p className="pt05">주소</p>
                           <li className="check_txt input_flex">
                             <input
-                              type="text"
-                              placeholder="클릭하여 주소를 검색하세요."
-                              name="주소"
+                            type="text"
+                            placeholder="클릭하여 주소를 검색하세요."
+                            name="주소"
+                            onClick={() => {
+                            openSmallWindow("Car1");
+                            }}
+                            value={fullAddress2}
                             />
                             <input
                               type="text"

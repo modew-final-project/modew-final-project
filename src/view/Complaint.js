@@ -5,6 +5,30 @@ import { authService } from "../fbase";
 
 const Complaint = ()=>{
     const onLogOutClick = () => authService.signOut();
+    const [fullAddress, setFullAddress] = useState("");
+    const openSmallWindow = () => {
+        const width = 500;
+        const height = 600;
+        const left = window.screen.width / 2 - width / 2;
+        const top = window.screen.height / 2 - height / 2;
+        const url = "/#/Post";
+    
+        const features = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`;
+        const windowRef = window.open(url, "Compla", features);
+    
+        window.addEventListener("message", (event) => {
+          if (event.data.type === "updateFullAddressCompla") {
+            setFullAddress(event.data.fullAddress);
+            
+    
+          }
+        });
+    
+        windowRef.setFullAddress = (fullAddress) => {
+          windowRef.postMessage({ type: "updateFullAddress", fullAddress }, "*");
+          
+        };
+      };
 return (
     <div id="subWrap" class="bgnone scroll">
         <div class="docuWrap">
@@ -353,7 +377,15 @@ return (
                                             </li>
                                             <p class="pt05">주소</p>
                                             <li class="check_txt">
-                                                <input type="text" placeholder="클릭하여 주소를 검색하세요." name="고소인주소"/>
+                                            <input
+                                            type="text"
+                                            placeholder="클릭하여 주소를 검색하세요."
+                                            name="고소인주소"
+                                            onClick={() => {
+                                            openSmallWindow();
+                                            }}
+                                            value={fullAddress}
+                                            />
                                                 <input class="mt025" type="text" placeholder="나머지 주소를 입력하세요." name="고소인상세주소"/>
                                             </li>
                                         </ul>

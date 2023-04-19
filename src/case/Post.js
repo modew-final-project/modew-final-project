@@ -34,6 +34,34 @@ const Post = () => {
         window.opener.postMessage({ type: "updateFullAddress07", fullAddress }, "*");
         window.close();
       }
+    if (window.opener && !window.opener.closed && window.name === "Car") {
+        window.opener.postMessage({ type: "updateFullAddressCar", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Car1") {
+        window.opener.postMessage({ type: "updateFullAddressCar1", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Cert") {
+        window.opener.postMessage({ type: "updateFullAddressCert", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Cert1") {
+        window.opener.postMessage({ type: "updateFullAddressCert1", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Cert2") {
+        window.opener.postMessage({ type: "updateFullAddressCert2", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Compla") {
+        window.opener.postMessage({ type: "updateFullAddressCompla", fullAddress }, "*");
+        window.close();
+    }
+    if (window.opener && !window.opener.closed && window.name === "Resign") {
+        window.opener.postMessage({ type: "updateFullAddressResign", fullAddress }, "*");
+        window.close();
+    }
   };
   
 

@@ -4,6 +4,34 @@ import { Link } from "react-router-dom";
 import { authService } from "../fbase";
 const Certification = () => {
   const onLogOutClick = () => authService.signOut();
+  const [fullAddress1, setFullAddress1] = useState("");
+  const [fullAddress2, setFullAddress2] = useState("");
+  const [fullAddress3, setFullAddress3] = useState("");
+// 새로운 창을 열기 위한 함수
+const openSmallWindow = (carType) => {
+  const width = 500;
+  const height = 600;
+  const left = window.screen.width / 2 - width / 2;
+  const top = window.screen.height / 2 - height / 2;
+  const url = "/#/Post";
+
+  const features = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`;
+  const windowRef = window.open(url, carType, features);
+
+  window.addEventListener("message", (event) => {
+    if (event.data.type === "updateFullAddressCert") {
+      setFullAddress1(event.data.fullAddress);
+    }else if(event.data.type === "updateFullAddressCert1"){
+      setFullAddress2(event.data.fullAddress);
+    }else if(event.data.type === "updateFullAddressCert2"){
+      setFullAddress3(event.data.fullAddress);
+    }
+    });
+    
+    windowRef.setFullAddress = (fullAddress) => {
+    windowRef.postMessage({ type: "updateFullAddress", fullAddress }, "*");
+    };
+    };
   return (
     <>
       <div id="subWrap" class="bgnone scroll">
@@ -133,10 +161,14 @@ const Certification = () => {
                         <ul class="input_checklist pt025">
                           <p>층간소음이 일어나는 곳의 주소</p>
                           <li class="check_txt">
-                            <input
-                              type="text"
-                              placeholder="클릭하여 주소를 검색하세요."
-                              name="주소"
+                          <input
+                            type="text"
+                            placeholder="클릭하여 주소를 검색하세요."
+                            name="주소"
+                            onClick={() => {
+                            openSmallWindow("Cert");
+                            }}
+                            value={fullAddress1}
                             />
                           </li>
                           <li class="check_txt pt025">
@@ -344,10 +376,14 @@ const Certification = () => {
                           </li>
                           <p class="pt05">주소</p>
                           <li class="check_txt input_flex">
-                            <input
-                              type="text"
-                              placeholder="클릭하여 주소를 검색하세요."
-                              name="주소"
+                          <input
+                            type="text"
+                            placeholder="클릭하여 주소를 검색하세요."
+                            name="주소"
+                            onClick={() => {
+                            openSmallWindow("Cert1");
+                            }}
+                            value={fullAddress2}
                             />
                             <input
                               type="text"
@@ -392,10 +428,14 @@ const Certification = () => {
                           </li>
                           <p class="pt05">주소</p>
                           <li class="check_txt input_flex">
-                            <input
-                              type="text"
-                              placeholder="클릭하여 주소를 검색하세요."
-                              name="주소"
+                          <input
+                            type="text"
+                            placeholder="클릭하여 주소를 검색하세요."
+                            name="주소"
+                            onClick={() => {
+                            openSmallWindow("Cert2");
+                            }}
+                            value={fullAddress3}
                             />
                             <input
                               type="text"
