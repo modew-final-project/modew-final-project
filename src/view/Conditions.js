@@ -8,8 +8,19 @@ import html2pdf from "html2pdf.js";
 import html2canvas from "html2canvas";
 import { authService, dbService } from "../fbase";
 
-const Conditions = () => {
+const Conditions = (props) => {
   const onLogOutClick = () => authService.signOut();
+
+  //Mydrive에서 수정하기 눌렀을 경우 데이터 불러오기
+useEffect(()=>{
+  dbService.collection("docu1").onSnapshot((snapshot)=>{
+    const newArray = snapshot.docs.map((document)=>({
+      id:document.id,
+      ...document.data(),
+    }));
+    console.log(newArray[0].landLord);
+  })
+},[]);
 
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
@@ -199,6 +210,8 @@ const Conditions = () => {
     }
   };
 
+  // myDrive에서 수정하기 버튼을
+
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
     if (name === "집주인" && type === 0) {
@@ -341,12 +354,22 @@ const Conditions = () => {
     option2Size,
     option3,
     option3Size,
+    landLordNum,
+    landLordSSN,
+    renterNum,
+    renterSSN,
+    fullAddress,
+    fullAddress2,
+    extraAddress,
+    extraAddress2,
   };
 
-  // Firestore DB에 저장
+  // Firestore DB에 저장할 문서작성 시 입력 데이터
+  // 로그인한 유저의 이메일 주소값을 포함한 데이터
   const saveFDB = async (e) => {
     e.preventDefault();
     await dbService.collection("docu1").add({
+      email:email,
       landLord: landLord,
       landLordType: landLordType,
       renter: renter,
@@ -383,7 +406,7 @@ const Conditions = () => {
       extraAddress2:extraAddress2,
       createdAt: Date.now(),
     });
-    console.log("파이어베이스db");
+    
   };
 
   // PDF 파일을 생성하고 서버에 전송하는 함수
@@ -506,10 +529,9 @@ const Conditions = () => {
     }, 1000);
   };
 
-  // // const [drag, setDrag] = useState("");
-  // // setDrag(window.getSelection().getRangeAt(0).toString());
-
-  // console.log(drag);
+  // 사용자가 저장하기 버튼 눌렀을 시 두개의 함수를 실행시키기 위해 하나로 묶음
+  // saveFDB : 파이어스토어 저장
+  // saveAsPDF : PDF화 하여 저장
   const saveData = (e) => {
     saveFDB(e);
     saveAsPDF();
@@ -562,9 +584,9 @@ const Conditions = () => {
                   <Document
                     items={requirements}
                     check={spellCheck}
-                    spCk1={spellOn1===""?"교정 결과가 없습니다.":spellOn1}
-                    spCk2={spellOn2===""?"교정 결과가 없습니다.":spellOn2}
-                    spCk3={spellOn3===""?"교정 결과가 없습니다.":spellOn3}
+                    spCk1={spellOn1}
+                    spCk2={spellOn2}
+                    spCk3={spellOn3}
                   />
                 </div>
                 <div className="footer">

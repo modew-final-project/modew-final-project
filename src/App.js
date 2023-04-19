@@ -7,6 +7,7 @@ function App() {
   const [init, setInit] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user) {
@@ -22,7 +23,7 @@ function App() {
     <>
       {init ? (
         <>
-          <AppRouter isLoggedIn={isLoggedIn} />
+          <AppRouter isLoggedIn={isLoggedIn}/>
         </>
       ) : (
         ""

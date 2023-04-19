@@ -4,7 +4,7 @@ import { Link, HashRouter } from "react-router-dom";
 import main_Logo from "../images/main_Logo.png";
 import main_img from "../images/main_img.png";
 
-const Main = () => {
+const Main = (props) => {
   // 새로운 창을 열기 위한 함수
   const openSmallWindow = (url) => {
     const width = 500;
@@ -30,7 +30,7 @@ const Main = () => {
               <p>누구나 사용 가능한, 쉽고 빠른 문서작성 도우미</p>
               <ul>
                 <li>
-                  <Link to="/Conditions">부동산 계약서</Link>
+                  <Link to="/Conditions" isClicked={props.isClicked}>부동산 계약서</Link>
                 </li>
                 <li>
                   <Link to="/CarAccident">교통사고 합의서(민사)</Link>

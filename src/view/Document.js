@@ -122,7 +122,7 @@ const handleSearch = async () => {
         </button><br></br>
         <input type="text" value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}/>
-      <button className="grammar_check" onClick={handleSearch}>검색</button>
+      <button className="grammar_check" style={{marginLeft:"10px"}} onClick={handleSearch}>검색</button>
       <div></div>
         <p style={{ display: props.spCk1 === "" ? "none" : "block" }}>
           맞춤법 교정 결과
@@ -146,7 +146,7 @@ const handleSearch = async () => {
               {searchResult.length > 0 && "검색결과 닫기"}
             </button>
           </div>
-        {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>}
+        {/* {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>} */}
       </div>
       <div className="document_wrap">
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>

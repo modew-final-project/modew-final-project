@@ -31,14 +31,14 @@ const C5 = (props) => {
   const [display3, setDisplay3] = useState("none");
   const [searchInput, setSearchInput] = useState(''); // 변수 선언 및 초기화
 
-  const [adress, setAdress] = useState("");
-  const [extra, setExtra] = useState("");
-  const [option1, setOption1] = useState("");
-  const [option1Size, setOption1Size] = useState("");
-  const [option2, setOption2] = useState("");
-  const [option2Size, setOption2Size] = useState("");
-  const [option3, setOption3] = useState("");
-  const [option3Size, setOption3Size] = useState("");
+  const [adress, setAdress] = useState(props.adress);
+  const [extra, setExtra] = useState(props.extra);
+  const [option1, setOption1] = useState(props.option1);
+  const [option1Size, setOption1Size] = useState(props.option1Size);
+  const [option2, setOption2] = useState(props.option2);
+  const [option2Size, setOption2Size] = useState(props.option2Size);
+  const [option3, setOption3] = useState(props.option3);
+  const [option3Size, setOption3Size] = useState(props.option3Size);
 
  
 

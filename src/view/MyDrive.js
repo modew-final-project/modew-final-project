@@ -2,10 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { authService } from '../fbase'
 
-const MyDrive = () => {
+const MyDrive = (props) => {
   const [email, setEmail] = useState("");
   const [fileList, setFileList] = useState([]);
   
+  
+  const onClick = ()=>{
+    props.setState(true);
+  }
+
+
   const openSmallWindow = (url) => {
     const width = 1000;
     const height = 1200;
@@ -71,7 +77,7 @@ useEffect(() => {
                 <div className="thumb">
                 <img src={file.imageurl} alt={file.image_name} />
                 </div>
-                <Link to={{pathname: '/Conditions', state: {tempData1: JSON.parse(file.tempData),fileName: file.file_name}}}>수정하기</Link>
+                <Link to={{pathname: '/Conditions', state: {tempData1: JSON.parse(file.tempData),fileName: file.file_name}}} onClick={onClick}>수정하기</Link>
                 
                 </div>
                 <a>{file.upload_date.slice(2, 10)} {file.upload_date.slice(11, 16)}</a>

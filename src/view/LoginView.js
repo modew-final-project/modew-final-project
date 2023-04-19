@@ -9,6 +9,12 @@ import Search from "./Search";
 // 로그인 했을 때 보여지는 view
 
 const LoginView = () => {
+  const [isClicked, setIsClicked] = useState(false);
+  console.log("로그인화면 ", isClicked);
+  const setState = (updataeValue)=>{
+    setIsClicked(updataeValue);
+  }
+
   return (
     <>
       <div id="wrap">
@@ -18,16 +24,16 @@ const LoginView = () => {
             <Search />
           </Route>
           <Route exact path="/Mydrive">
-            <MyDrive />
+            <MyDrive isClicked={isClicked} setState={setState}/>
           </Route>
           <Route exact path="/UserInfo">
             <UserInfo />
           </Route>
           <Route exact path="/Main">
-            <Main />
+            <Main isClicked={isClicked} />
           </Route>
           <Route exact path="/">
-            <Main />
+            <Main isClicked={isClicked} />
           </Route>
         </div>
       </div>
