@@ -22,6 +22,10 @@ const Post = () => {
     setFullAddress(fullAddress);
     console.log(fullAddress);
     
+    if (window.opener && !window.opener.closed && window.name === "C5") {
+        window.opener.postMessage({ type: "updateFullAddress05", fullAddress }, "*");
+        window.close();
+      }
     if (window.opener && !window.opener.closed && window.name === "C6") {
       window.opener.postMessage({ type: "updateFullAddress06", fullAddress }, "*");
       window.close();
