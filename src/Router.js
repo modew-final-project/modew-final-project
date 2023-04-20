@@ -5,6 +5,7 @@ import CarAccident from "./view/CarAccident";
 import Certification from "./view/Certification";
 import Resignation from "./view/Resignation";
 import Complaint from "./view/Complaint";
+import Example from "./view/Example";
 import LoginView from "./view/LoginView";
 import LogOutView from "./view/LogOutView";
 import File from "./view/File";
@@ -18,6 +19,9 @@ const AppRouter = ({ isLoggedIn }) => {
       <Switch>
         <Route exact path="/Conditions">
           <Conditions />
+        </Route>
+        <Route exact path="/Example">
+          <Example />
         </Route>
         <Route exact path="/CarAccident">
           <CarAccident />

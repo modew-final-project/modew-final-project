@@ -58,7 +58,7 @@ const handleSearch = async () => {
     if (timer) clearTimeout(timer);
     setTimer(
       setTimeout(
-        () => fetchData("http://127.0.0.1:5000/CertificateThatDoesNotExist"),
+        () => fetchData("http://172.30.1.97:5000/CertificateThatDoesNotExist"),
         500
       )
     );
@@ -70,7 +70,7 @@ const handleSearch = async () => {
     console.log("C2일경우");
     if (timer) clearTimeout(timer);
     setTimer(
-      setTimeout(() => fetchData("http://127.0.0.1:5000/powerOfAttorney"), 500)
+      setTimeout(() => fetchData("http://172.30.1.97:5000/powerOfAttorney"), 500)
     );
   }, [props.items[1].startDate]);
 
@@ -80,7 +80,7 @@ const handleSearch = async () => {
     console.log("C3일경우");
     if (timer) clearTimeout(timer);
     setTimer(
-      setTimeout(() => fetchData("http://127.0.0.1:5000/registeredCopy"), 500)
+      setTimeout(() => fetchData("http://172.30.1.97:5000/registeredCopy"), 500)
     );
   }, [props.items[2].deposit]);
 
@@ -90,7 +90,7 @@ const handleSearch = async () => {
     console.log("C4일경우");
     if (timer) clearTimeout(timer);
     setTimer(
-      setTimeout(() => fetchData("http://127.0.0.1:5000/buildingRegister"), 500)
+      setTimeout(() => fetchData("http://172.30.1.97:5000/buildingRegister"), 500)
     );
   }, [props.items[2].deposit]);
 
@@ -100,7 +100,7 @@ const handleSearch = async () => {
     console.log("C5일경우");
     if (timer) clearTimeout(timer);
     setTimer(
-      setTimeout(() => fetchData("http://127.0.0.1:5000/get_precautions"), 500)
+      setTimeout(() => fetchData("http://172.30.1.97:5000/get_precautions"), 500)
     );
   }, [props.items[3].builtIn]);
 
@@ -146,7 +146,7 @@ const handleSearch = async () => {
               {searchResult.length > 0 && "검색결과 닫기"}
             </button>
           </div>
-        {/* {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>} */}
+        {flaskData ? <p style={{ whiteSpace: "pre-wrap" }}>{flaskData}</p> : ""}
       </div>
       <div className="document_wrap">
         <h3 className="mt30 mb20">부동산 임대차계약서(직거래)</h3>

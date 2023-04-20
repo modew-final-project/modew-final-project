@@ -38,7 +38,10 @@
 }
 
 @media screen and (max-width:810px){
+    .content_write .write_wrap .write_left{width: 100% !important;}
+    .content_write .write_wrap .write_right{display: none;}
 
+    .hide_menu{display: block !important;}
 
 }
 

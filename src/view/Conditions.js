@@ -12,15 +12,15 @@ const Conditions = (props) => {
   const onLogOutClick = () => authService.signOut();
 
   //Mydrive에서 수정하기 눌렀을 경우 데이터 불러오기
-  useEffect(() => {
-    dbService.collection("docu1").onSnapshot((snapshot) => {
-      const newArray = snapshot.docs.map((document) => ({
-        id: document.id,
-        ...document.data(),
-      }));
-      console.log(newArray[0].landLord);
-    });
-  }, []);
+  // useEffect(() => {
+  //   dbService.collection("docu1").onSnapshot((snapshot) => {
+  //     const newArray = snapshot.docs.map((document) => ({
+  //       id: document.id,
+  //       ...document.data(),
+  //     }));
+  //     console.log(newArray[0].landLord);
+  //   });
+  // }, []);
 
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
@@ -81,7 +81,6 @@ const Conditions = (props) => {
   const [renterNum, setRenterNum] = useState("");
   const [fullAddress2, setFullAddress2] = useState("");
   const [extraAddress2, setExtraAddress2] = useState("");
-
 
   useEffect(() => {
     if (tempData1 !== "") {
@@ -232,8 +231,6 @@ const Conditions = (props) => {
       console.log(error);
     }
   };
-
-
 
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
@@ -600,8 +597,26 @@ const Conditions = (props) => {
                 getC5Value={getC5}
                 getC6Value={getC6}
                 getC7Value={getC7}
-                
               />
+              <div className="hide_menu">
+                <ul className="flex_start">
+                  <li>
+                    <Link to="/Example" className="see_btn">
+                      미리보기
+                    </Link >
+                  </li>
+                  <li>
+                    <a href="" className="write_btn">
+                      작성하기
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" className="save_btn">
+                      저장하기
+                    </a>
+                  </li>
+                </ul>
+              </div>
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">
                   <Document
