@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import searchLogo from "../images/main_search.png";
 import { Link } from "react-router-dom";
 import { authService } from "../fbase";
-const CarAccident = () => {
-    const onLogOutClick = () => authService.signOut();
-    const [fullAddress1, setFullAddress1] = useState("");
-    const [fullAddress2, setFullAddress2] = useState("");
+const CarAccident = (props) => {
+  const onLogOutClick = () => authService.signOut();
+  const [fullAddress1, setFullAddress1] = useState("");
+  const [fullAddress2, setFullAddress2] = useState("");
   // 새로운 창을 열기 위한 함수
   const openSmallWindow = (carType) => {
     const width = 500;
@@ -13,27 +13,48 @@ const CarAccident = () => {
     const left = window.screen.width / 2 - width / 2;
     const top = window.screen.height / 2 - height / 2;
     const url = "/#/Post";
-  
+
     const features = `toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=no, copyhistory=no, width=${width}, height=${height}, top=${top}, left=${left}`;
     const windowRef = window.open(url, carType, features);
-  
+
     window.addEventListener("message", (event) => {
       if (event.data.type === "updateFullAddressCar") {
         setFullAddress1(event.data.fullAddress);
-      }else if(event.data.type === "updateFullAddressCar1"){
+      } else if (event.data.type === "updateFullAddressCar1") {
         setFullAddress2(event.data.fullAddress);
       }
-      });
-      
-      windowRef.setFullAddress = (fullAddress) => {
+    });
+
+    windowRef.setFullAddress = (fullAddress) => {
       windowRef.postMessage({ type: "updateFullAddress", fullAddress }, "*");
-      };
-      };
+    };
+  };
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]); // searchResult 변수를 빈 배열로 초기화
+
+  const handleSearch = async () => {
+    setSearchResult([]); // 새로운값 검색시 초기화
+    try {
+      const response = await fetch(
+        `http://localhost:3002/api/search/${searchTerm}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setSearchResult(data.channel.item);
+        console.log(data.channel);
+      } else {
+        console.error("응답이 성공적으로 오지 않았습니다.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <>
       <div id="subWrap" className="bgnone scroll">
         <div className="docuWrap">
-        <div className="header_right pd21 flex_sb bgblue">
+          <div className="header_right pd21 flex_sb bgblue">
             <h3>교통사고 합의서</h3>
             <ul>
               <li>
@@ -181,7 +202,7 @@ const CarAccident = () => {
 
                             <option type="button" className="option_btn">
                               자전거
-                            </option>   
+                            </option>
 
                             <option type="button" className="option_btn">
                               기타 도로교통법상 인정되는 차량
@@ -305,14 +326,13 @@ const CarAccident = () => {
                               />
                             </option>
 
-                                <option type="button" className="option_btn">
-                                  네
-                                </option>
+                            <option type="button" className="option_btn">
+                              네
+                            </option>
 
-                                <option type="button" className="option_btn">
-                                  경고로만 그침
-                                </option>
-
+                            <option type="button" className="option_btn">
+                              경고로만 그침
+                            </option>
                           </select>
                         </div>
                         <div className="input_check pt05">
@@ -365,14 +385,13 @@ const CarAccident = () => {
                               />
                             </option>
 
-                                <option type="button" className="option_btn">
-                                  작성함
-                                </option>
+                            <option type="button" className="option_btn">
+                              작성함
+                            </option>
 
-                                <option type="button" className="option_btn">
-                                  작성하지 않음
-                                </option>
-
+                            <option type="button" className="option_btn">
+                              작성하지 않음
+                            </option>
                           </select>
                         </div>
                         <div className="input_check pt10">
@@ -431,13 +450,13 @@ const CarAccident = () => {
                           <p className="pt05">주소</p>
                           <li className="check_txt input_flex">
                             <input
-                            type="text"
-                            placeholder="클릭하여 주소를 검색하세요."
-                            name="주소"
-                            onClick={() => {
-                            openSmallWindow("Car");
-                            }}
-                            value={fullAddress1}
+                              type="text"
+                              placeholder="클릭하여 주소를 검색하세요."
+                              name="주소"
+                              onClick={() => {
+                                openSmallWindow("Car");
+                              }}
+                              value={fullAddress1}
                             />
                             <input
                               type="text"
@@ -483,13 +502,13 @@ const CarAccident = () => {
                           <p className="pt05">주소</p>
                           <li className="check_txt input_flex">
                             <input
-                            type="text"
-                            placeholder="클릭하여 주소를 검색하세요."
-                            name="주소"
-                            onClick={() => {
-                            openSmallWindow("Car1");
-                            }}
-                            value={fullAddress2}
+                              type="text"
+                              placeholder="클릭하여 주소를 검색하세요."
+                              name="주소"
+                              onClick={() => {
+                                openSmallWindow("Car1");
+                              }}
+                              value={fullAddress2}
                             />
                             <input
                               type="text"
@@ -580,7 +599,54 @@ const CarAccident = () => {
                   </div>
                 </div>
                 <div className="alert scroll">
-                  <p>내용 바꿔주세용~</p>
+                  <button className="grammar_check" onClick={props.check}>
+                    특약사항 맞춤법 검사
+                  </button>
+                  <br></br>
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button
+                    className="grammar_check"
+                    style={{ marginLeft: "10px" }}
+                    onClick={handleSearch}
+                  >
+                    검색
+                  </button>
+                  <div></div>
+                  <p style={{ display: props.spCk1 === undefined ? "none" : "block" }}>
+                    맞춤법 교정 결과
+                    <br />
+                    <ul style={{ whiteSpace: "pre-wrap" }}>
+                      <li>{`${props.spCk1}`}</li>
+                      <li>{`${props.spCk2}`}</li>
+                      <li>{`${props.spCk3}`}</li>
+                    </ul>
+                  </p>
+                  <div>
+                    {searchResult.map((word) => (
+                      <div key={word.word}>
+                        <span>
+                          {word.word} : {word.sense.definition}
+                        </span>
+                        <a
+                          href="/"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openSmallWindow(word.sense.link);
+                          }}
+                        >
+                          전체보기
+                        </a>
+                      </div>
+                    ))}
+                    <button onClick={() => setSearchResult([])}>
+                      {searchResult.length > 0 && "검색결과 닫기"}
+                    </button>
+                  </div>
+                  {/* {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>} */}
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">

@@ -2,11 +2,60 @@ import React, { useState, useEffect } from "react";
 import searchLogo from "../images/main_search.png";
 import { Link } from "react-router-dom";
 import { authService } from "../fbase";
-const Certification = () => {
+const Certification = (props) => {
   const onLogOutClick = () => authService.signOut();
   const [fullAddress1, setFullAddress1] = useState("");
   const [fullAddress2, setFullAddress2] = useState("");
   const [fullAddress3, setFullAddress3] = useState("");
+
+  const [spellOn1, setSpellOn1] = useState("");
+  const [spellOn2, setSpellOn2] = useState("");
+  const [spellOn3, setSpellOn3] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResult, setSearchResult] = useState([]); // searchResult 변수를 빈 배열로 초기화
+
+const handleSearch = async () => {
+  setSearchResult([]); // 새로운값 검색시 초기화
+  try {
+    const response = await fetch(`http://localhost:3002/api/search/${searchTerm}`);
+    if (response.ok) {
+      const data = await response.json();
+      setSearchResult(data.channel.item);
+      console.log(data.channel)
+    } else {
+      console.error("응답이 성공적으로 오지 않았습니다.");
+      
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+    // 맞춤법 검사 작동 여부
+    const spellCheck = async (e) => {
+      
+      // try {
+      //   await fetch("http://localhost:3002/spellCheck", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({
+      //       check1: builtIn,
+      //       check2: cleaning,
+      //       check3: direct,
+      //     }),
+      //   })
+      //     .then((response) => response.json())
+      //     .then((json) => {
+      //       console.log("맞춤법 교정 결과 -> ", json);
+      //       setSpellOn1(json.check1);
+      //       setSpellOn2(json.check2);
+      //       setSpellOn3(json.check3);
+      //     });
+      // } catch (error) {
+      //   console.log("맞춤법검사실패");
+      //   console.log(error);
+      // }
+    };
+
 // 새로운 창을 열기 위한 함수
 const openSmallWindow = (carType) => {
   const width = 500;
@@ -481,7 +530,7 @@ const openSmallWindow = (carType) => {
                   <div class="document_wrap">
                     <div class="doc_txt">
                       <h3 class="mt30 mb20">내용증명(층간소음)</h3>
-                      <h4>제1조(계약 존속 기간)</h4>
+                      {/* <h4>제1조(계약 존속 기간)</h4>
                       <p>
                         임대인은 아래 임대차 대상 부동산(이하 '부동산')을 임대차
                         목적대로 사용•수익할 수 있는 상태로 하여{" "}
@@ -671,12 +720,59 @@ const openSmallWindow = (carType) => {
                       <p>
                         전화번호 :{" "}
                         <span class="text_border">010-5105-9721</span>
-                      </p>
+                      </p>*/}
                     </div>
-                  </div>
+                  </div> 
                 </div>
-                <div class="alert scroll">
-                  <p>내용 바꿔주세용~</p>
+                <div className="alert scroll">
+                  <button className="grammar_check" onClick={props.check}>
+                    특약사항 맞춤법 검사
+                  </button>
+                  <br></br>
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button
+                    className="grammar_check"
+                    style={{ marginLeft: "10px" }}
+                    onClick={handleSearch}
+                  >
+                    검색
+                  </button>
+                  <div></div>
+                  <p style={{ display: props.spCk1 === undefined ? "none" : "block" }}>
+                    맞춤법 교정 결과
+                    <br />
+                    <ul style={{ whiteSpace: "pre-wrap" }}>
+                      <li>{`${props.spCk1}`}</li>
+                      <li>{`${props.spCk2}`}</li>
+                      <li>{`${props.spCk3}`}</li>
+                    </ul>
+                  </p>
+                  <div>
+                    {searchResult.map((word) => (
+                      <div key={word.word}>
+                        <span>
+                          {word.word} : {word.sense.definition}
+                        </span>
+                        <a
+                          href="/"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openSmallWindow(word.sense.link);
+                          }}
+                        >
+                          전체보기
+                        </a>
+                      </div>
+                    ))}
+                    <button onClick={() => setSearchResult([])}>
+                      {searchResult.length > 0 && "검색결과 닫기"}
+                    </button>
+                  </div>
+                  {/* {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>} */}
                 </div>
                 <div class="footer">
                   <div class="footer_wrap">

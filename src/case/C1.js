@@ -1,34 +1,43 @@
 import React, { useState } from "react";
+import infoIcon from "../images/info.png";
 
 const C1 = (props) => {
   const [visible1, setVisible1] = useState("none");
   const [visible2, setVisible2] = useState("none");
-  
+  const [visible3, setVisible3] = useState("none");
+
   const [landLordType, setLandLordType] = useState(props.landLordType);
-  const [landLord,setLandLord] = useState(props.landLord)
+  const [landLord, setLandLord] = useState(props.landLord);
   const [renterType, setRenterType] = useState(props.renterType);
   const [renter, setRenter] = useState(props.renter);
 
+  const onSetV = () => {
+    if (visible3 === "none") {
+      setVisible3("block");
+    } else if (visible3 === "block") {
+      setVisible3("none");
+    }
+  };
 
   const onClick = (e) => {
     if (e.target.name === "집주인") {
       setVisible1("block");
       setLandLordType(e.target.value);
-      props.getC1Value(e.target.name,e.target.value,0);
+      props.getC1Value(e.target.name, e.target.value, 0);
     } else if (e.target.name === "세입자") {
       setVisible2("block");
       setRenterType(e.target.value);
-      props.getC1Value(e.target.name,e.target.value,0);
+      props.getC1Value(e.target.name, e.target.value, 0);
     }
   };
 
   const onChange = (e) => {
     if (e.target.name === "집주인") {
       setLandLord(e.target.value);
-      props.getC1Value(e.target.name,e.target.value,1);
+      props.getC1Value(e.target.name, e.target.value, 1);
     } else if (e.target.name === "세입자") {
       setRenter(e.target.value);
-      props.getC1Value(e.target.name,e.target.value,1);
+      props.getC1Value(e.target.name, e.target.value, 1);
     }
   };
 
@@ -36,7 +45,12 @@ const C1 = (props) => {
     <>
       <div className="doc_content pb075">
         <div className="doc_content_title">
-          <p>집주인 및 세입자</p>
+          <p className="flex_start" onClick={onSetV}>
+            집주인 및 세입자
+            <button className="info_icon">
+              <img src={infoIcon} />
+            </button>
+          </p>
           <p className="doc_page">
             <span>1</span>/7
           </p>
@@ -75,8 +89,17 @@ const C1 = (props) => {
               </li>
             </ul>
             <div id="집주인" className="pt05" style={{ display: visible1 }}>
-              <span id="landLordType" className="pr05 w20">{landLordType}</span>
-              <input className="input_style w80" type="text" onChange={onChange} name="집주인" id="landLord" value={landLord}/>
+              <span id="landLordType" className="pr05 w20">
+                {landLordType}
+              </span>
+              <input
+                className="input_style w80"
+                type="text"
+                onChange={onChange}
+                name="집주인"
+                id="landLord"
+                value={landLord}
+              />
             </div>
           </div>
           <div className="input_check">
@@ -112,15 +135,32 @@ const C1 = (props) => {
             </ul>
             <div id="세입자" className="pt05" style={{ display: visible2 }}>
               <span className="pr05 w20">{renterType}</span>
-              <input className="input_style w80" type="text" onChange={onChange} name="세입자" value={renter}/>
+              <input
+                className="input_style w80"
+                type="text"
+                onChange={onChange}
+                name="세입자"
+                value={renter}
+              />
             </div>
           </div>
+        </div>
+        <div className="content_info" style={{ display: visible3 }}>
+          <h3># 작성 가이드</h3>
+          <br/>
+          <p>
+            - 아래 가이드에 따라 선택하세요.
+            <br />
+            (1)법인 : 등기하여 법인을 설립한 경우
+            <br />
+            (2)개인사업자 : 등기하지 않고, 사업자등록만 하여 사업하는 경우
+            <br />
+            (3)개인 : 위 두가지 모두에 해당하지 않은 경우
+          </p>
         </div>
       </div>
     </>
   );
 };
-
-
 
 export default C1;

@@ -59,6 +59,12 @@
 .flex_sb{justify-content: space-between;}
 .flex_start{display: flex; align-items: center; justify-content: flex-start;}
 
+.info_icon{border: none; background: none; padding-left: .4rem; padding-top: .1rem; line-height: 0;}
+.content_info{position: relative; width: 100%; height: fit-content; background: #8db1ff; border-radius: 15px; padding: 1rem; margin-top: .5rem; box-sizing: border-box;}
+.content_info::before{content: ''; position: absolute; top: -1.7rem; width: 0; height: 0; border-bottom: 20px solid #8db1ff; border-top: 20px solid transparent; border-left: 20px solid transparent;
+    border-right: 20px solid transparent;}
+.content_info p{font-size: .8rem;}
+
 .w0 {width:0}
 .w5 {width:5%}
 .w10 {width:10%}

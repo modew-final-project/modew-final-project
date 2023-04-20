@@ -10,7 +10,7 @@ const LogInNav = () => {
 
   return (
     <>
-      <div className="header_right pd21 flex_sb bgblue">
+      <div className="header_right">
         {/* <h3>부동산(매매계약서)</h3> */}
         <ul>
           <li>

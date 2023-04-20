@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import searchLogo from "../images/main_search.png";
 import { Link } from "react-router-dom";
 import { authService } from "../fbase";
-const Resignation = () => {
+const Resignation = (props) => {
   const onLogOutClick = () => authService.signOut();
   const [fullAddress, setFullAddress] = useState("");
     const openSmallWindow = () => {
@@ -28,6 +28,29 @@ const Resignation = () => {
           
         };
       };
+
+      const [spellOn1, setSpellOn1] = useState("");
+      const [spellOn2, setSpellOn2] = useState("");
+      const [spellOn3, setSpellOn3] = useState("");
+      const [searchTerm, setSearchTerm] = useState("");
+      const [searchResult, setSearchResult] = useState([]); // searchResult 변수를 빈 배열로 초기화
+    
+    const handleSearch = async () => {
+      setSearchResult([]); // 새로운값 검색시 초기화
+      try {
+        const response = await fetch(`http://localhost:3002/api/search/${searchTerm}`);
+        if (response.ok) {
+          const data = await response.json();
+          setSearchResult(data.channel.item);
+          console.log(data.channel)
+        } else {
+          console.error("응답이 성공적으로 오지 않았습니다.");
+          
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   return (
     <>
@@ -427,7 +450,54 @@ const Resignation = () => {
                   </div>
                 </div>
                 <div className="alert scroll">
-                  <p>내용 바꿔주세용~</p>
+                  <button className="grammar_check" onClick={props.check}>
+                    특약사항 맞춤법 검사
+                  </button>
+                  <br></br>
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <button
+                    className="grammar_check"
+                    style={{ marginLeft: "10px" }}
+                    onClick={handleSearch}
+                  >
+                    검색
+                  </button>
+                  <div></div>
+                  <p style={{ display: props.spCk1 === undefined ? "none" : "block" }}>
+                    맞춤법 교정 결과
+                    <br />
+                    <ul style={{ whiteSpace: "pre-wrap" }}>
+                      <li>{`${props.spCk1}`}</li>
+                      <li>{`${props.spCk2}`}</li>
+                      <li>{`${props.spCk3}`}</li>
+                    </ul>
+                  </p>
+                  <div>
+                    {searchResult.map((word) => (
+                      <div key={word.word}>
+                        <span>
+                          {word.word} : {word.sense.definition}
+                        </span>
+                        <a
+                          href="/"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openSmallWindow(word.sense.link);
+                          }}
+                        >
+                          전체보기
+                        </a>
+                      </div>
+                    ))}
+                    <button onClick={() => setSearchResult([])}>
+                      {searchResult.length > 0 && "검색결과 닫기"}
+                    </button>
+                  </div>
+                  {/* {flaskData ? <p>{flaskData}</p> : <p>뉴스알림, 단어, 법률 등등</p>} */}
                 </div>
                 <div className="footer">
                   <div className="footer_wrap">

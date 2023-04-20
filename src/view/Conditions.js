@@ -12,15 +12,15 @@ const Conditions = (props) => {
   const onLogOutClick = () => authService.signOut();
 
   //Mydrive에서 수정하기 눌렀을 경우 데이터 불러오기
-useEffect(()=>{
-  dbService.collection("docu1").onSnapshot((snapshot)=>{
-    const newArray = snapshot.docs.map((document)=>({
-      id:document.id,
-      ...document.data(),
-    }));
-    console.log(newArray[0].landLord);
-  })
-},[]);
+  useEffect(() => {
+    dbService.collection("docu1").onSnapshot((snapshot) => {
+      const newArray = snapshot.docs.map((document) => ({
+        id: document.id,
+        ...document.data(),
+      }));
+      console.log(newArray[0].landLord);
+    });
+  }, []);
 
   const location = useLocation();
   const tempData1 = location.state?.tempData1 ?? "";
@@ -82,38 +82,61 @@ useEffect(()=>{
   const [fullAddress2, setFullAddress2] = useState("");
   const [extraAddress2, setExtraAddress2] = useState("");
 
-  // useEffect(() => {
-  //   if (tempData1 !== "") {
-  //     // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
-  //     // 나중에 추가할거있으면 여기도 같이 바꿔줘야함
-  //     const temp = JSON.parse(tempData1);
-  //     // C1 & requirement[0]
-  //     setLandLord(temp.landLord);
-  //     setLandLordType(temp.landLordType);
-  //     setRenter(temp.renter);
-  //     setRenterType(temp.renterType);
 
-  //     // C2 & requirement[1]
-  //     setStartDate(temp.startDate);
-  //     setEndDate(temp.endDate);
-  //     setMonthly(temp.monthly);
-  //     setDueDate(temp.dueDate);
+  useEffect(() => {
+    if (tempData1 !== "") {
+      // 밑에 tempData json 형태로 DB에 저장한거 불러온거임
+      // 나중에 추가할거있으면 여기도 같이 바꿔줘야함
+      const temp = JSON.parse(tempData1);
+      // C1 & requirement[0]
+      setLandLord(temp.landLord);
+      setLandLordType(temp.landLordType);
+      setRenter(temp.renter);
+      setRenterType(temp.renterType);
 
-  //     // C3 & requirement[2]
-  //     setDeposit(temp.deposit);
-  //     setDownPayment(temp.downPayment);
-  //     setBalance(temp.balance);
-  //     setBalanceDate(temp.balanceDate);
-  //     setBank(temp.bank);
-  //     setAccountNum(temp.accountNum);
-  //     setAccountHolder(temp.accountHolder);
+      // C2 & requirement[1]
+      setStartDate(temp.startDate);
+      setEndDate(temp.endDate);
+      setMonthly(temp.monthly);
+      setDueDate(temp.dueDate);
 
-  //     // C4 & requirement[3]
-  //     setBuiltIn(temp.builtIn);
-  //     setCleaning(temp.cleaning);
-  //     setDirect(temp.direct);
-  //   }
-  // }, [tempData1]);
+      // C3 & requirement[2]
+      setDeposit(temp.deposit);
+      setDownPayment(temp.downPayment);
+      setBalance(temp.balance);
+      setBalanceDate(temp.balanceDate);
+      setBank(temp.bank);
+      setAccountNum(temp.accountNum);
+      setAccountHolder(temp.accountHolder);
+
+      // C4 & requirement[3]
+      setBuiltIn(temp.builtIn);
+      setCleaning(temp.cleaning);
+      setDirect(temp.direct);
+
+      //C5 & requirement[4]
+      setExtra(temp.extra);
+      setAdress(temp.adress);
+      setOption1(temp.option1);
+      setOption1Size(temp.option1Size);
+      setOption2(temp.option2);
+      setOption2Size(temp.option2Size);
+      setOption3(temp.option3);
+      setOption3Size(temp.option3Size);
+
+      //C6 & requirement[5]
+      setLandLordSSN(temp.landLordSSN);
+      setLandLordNum(temp.landLordNum);
+      setFullAddress(temp.fullAddress);
+      setExtraAddress(temp.extraAddress);
+
+      //C7 & requirement[6]
+      setRenterSSN(temp.renterSSN);
+      setRenterNum(temp.renterNum);
+      setFullAddress2(temp.fullAddress2);
+      setExtraAddress2(temp.extraAddress2);
+    }
+  }, [tempData1]);
 
   // 하위 컴포넌트로 전달할 기본값
   const requirements = [
@@ -210,7 +233,7 @@ useEffect(()=>{
     }
   };
 
-  // myDrive에서 수정하기 버튼을
+
 
   // C1에서 입력한 값을 불러와서 업데이트
   const getC1 = (name, updateValue, type) => {
@@ -366,10 +389,10 @@ useEffect(()=>{
 
   // Firestore DB에 저장할 문서작성 시 입력 데이터
   // 로그인한 유저의 이메일 주소값을 포함한 데이터
-  const saveFDB = async (e) => {
+  const updateFDB = async (e) => {
     e.preventDefault();
-    await dbService.collection("docu1").add({
-      email:email,
+    await dbService.collection("docu1").update({
+      email: email,
       landLord: landLord,
       landLordType: landLordType,
       renter: renter,
@@ -396,17 +419,16 @@ useEffect(()=>{
       option2Size: option2Size,
       option3: option3,
       option3Size: option3Size,
-      landLordNum:landLordNum,
-      landLordSSN:landLordSSN,
-      renterNum:renterNum,
-      renterSSN:renterSSN,
-      fullAddress:fullAddress,
-      fullAddress2:fullAddress2,
-      extraAddress:extraAddress,
-      extraAddress2:extraAddress2,
+      landLordNum: landLordNum,
+      landLordSSN: landLordSSN,
+      renterNum: renterNum,
+      renterSSN: renterSSN,
+      fullAddress: fullAddress,
+      fullAddress2: fullAddress2,
+      extraAddress: extraAddress,
+      extraAddress2: extraAddress2,
       createdAt: Date.now(),
     });
-    
   };
 
   // PDF 파일을 생성하고 서버에 전송하는 함수
@@ -533,7 +555,7 @@ useEffect(()=>{
   // saveFDB : 파이어스토어 저장
   // saveAsPDF : PDF화 하여 저장
   const saveData = (e) => {
-    saveFDB(e);
+    updateFDB(e);
     saveAsPDF();
   };
 
@@ -578,6 +600,7 @@ useEffect(()=>{
                 getC5Value={getC5}
                 getC6Value={getC6}
                 getC7Value={getC7}
+                
               />
               <div className="write_right">
                 <div className="document" id="pdf-wrapper">

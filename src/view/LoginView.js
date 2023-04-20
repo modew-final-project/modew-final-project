@@ -17,7 +17,7 @@ const LoginView = () => {
 
   return (
     <>
-      <div id="wrap">
+      <div id="wrap" className="scroll">
         <div className="mainWrap">
           <LogInNav />
           <Route exact path="/Search">

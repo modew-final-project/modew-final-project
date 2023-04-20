@@ -11,6 +11,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  console.log(email)
+
+  // if (email!=""){
+  //   history.push("/");
+  // }
+
   const onSocialClick = async (e) => {
     const {
       target: { name },
@@ -18,7 +24,8 @@ const Login = () => {
     let provider = new firebaseInstance.auth.GoogleAuthProvider();
 
     const data = await authService.signInWithPopup(provider);
-    console.log(data);
+    console.log("로그인데이터",data);
+    history.replace("/");
     if (data !== null){
     try {
       await fetch("http://localhost:3002/google_user", {
@@ -30,12 +37,12 @@ const Login = () => {
           name: data.user.displayName,
         }),
       });
-      alert("로그인 성공");
+      
     } catch (error) {
       console.log(error);
     }
   }
-    history.replace("/");
+    
   };
 
   const onChange = (e) => {

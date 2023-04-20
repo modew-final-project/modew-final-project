@@ -18,6 +18,7 @@ const Sidebar = (props) => {
             renter={props.items[0].renter}
             renterType={props.items[0].renterType}
             getC1Value={props.getC1Value}
+           
           />
           <C2
             startDate={props.items[1].startDate}
@@ -41,6 +42,7 @@ const Sidebar = (props) => {
             cleaning={props.items[3].cleaning}
             direct={props.items[3].direct}
             getC4Value={props.getC4Value}
+            
           />
           <C5
             adress={props.items[4].adress}
@@ -52,6 +54,7 @@ const Sidebar = (props) => {
             option3={props.items[4].option3}
             option3Size={props.items[4].option3Size}
             getC5Value={props.getC5Value}
+            
           />
           <C6
             landLordType={props.items[0].landLordType}

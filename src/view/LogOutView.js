@@ -8,7 +8,7 @@ import LogOutNav from "./LogOutNav";
 const LoginView = () => {
   return (
     <>
-      <div id="wrap">
+      <div id="wrap" className="scroll">
         <div className="mainWrap">
           <LogOutNav />
           <Route exact path="/Sign">

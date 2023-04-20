@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
+import { useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 import modew_Logo from "../images/modew_logo.png";
 
@@ -9,7 +10,10 @@ const Sign = () => {
   const [birthday, setBirthday] = useState("");
   const [tel, setTel] = useState("");
 
+  const history = useHistory();
+
   const onChange = (e) => {
+
     const {
       target: { name, value },
     } = e;
@@ -52,6 +56,7 @@ const Sign = () => {
 
       // 회원가입 성공 메시지 클라이언트 쪽으로 전송
       alert("회원가입이 완료되었습니다.");
+      history.push("/");
     } catch (error) {
       console.log("DB 저장 실패");
       console.log(error);
@@ -59,6 +64,7 @@ const Sign = () => {
       // 회원가입 실패 메시지 클라이언트 쪽으로 전송
       alert("회원가입에 실패하였습니다.");
     }
+   
   };
 
   return (
